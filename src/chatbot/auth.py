@@ -5,11 +5,22 @@ Three roles:
 - student: can only query their own record (matched via users.student_name)
 """
 
+import os
+import time
+
 import bcrypt
+from jose import JWTError, jwt
 
 from chatbot.database import get_db_connection
 
 FULL_ACCESS_ROLES = {"admin", "faculty"}
+
+# JWT config for the FastAPI backend. In production, JWT_SECRET_KEY MUST be
+# set to a long random value via environment variable - the default here
+# is only for local development and is intentionally obvious about that.
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-insecure-secret-change-me")
+JWT_ALGORITHM = "HS256"
+JWT_EXPIRE_SECONDS = 8 * 60 * 60  # 8 hours
 
 
 def hash_password(plain_password: str) -> str:
@@ -59,3 +70,27 @@ def can_access_student(user: dict, student_name: str) -> bool:
         own_name = (user.get("student_name") or "").strip().lower()
         return own_name != "" and own_name == student_name.strip().lower()
     return False
+
+
+def create_access_token(user: dict) -> str:
+    """Issue a signed JWT encoding the user's identity and role."""
+    payload = {
+        "sub": user["username"],
+        "role": user["role"],
+        "student_name": user.get("student_name"),
+        "exp": int(time.time()) + JWT_EXPIRE_SECONDS,
+    }
+    return jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+
+
+def decode_access_token(token: str) -> dict | None:
+    """Verify and decode a JWT, returning the embedded user info or None if invalid/expired."""
+    try:
+        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+    except JWTError:
+        return None
+    return {
+        "username": payload.get("sub"),
+        "role": payload.get("role"),
+        "student_name": payload.get("student_name"),
+    }

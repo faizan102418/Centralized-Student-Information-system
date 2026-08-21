@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root123}
+      MYSQL_DATABASE: ${DB_NAME:-project_data}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./data/seed.sql:/docker-entrypoint-initdb.d/1-seed.sql:ro
+      - ./data/add_users.sql:/docker-entrypoint-initdb.d/2-users.sql:ro
+      - ./data/add_query_logs.sql:/docker-entrypoint-initdb.d/3-query-logs.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Override .env's DB_HOST so the API reaches MySQL by its service
+      # name inside the Docker network, not "localhost".
+      DB_HOST: mysql
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
