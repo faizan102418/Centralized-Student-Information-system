@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir uv
 WORKDIR /app
 
 # Install dependencies first for better layer caching
-COPY pyproject.toml ./
+COPY pyproject.toml README.md ./
 COPY uv.lock* ./
 RUN uv sync --no-dev --extra api
 

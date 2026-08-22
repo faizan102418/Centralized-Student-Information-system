@@ -47,9 +47,54 @@ still talks to the `chatbot` package directly rather than the new API.
 
 ---
 
-## Day 2 — (planned)
+## Day 2 — 2026-08-22
 
-- Bring up the full Docker Compose stack (MySQL + API) and verify `/health`
-  and `/chat` work identically inside containers as they did locally.
-- Depending on time: begin the DB schema upgrade (UUID-based student IDs
-  instead of name-based linking) from the original Day 8-10 plan.
+**Plan:** Get the full Docker Compose stack (MySQL + API) running and
+verified end-to-end.
+
+**Shipped:**
+- Fixed `torch` pulling in the full CUDA/NVIDIA toolkit (~2GB of unused
+  GPU libraries) inside the Docker build by pinning it to PyTorch's
+  CPU-only wheel index via `[tool.uv.sources]` — required making `torch`
+  a direct dependency, since `uv` only applies source overrides to
+  packages the project explicitly declares, not transitive ones.
+- Fixed a `Dockerfile` build failure: `hatchling` needs `README.md`
+  present to validate package metadata, but our layer-caching strategy
+  only copied `pyproject.toml`/`uv.lock` before `uv sync` — added
+  `README.md` to that early `COPY`.
+- Fixed a duplicate-seed-data crash: `add_users.sql` (a fix built for
+  patching an *existing* local MySQL) was redundant against a *fresh*
+  container where `seed.sql` already creates the same accounts — removed
+  it from `docker-compose.yml`'s init scripts.
+- Verified the full stack end-to-end inside containers: MySQL init
+  scripts run cleanly, API connects via the `mysql` service hostname
+  (not `localhost`), embedding model downloads and loads, login → JWT →
+  RBAC-protected `/chat` → logged to `query_logs`, confirmed via
+  `docker exec` directly against the containerized database.
+
+**Bugs hit and fixed (debugging methodology practiced, not just patched):**
+1. `uv.lock` kept resolving `torch` from PyPI despite the override —
+   walked through ruling out syntax, then cache staleness (full
+   `uv cache clean`, 5.5GB), before finding the real cause: direct vs.
+   transitive dependency scoping in `uv`.
+2. Docker build failed on a missing `README.md` — traced to which files
+   get copied into which build stage, and when.
+3. MySQL init crashed on `Duplicate entry 'admin'` — traced to two
+   different seed files, each correct for a different scenario (patching
+   existing data vs. fresh init), that conflicted when both were mounted.
+
+**Key lesson practiced today:** verify each fix with the cheapest
+possible check before re-running the expensive one (`Select-String` on
+`uv.lock` in milliseconds, instead of a multi-minute Docker rebuild every
+time).
+
+**Not done yet:** No persistent cache for the embedding model inside
+Docker — it re-downloads on every fresh container build. Worth a volume,
+same pattern as `mysql_data`, before this goes to real deployment.
+
+---
+
+## Day 3 — (planned)
+
+- Add a persistent volume for the HuggingFace embedding model cache.
+- Depending on time: begin the DB schema upgrade (UUID-based student IDs).

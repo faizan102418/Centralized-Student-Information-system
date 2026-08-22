@@ -10,8 +10,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./data/seed.sql:/docker-entrypoint-initdb.d/1-seed.sql:ro
-      - ./data/add_users.sql:/docker-entrypoint-initdb.d/2-users.sql:ro
-      - ./data/add_query_logs.sql:/docker-entrypoint-initdb.d/3-query-logs.sql:ro
+      - ./data/add_query_logs.sql:/docker-entrypoint-initdb.d/2-query-logs.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
       interval: 5s
