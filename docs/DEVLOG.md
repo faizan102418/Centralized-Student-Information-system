@@ -94,7 +94,19 @@ same pattern as `mysql_data`, before this goes to real deployment.
 
 ---
 
-## Day 3 — (planned)
+## Day 3 — 2026-08-23 (light session, Sunday)
 
-- Add a persistent volume for the HuggingFace embedding model cache.
-- Depending on time: begin the DB schema upgrade (UUID-based student IDs).
+**Plan:** One small, contained task — HuggingFace embedding model caching
+in Docker. Kept deliberately light; UUID student ID migration deferred
+whole to Day 4.
+
+**Shipped:**
+- Added a named `hf_cache` volume to `docker-compose.yml`, mounted at
+  `/app/.cache/huggingface`, with `HF_HOME` pointed at it. The embedding
+  model now downloads once and persists across container restarts,
+  instead of re-downloading ~400MB every fresh `docker compose up`.
+
+**Not done (intentionally, deferred to Day 4):**
+- UUID-based student ID migration (schema change + query updates across
+  `database.py`, `auth.py`, seed data) — this is a real, multi-file
+  change that deserves full focus, not a Sunday half-session.

@@ -26,11 +26,17 @@ services:
       # Override .env's DB_HOST so the API reaches MySQL by its service
       # name inside the Docker network, not "localhost".
       DB_HOST: mysql
+      # Persist downloaded HuggingFace models across container restarts
+      # instead of re-downloading ~400MB every fresh build.
+      HF_HOME: /app/.cache/huggingface
     ports:
       - "8000:8000"
+    volumes:
+      - hf_cache:/app/.cache/huggingface
     depends_on:
       mysql:
         condition: service_healthy
 
 volumes:
   mysql_data:
+  hf_cache:
