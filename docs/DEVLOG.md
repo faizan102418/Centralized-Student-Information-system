@@ -111,3 +111,5 @@ whole to Day 4.
   `database.py`, `auth.py`, seed data) — this is a real, multi-file
   change that deserves full focus, not a Sunday half-session.
 - And will resume our work from here tomorrow
+- Also have to work on research side of this project
+- Need to learn what we learned so far
