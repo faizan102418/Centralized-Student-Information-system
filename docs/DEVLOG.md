@@ -110,3 +110,4 @@ whole to Day 4.
 - UUID-based student ID migration (schema change + query updates across
   `database.py`, `auth.py`, seed data) — this is a real, multi-file
   change that deserves full focus, not a Sunday half-session.
+- And will resume our work from here tomorrow
