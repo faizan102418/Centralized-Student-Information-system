@@ -22,54 +22,55 @@ def get_db_connection() -> mysql.connector.MySQLConnection:
 def fetch_student_data_from_db() -> str:
     """
     Fetch and merge student data from the general, scholarship, and fee
-    tables, keyed by student name, and return it as newline-separated text
+    tables, keyed by student_id, and return it as newline-separated text
     ready to be chunked and embedded.
 
-    Note: joining on name is fine for a small demo/FYP dataset but is not
-    collision-safe for two students who share a name. A production version
-    should join on a stable student ID instead.
+    Uses student_id (a stable UUID, see data/migrations/002_add_student_uuid.sql)
+    rather than name for merging, so two students who happen to share a
+    name are never incorrectly conflated into one record.
     """
     connection = None
     try:
         connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
 
-        cursor.execute("SELECT roll_number, name, discipline FROM student_general_data")
-        general_data = {row["name"].lower(): row for row in cursor.fetchall()}
+        cursor.execute("SELECT student_id, roll_number, name, discipline FROM student_general_data")
+        general_data = {row["student_id"]: row for row in cursor.fetchall() if row["student_id"]}
 
-        cursor.execute("SELECT name, scholarship_name, enrollment_status FROM student_scholarship")
-        scholarship_data = {row["name"].lower(): row for row in cursor.fetchall()}
+        cursor.execute(
+            "SELECT student_id, scholarship_name, enrollment_status FROM student_scholarship"
+        )
+        scholarship_data = {
+            row["student_id"]: row for row in cursor.fetchall() if row["student_id"]
+        }
 
-        cursor.execute("SELECT registration_number, name, fee_status FROM student_fee_submission")
-        fee_data = {row["name"].lower(): row for row in cursor.fetchall()}
+        cursor.execute(
+            "SELECT student_id, registration_number, fee_status FROM student_fee_submission"
+        )
+        fee_data = {row["student_id"]: row for row in cursor.fetchall() if row["student_id"]}
 
-        all_names = set(general_data) | set(scholarship_data) | set(fee_data)
         records = []
 
-        for name_key in all_names:
-            parts = []
+        for student_id, gd in general_data.items():
+            parts = [f"Student Name: {gd.get('name')}"]
+            if gd.get("roll_number"):
+                parts.append(f"Roll Number: {gd.get('roll_number')}")
+            if gd.get("discipline"):
+                parts.append(f"Discipline: {gd.get('discipline')}")
 
-            if gd := general_data.get(name_key):
-                parts.append(f"Student Name: {gd.get('name')}")
-                if gd.get("roll_number"):
-                    parts.append(f"Roll Number: {gd.get('roll_number')}")
-                if gd.get("discipline"):
-                    parts.append(f"Discipline: {gd.get('discipline')}")
-
-            if sd := scholarship_data.get(name_key):
+            if sd := scholarship_data.get(student_id):
                 if sd.get("scholarship_name"):
                     parts.append(f"Scholarship Name: {sd.get('scholarship_name')}")
                 if sd.get("enrollment_status"):
                     parts.append(f"Scholarship Enrollment Status: {sd.get('enrollment_status')}")
 
-            if fd := fee_data.get(name_key):
+            if fd := fee_data.get(student_id):
                 if fd.get("registration_number"):
                     parts.append(f"Registration Number: {fd.get('registration_number')}")
                 if fd.get("fee_status"):
                     parts.append(f"Fee Status: {fd.get('fee_status')}")
 
-            if parts:
-                records.append(" -- ".join(parts))
+            records.append(" -- ".join(parts))
 
         return "\n\n".join(records)
 
