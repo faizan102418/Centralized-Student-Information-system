@@ -110,6 +110,50 @@ whole to Day 4.
 - UUID-based student ID migration (schema change + query updates across
   `database.py`, `auth.py`, seed data) — this is a real, multi-file
   change that deserves full focus, not a Sunday half-session.
-- And will resume our work from here tomorrow
-- Also have to work on research side of this project
-- Need to learn what we learned so far
+
+---
+
+## Day 4 — 2026-08-24
+
+**Plan:** Start the UUID-based student ID migration (expand-contract
+pattern). Scoped down to 3-4 commits since today had less available time
+- full pipeline integration and old-column cleanup deferred to Day 5.
+
+**Shipped:**
+- `data/migrations/002_add_student_uuid.sql` - additive migration:
+  backfills `student_id` (UUID) into `student_general_data`,
+  `student_scholarship`, `student_fee_submission`, and `users`, matched
+  via name (the last time this codebase relies on name-matching).
+  Existing name-based columns untouched - pure "expand" step.
+- `data/seed.sql` updated so fresh installs get `student_id` from the
+  start, no migration needed for new databases.
+- `database.py`'s `fetch_student_data_from_db()` now merges records by
+  `student_id` instead of lowercased name - the actual behavior change,
+  eliminating the name-collision risk flagged in the thesis (11.1, 12.3).
+
+**Bugs hit and fixed:**
+1. XAMPP's `mysql.exe` turned out to be a 0-byte file (almost certainly
+   antivirus quarantine neutering it) - pivoted to verifying entirely
+   against Docker's MySQL instead of chasing that down mid-session.
+2. `ADD COLUMN IF NOT EXISTS ... AFTER ...` isn't valid syntax on this
+   MySQL version - dropped the `IF NOT EXISTS` (not essential, the
+   migration only needs to run once anyway).
+3. Docker port 3306 conflict blocked `docker compose up` - a leftover
+   process (likely XAMPP's `mysqld` server, separate from the broken
+   CLI client) was still holding the port.
+4. Forgot that `docker compose restart` reuses the existing image and
+   won't pick up code changes - needed `--build` to actually rebuild.
+
+**Verified:** Migration backfill confirmed consistent across all four
+tables (same UUID for Alice Smith everywhere she appears). `/chat`
+queries against Alice and Bob still return correct answers after
+switching `database.py` to ID-based joins.
+
+**Deferred to Day 5:**
+- `rag_pipeline.py` / prompt-level awareness of `student_id`
+- `auth.py`: derive `student_name` via `student_id` JOIN instead of the
+  (now potentially stale) stored column, so a student's linked record
+  can't drift out of sync
+- Repair XAMPP's `mysql.exe` (not urgent - Docker is the working path)
+- Eventually: remove old name-based columns (the "contract" step) once
+  fully confident, not before
