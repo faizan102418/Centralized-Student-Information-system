@@ -157,3 +157,13 @@ switching `database.py` to ID-based joins.
 - Repair XAMPP's `mysql.exe` (not urgent - Docker is the working path)
 - Eventually: remove old name-based columns (the "contract" step) once
   fully confident, not before
+
+**Additional Day 4 work:**
+- `auth.py`'s `get_user()` now derives `student_name` via a `LEFT JOIN`
+  on `student_id` instead of trusting the stored `users.student_name`
+  column directly - prevents that field from silently drifting stale if
+  a student's name is ever corrected in `student_general_data`. Falls
+  back to the stored column for any account not yet linked by
+  `student_id`. Verified: access-control denial for a student querying
+  another student's record still works correctly and just as fast
+  (0ms fast-fail before reaching Groq).

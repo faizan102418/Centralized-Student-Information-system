@@ -38,13 +38,25 @@ def verify_password(plain_password: str, password_hash: str) -> bool:
 
 
 def get_user(username: str) -> dict | None:
-    """Fetch a user record by username, or None if it doesn't exist."""
+    """
+    Fetch a user record by username, or None if it doesn't exist.
+
+    student_name is derived via a JOIN on student_id (the stable UUID
+    from data/migrations/002_add_student_uuid.sql) rather than trusting
+    the stored users.student_name column directly, so it can't silently
+    drift out of sync if a student's name is ever corrected in
+    student_general_data. Falls back to the stored column for any
+    account not yet linked by student_id.
+    """
     connection = get_db_connection()
     try:
         cursor = connection.cursor(dictionary=True)
         cursor.execute(
-            "SELECT id, username, password_hash, role, student_name "
-            "FROM users WHERE username = %s",
+            "SELECT u.id, u.username, u.password_hash, u.role, u.student_id, "
+            "COALESCE(g.name, u.student_name) AS student_name "
+            "FROM users u "
+            "LEFT JOIN student_general_data g ON g.student_id = u.student_id "
+            "WHERE u.username = %s",
             (username,),
         )
         return cursor.fetchone()
