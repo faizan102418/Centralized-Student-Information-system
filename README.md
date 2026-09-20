@@ -205,9 +205,9 @@ submitted to the Institute of Computer Science and Information Technology,
 The University of Agriculture, Peshawar (Session 2021–2025), supervised by
 **Mr. Imran ud Din**.
 
-- **Mohammad Mawan Zeb** (Roll No. 104)
 - **Mohammad Faizan Sajid** (Roll No. 126)
-- **Mohsin Khan Durrani** (Roll No. 72)
+- **Abdur Rauf Shah** (Roll No. 125)
+- **Mohammad Mawan Zeb** (Roll No. 104)
 
 This repository is maintained by Mohammad Faizan Sajid as a fork of the
 original team submission, restructured with a proper `src/` layout, `uv`
