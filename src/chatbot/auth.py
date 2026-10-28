@@ -1,10 +1,9 @@
 """Authentication and role-based access control (RBAC).
 
-Three roles:
-- admin / faculty: full access to any student's record
-- student: can only query their own record (matched via users.student_name)
+Admin/faculty can access any student record. Student accounts are restricted
+to their own stable student_id; names are only a compatibility fallback when
+the target record has no ID.
 """
-
 import os
 import time
 
@@ -14,13 +13,9 @@ from jose import JWTError, jwt
 from chatbot.database import get_db_connection
 
 FULL_ACCESS_ROLES = {"admin", "faculty"}
-
-# JWT config for the FastAPI backend. In production, JWT_SECRET_KEY MUST be
-# set to a long random value via environment variable - the default here
-# is only for local development and is intentionally obvious about that.
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-insecure-secret-change-me")
 JWT_ALGORITHM = "HS256"
-JWT_EXPIRE_SECONDS = 8 * 60 * 60  # 8 hours
+JWT_EXPIRE_SECONDS = 8 * 60 * 60
 
 
 def hash_password(plain_password: str) -> str:
@@ -33,21 +28,11 @@ def verify_password(plain_password: str, password_hash: str) -> bool:
     try:
         return bcrypt.checkpw(plain_password.encode("utf-8"), password_hash.encode("utf-8"))
     except ValueError:
-        # Malformed hash in the DB - treat as a failed login, not a crash.
         return False
 
 
 def get_user(username: str) -> dict | None:
-    """
-    Fetch a user record by username, or None if it doesn't exist.
-
-    student_name is derived via a JOIN on student_id (the stable UUID
-    from data/migrations/002_add_student_uuid.sql) rather than trusting
-    the stored users.student_name column directly, so it can't silently
-    drift out of sync if a student's name is ever corrected in
-    student_general_data. Falls back to the stored column for any
-    account not yet linked by student_id.
-    """
+    """Fetch a user and derive its canonical student name from student_id."""
     connection = get_db_connection()
     try:
         cursor = connection.cursor(dictionary=True)
@@ -74,14 +59,24 @@ def authenticate(username: str, password: str) -> dict | None:
     return user
 
 
-def can_access_student(user: dict, student_name: str) -> bool:
-    """Check whether a logged-in user is allowed to view a given student's record."""
-    if user["role"] in FULL_ACCESS_ROLES:
+def can_access_student(
+    user: dict,
+    student_name: str,
+    student_id: str | None = None,
+) -> bool:
+    """Check authorization; use stable IDs for student-to-record comparisons."""
+    if user.get("role") in FULL_ACCESS_ROLES:
         return True
-    if user["role"] == "student":
-        own_name = (user.get("student_name") or "").strip().lower()
-        return own_name != "" and own_name == student_name.strip().lower()
-    return False
+    if user.get("role") != "student":
+        return False
+
+    own_id = user.get("student_id")
+    if student_id is not None:
+        return bool(own_id) and str(own_id) == str(student_id)
+
+    # Compatibility for older callers/tests that do not yet provide a record ID.
+    own_name = (user.get("student_name") or "").strip().casefold()
+    return bool(own_name) and own_name == student_name.strip().casefold()
 
 
 def create_access_token(user: dict) -> str:
@@ -89,6 +84,7 @@ def create_access_token(user: dict) -> str:
     payload = {
         "sub": user["username"],
         "role": user["role"],
+        "student_id": user.get("student_id"),
         "student_name": user.get("student_name"),
         "exp": int(time.time()) + JWT_EXPIRE_SECONDS,
     }
@@ -104,5 +100,6 @@ def decode_access_token(token: str) -> dict | None:
     return {
         "username": payload.get("sub"),
         "role": payload.get("role"),
+        "student_id": payload.get("student_id"),
         "student_name": payload.get("student_name"),
     }

@@ -9,7 +9,7 @@ from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from chatbot.auth import can_access_student
-from chatbot.candidate_matcher import match_candidate
+from chatbot.candidate_matcher import match_candidate, normalize_name
 from chatbot.database import fetch_student_names_from_db, fetch_student_records_from_db
 from chatbot.jev_verifier import JevVerifier
 from chatbot.llm_client import query_groq_api
@@ -17,11 +17,21 @@ from chatbot.llm_client import query_groq_api
 EMBEDDING_MODEL = "sentence-transformers/all-mpnet-base-v2"
 DEBUG_DUMP_PATH = Path(__file__).resolve().parents[2] / "data" / "combined_student_records_from_db.txt"
 
-NAME_PATTERN = re.compile(
-    r"(?:student|for|of|about|details for|record of|show me|what is|"
-    r"tell me about|who is)\s+"
-    r"([A-Za-z][A-Za-z\s'-]*?)(?:'s\b|[?.,]|$)",
-    re.IGNORECASE,
+# Prefer specific phrases so "What is the fee status for Alice Smith?" resolves
+# to Alice Smith rather than treating "the fee status for Alice Smith" as a name.
+NAME_PATTERNS = (
+    re.compile(
+        r"\b(?:what is|tell me about|show me details for|details for|record of|"
+        r"who is|show me|for|of|about)\s+"
+        r"([A-Za-z][A-Za-z\s'-]*?)(?:'s\b)",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"\b(?:show me details for|details for|record of|tell me about|who is|"
+        r"for|of|about|show me|student)\s+"
+        r"([A-Za-z][A-Za-z\s'-]*?)(?:'s\b|[?.,]|$)",
+        re.IGNORECASE,
+    ),
 )
 STUDENT_RECORD_TERMS = re.compile(
     r"\b(student|discipline|scholarship|fee|roll number|registration number|"
@@ -68,10 +78,9 @@ def get_student_record_prompt(
     student_id: str | None = None,
 ) -> str:
     """Retrieve context scoped to one canonical student ID, never global nearest chunks."""
-    query = f"Information about {student_name}. {user_question}"
     if not student_id:
-        # Do not permit an unscoped record retrieval.
         return ""
+    query = f"Information about {student_name}. {user_question}"
     relevant_docs = vectorstore.similarity_search(
         query,
         k=4,
@@ -90,11 +99,38 @@ def get_student_record_prompt(
 
 
 def extract_student_name(query: str) -> str | None:
-    """Best-effort regex name extraction; unresolved phrasing must fail closed."""
-    match = NAME_PATTERN.search(query)
-    if not match:
-        return None
-    return " ".join(match.group(1).strip().split()).title()
+    """Best-effort name extraction for common query forms; ambiguous names are rejected later."""
+    for pattern in NAME_PATTERNS:
+        match = pattern.search(query)
+        if match:
+            name = " ".join(match.group(1).strip().split())
+            if name:
+                return name.title()
+    return None
+
+
+def _names_mentioned_in_query(query: str, candidates: list[dict]) -> list[dict]:
+    """Find canonical full names explicitly mentioned in the query."""
+    normalized_query = f" {normalize_name(query)} "
+    found = []
+    for candidate in candidates:
+        name = normalize_name(str(candidate.get("name") or ""))
+        if name and f" {name} " in normalized_query:
+            found.append(candidate)
+    # Prefer a fully mentioned longer name over its prefix (e.g. "David Miller Jr"
+    # should not also count as a separate mention of "David Miller"). Duplicate
+    # rows with the same canonical name remain ambiguous because their IDs differ.
+    filtered = []
+    normalized_names = [normalize_name(str(item.get("name") or "")) for item in found]
+    for index, candidate in enumerate(found):
+        name = normalized_names[index]
+        shadowed_by_longer_name = any(
+            other != name and other.startswith(name + " ")
+            for other in normalized_names
+        )
+        if not shadowed_by_longer_name:
+            filtered.append(candidate)
+    return filtered
 
 
 def answer_question(
@@ -105,18 +141,32 @@ def answer_question(
 ) -> str:
     """Answer general questions, or safely resolve, authorize, then retrieve a student record."""
     student_name = extract_student_name(user_input)
-    if not student_name:
-        if STUDENT_RECORD_TERMS.search(user_input):
-            return (
-                "I couldn't safely identify one student from that question. "
-                "Please include the student's full name. No student record was accessed."
-            )
+    is_record_question = bool(STUDENT_RECORD_TERMS.search(user_input))
+
+    if not student_name and not is_record_question:
         return query_groq_api(user_input)
 
     try:
         candidates = fetch_student_names_from_db()
     except RuntimeError:
         return "Student lookup is temporarily unavailable. No student record was accessed."
+
+    mentioned = _names_mentioned_in_query(user_input, candidates)
+    if len(mentioned) > 1:
+        options = sorted({candidate["name"] for candidate in mentioned})
+        return (
+            "I found multiple student names in the question, so I can't safely choose one: "
+            + ", ".join(options)
+            + ". Please ask about one student at a time. No student record was accessed."
+        )
+    if len(mentioned) == 1:
+        student_name = mentioned[0]["name"]
+
+    if not student_name:
+        return (
+            "I couldn't safely identify one student from that question. "
+            "Please include the student's full name. No student record was accessed."
+        )
 
     match = match_candidate(student_name, candidates)
     if match.status == "NO_MATCH":
