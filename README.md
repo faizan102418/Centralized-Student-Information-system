@@ -218,3 +218,24 @@ being actively extended.
 ## 📄 License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## Jev AI candidate-resolution integration
+
+Student-record queries now follow a fail-closed sequence:
+
+1. Extract the requested name and match it deterministically against the canonical MySQL student directory.
+2. Abstain if the name is missing, unknown, or ambiguous. Jev is not used to guess between duplicate or partial names.
+3. Check the authenticated user's permissions using the selected record's stable `student_id`.
+4. Send only the query and selected candidate name to Jev AI. The student record itself is not sent.
+5. Continue only when the Jev score is valid and above the threshold. An `ACCEPT` is only a text-resolution signal—not identity proof or authorization.
+6. Retrieve Chroma documents filtered by that student's `student_id`. If the API or retrieval fails, do not fall back to an unscoped LLM answer.
+
+Configure these variables in your local, untracked `.env` file:
+
+```dotenv
+JEV_AI_API_KEY=your_jev_api_key_here
+JEV_MODEL=jev-latest
+```
+
+Never commit the real key. Unit tests mock network calls and do not require a live Jev key.

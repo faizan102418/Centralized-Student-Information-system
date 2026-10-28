@@ -42,3 +42,15 @@ def test_student_cannot_access_other_records():
 def test_student_with_no_linked_name_denied():
     student = {"role": "student", "student_name": None}
     assert not can_access_student(student, "Alice Smith")
+
+
+
+def test_student_access_uses_stable_id_when_available():
+    student = {"role": "student", "student_id": "uuid-1", "student_name": "Alice Smith"}
+    assert can_access_student(student, "Someone Else", "uuid-1")
+    assert not can_access_student(student, "Alice Smith", "uuid-2")
+
+
+def test_student_with_missing_id_cannot_access_id_scoped_record():
+    student = {"role": "student", "student_name": "Alice Smith"}
+    assert not can_access_student(student, "Alice Smith", "uuid-1")
