@@ -22,7 +22,7 @@ establish that verification improves performance.
 ## Benchmark
 `data/eval/synthetic_eval.jsonl` contains 200 fictional cases: 100 answerable,
 50 ambiguous, and 50 with a missing requested field. The associated synthetic
-records are in `data/eval/synthetic_students.json`. These are seed cases, not
+records are in `data/eval/synthetic_students.json`. To load the fixture records into a test database, first apply `data/seed.sql`, then run `mysql -u root -p project_data < data/eval/seed_synthetic_eval.sql`. These are seed cases, not
 a representative sample of real student queries. Freeze the dataset before
 comparison and do not tune on held-out cases.
 
