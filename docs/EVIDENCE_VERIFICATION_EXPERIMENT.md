@@ -169,3 +169,26 @@ Existing output files from runs created before this diagnostics schema are
 not resumable as System B runs under the updated runner. Use a fresh output
 directory for diagnostic runs. The callback is optional and does not alter
 baseline application behavior when omitted.
+
+
+## Operational API failures (corrected handling)
+
+Groq transport errors, HTTP errors (including rate limits), invalid JSON, and
+malformed/empty completion payloads raise `GroqAPIError`. They are not returned
+as natural-language answer strings and are never passed to the evidence
+verifier. The Streamlit interface catches this exception and displays a
+temporary-service message.
+
+During research runs, an exception is recorded in the raw log with
+`decision="error"` and its exception class in `error_type`. No prediction
+row is written for that case, so the evaluator cannot count an infrastructure
+failure as an answer, clarification, or abstention. The run stops and can be
+resumed after the operational issue is addressed; successful case IDs are
+skipped, while the failed case is retried. Earlier error records remain in the
+raw log for auditability.
+
+When reporting results, disclose operational failures and the number of
+successfully evaluated cases. Do not silently treat errors as abstentions or
+include them in behavioral decision metrics. Existing benchmark artifacts
+created before this fix are retained as historical outputs and should be
+labelled provisional where their API-error handling may have affected scores.
