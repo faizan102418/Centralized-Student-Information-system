@@ -17,7 +17,7 @@ class EvidenceVerification:
 
 
 FIELD_ALIASES = (
-    ("scholarship_name", (r"\bscholarship name\b", r"\bname of (?:the )?scholarship\b")),
+    ("scholarship_name", (r"\bscholarship name\b", r"\bname of (?:the )?scholarship\b", r"\bwhich scholarship\b", r"\bscholarship does\b")),
     ("enrollment_status", (r"\bscholarship status\b", r"\benrollment status\b", r"\benrolment status\b")),
     ("fee_status", (r"\bfee status\b", r"\bfee paid\b", r"\bfees paid\b")),
     ("discipline", (r"\bdiscipline\b", r"\bdepartment\b", r"\bmajor\b", r"\bsubject area\b")),
