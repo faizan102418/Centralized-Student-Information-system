@@ -79,6 +79,22 @@ def scoring_answer(output: str) -> str:
     return cleaned.strip(" \t\r\n.,;:!?")
 
 
+def validate_diagnostic_scope(cases: list[dict[str, Any]], db_name: str) -> None:
+    """Allow pre-retrieval cases without IDs; constrain every supplied ID to synthetic data."""
+    if db_name != "research_eval":
+        raise ValueError(
+            "System B diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
+        )
+    if any(
+        row.get("student_id") is not None
+        and not str(row.get("student_id")).startswith("SYN-")
+        for row in cases
+    ):
+        raise ValueError(
+            "System B diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
+        )
+
+
 def select_cases(dataset: list[dict[str, Any]], limit: int | None = None,
                  pilot: bool = False) -> list[dict[str, Any]]:
     if limit is not None and pilot:
@@ -236,13 +252,8 @@ def main() -> int:
     from chatbot.rag_pipeline import answer_question, setup_vector_db
 
     systems = ("A", "B") if args.system == "both" else (args.system,)
-    if "B" in systems and (
-        DB_NAME != "research_eval"
-        or any(not str(row.get("student_id", "")).startswith("SYN-") for row in cases)
-    ):
-        raise ValueError(
-            "System B diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
-        )
+    if "B" in systems:
+        validate_diagnostic_scope(cases, DB_NAME)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metadata_path = args.output_dir / "metadata.json"
