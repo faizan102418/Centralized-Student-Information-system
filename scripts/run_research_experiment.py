@@ -236,11 +236,12 @@ def main() -> int:
     from chatbot.rag_pipeline import answer_question, setup_vector_db
 
     systems = ("A", "B") if args.system == "both" else (args.system,)
-    if "B" in systems and any(
-        not str(row.get("student_id", "")).startswith("SYN-") for row in cases
+    if "B" in systems and (
+        DB_NAME != "research_eval"
+        or any(not str(row.get("student_id", "")).startswith("SYN-") for row in cases)
     ):
         raise ValueError(
-            "System B diagnostics are restricted to synthetic cases with SYN- student IDs."
+            "System B diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
         )
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
