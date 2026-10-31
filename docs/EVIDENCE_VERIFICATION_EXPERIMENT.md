@@ -63,8 +63,13 @@ error entry is retained; errors are not scored as abstentions.
 - system_a_predictions.jsonl / system_b_predictions.jsonl: evaluator input
   with case_id, decision, and answer. Common answer framing is stripped for
   exact-match scoring; inspect this derived field manually.
-- system_a_raw.jsonl / system_b_raw.jsonl: untouched response text, observable
-  decision, total latency, and per-call Jev telemetry.
+- system_a_raw.jsonl / system_b_raw.jsonl: final response text, observable
+  decision, total latency, and per-call Jev telemetry. For System B, this may
+  be the verifier's abstention message rather than the original LLM answer.
+- system_b_diagnostics.jsonl: for cases reaching post-generation verification,
+  stores the generated answer, retrieved evidence, verifier fields/reason, and
+  final output. This file is separate from evaluator predictions and is not
+  used for scoring.
 - metadata.json: dataset SHA-256, selected case IDs, model IDs, threshold,
   embedding model, retrieval k, database name, and condition definitions.
 
@@ -143,3 +148,22 @@ For a smoke test, add --pilot and use a separate directory such as
 experiments/results/no_jev_pilot. Inspect pilot outputs before starting the
 full 200-case run. Score only complete predictions from the same no-Jev run,
 and report this ablation separately from the Jev-enabled experiment.
+
+
+## Verification diagnostics and privacy
+
+The research runner captures an optional diagnostic callback from System B
+without changing `answer_question`'s existing string return value or the
+verifier's acceptance rules. Diagnostic rows preserve the pre-verification
+generated answer, retrieved evidence snippets, structured verification
+result, and final output. Cases that return before generation/verification
+do not produce a diagnostic row. The runner restricts System B diagnostic
+runs to benchmark rows whose student IDs begin with `SYN-`; use only the
+fictional `research_eval` fixture. Do not point this diagnostic mode at real
+student records or commit generated diagnostic artifacts. Local experiment
+outputs remain excluded by `.gitignore`.
+
+Existing output files from runs created before this diagnostics schema are
+not resumable as System B runs under the updated runner. Use a fresh output
+directory for diagnostic runs. The callback is optional and does not alter
+baseline application behavior when omitted.
