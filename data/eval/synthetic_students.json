@@ -1,0 +1,102 @@
+[
+  {
+    "student_id": "SYN-001",
+    "name": "Maya Patel",
+    "discipline": "Computer Science",
+    "scholarship_name": "Merit Scholarship",
+    "scholarship_status": "Enrolled",
+    "fee_status": "Paid",
+    "roll_number": "2026-SYN-001",
+    "registration_number": "REG-SYN-001"
+  },
+  {
+    "student_id": "SYN-002",
+    "name": "Maya Singh",
+    "discipline": "Electrical Engineering",
+    "scholarship_name": "Need-Based Grant",
+    "scholarship_status": "Pending",
+    "fee_status": "Paid",
+    "roll_number": "2026-SYN-002",
+    "registration_number": "REG-SYN-002"
+  },
+  {
+    "student_id": "SYN-003",
+    "name": "Omar Farooq",
+    "discipline": "Mechanical Engineering",
+    "scholarship_name": "Sports Scholarship",
+    "scholarship_status": "Enrolled",
+    "fee_status": "Pending",
+    "roll_number": "2026-SYN-003",
+    "registration_number": "REG-SYN-003"
+  },
+  {
+    "student_id": "SYN-004",
+    "name": "Omar Khan",
+    "discipline": "Computer Science",
+    "scholarship_name": "Merit Scholarship",
+    "scholarship_status": "Enrolled",
+    "fee_status": "Paid",
+    "roll_number": "2026-SYN-004",
+    "registration_number": "REG-SYN-004"
+  },
+  {
+    "student_id": "SYN-005",
+    "name": "Zain Ahmed",
+    "discipline": "Software Engineering",
+    "scholarship_name": "Women in STEM Grant",
+    "scholarship_status": "Pending",
+    "fee_status": "Paid",
+    "roll_number": "2026-SYN-005",
+    "registration_number": "REG-SYN-005"
+  },
+  {
+    "student_id": "SYN-006",
+    "name": "Zain Ali",
+    "discipline": "Data Science",
+    "scholarship_name": "Merit Scholarship",
+    "scholarship_status": "Enrolled",
+    "fee_status": "Overdue",
+    "roll_number": "2026-SYN-006",
+    "registration_number": "REG-SYN-006"
+  },
+  {
+    "student_id": "SYN-007",
+    "name": "Noor Malik",
+    "discipline": "Electrical Engineering",
+    "scholarship_name": "Need-Based Grant",
+    "scholarship_status": "Enrolled",
+    "fee_status": "Paid",
+    "roll_number": "2026-SYN-007",
+    "registration_number": "REG-SYN-007"
+  },
+  {
+    "student_id": "SYN-008",
+    "name": "Noor Shah",
+    "discipline": "Civil Engineering",
+    "scholarship_name": "Community Scholarship",
+    "scholarship_status": "Pending",
+    "fee_status": "Pending",
+    "roll_number": "2026-SYN-008",
+    "registration_number": "REG-SYN-008"
+  },
+  {
+    "student_id": "SYN-009",
+    "name": "Hamza Khan",
+    "discipline": "Computer Science",
+    "scholarship_name": "Merit Scholarship",
+    "scholarship_status": "Enrolled",
+    "fee_status": "Paid",
+    "roll_number": "2026-SYN-009",
+    "registration_number": "REG-SYN-009"
+  },
+  {
+    "student_id": "SYN-010",
+    "name": "Hamza Ahmed",
+    "discipline": "Mathematics",
+    "scholarship_name": "Research Grant",
+    "scholarship_status": "Pending",
+    "fee_status": "Overdue",
+    "roll_number": "2026-SYN-010",
+    "registration_number": "REG-SYN-010"
+  }
+]

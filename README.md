@@ -239,3 +239,25 @@ JEV_MODEL=jev-latest
 ```
 
 Never commit the real key. Unit tests mock network calls and do not require a live Jev key.
+
+
+## Research: evidence-verification evaluation
+
+A synthetic benchmark and optional evidence-verification condition are available
+in [docs/EVIDENCE_VERIFICATION_EXPERIMENT.md](docs/EVIDENCE_VERIFICATION_EXPERIMENT.md).
+The existing app remains in baseline mode by default. For controlled experiments,
+call `answer_question(..., evidence_verification=True)` for System B. The verifier
+checks supported structured fields against retrieved evidence; it is not a
+general-purpose fact checker.
+
+The benchmark includes 200 fictional cases (100 answerable, 50 ambiguous, 50
+with missing fields). Score saved predictions without model/API calls:
+
+```bash
+uv sync --extra dev
+uv run python scripts/evaluate_research.py --predictions experiments/results/system_a.jsonl
+uv run python scripts/evaluate_research.py --predictions experiments/results/system_b.jsonl
+```
+
+See the experiment document for metrics, limitations, and safeguards. No results
+are claimed until both conditions have been run.

@@ -11,6 +11,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from chatbot.auth import can_access_student
 from chatbot.candidate_matcher import match_candidate, normalize_name
 from chatbot.database import fetch_student_names_from_db, fetch_student_records_from_db
+from chatbot.evidence_verifier import verify_answer_against_evidence
 from chatbot.jev_verifier import JevVerifier
 from chatbot.llm_client import query_groq_api
 
@@ -71,31 +72,52 @@ def setup_vector_db() -> Chroma:
     return Chroma.from_documents(chunks, embeddings)
 
 
-def get_student_record_prompt(
+def retrieve_student_record_evidence(
     vectorstore: Chroma,
     student_name: str,
     user_question: str,
     student_id: str | None = None,
-) -> str:
-    """Retrieve context scoped to one canonical student ID, never global nearest chunks."""
+) -> list[str]:
+    """Retrieve text evidence scoped to one canonical student ID."""
     if not student_id:
-        return ""
+        return []
     query = f"Information about {student_name}. {user_question}"
     relevant_docs = vectorstore.similarity_search(
         query,
         k=4,
         filter={"student_id": str(student_id)},
     )
-    if not relevant_docs:
-        return ""
+    return [doc.page_content for doc in relevant_docs if doc.page_content]
 
-    retrieved_text = "\n\n".join(doc.page_content for doc in relevant_docs)
+
+def build_student_record_prompt(
+    student_name: str,
+    user_question: str,
+    evidence: list[str],
+) -> str:
+    """Build the grounded-answer prompt from already retrieved evidence."""
+    if not evidence:
+        return ""
+    retrieved_text = "\n\n".join(evidence)
     return (
         f"Given only the following extracted record for {student_name}:\n{retrieved_text}\n\n"
         f'Answer the user\'s question about {student_name}: "{user_question}".\n'
         "Use only the supplied record. If the requested detail is absent, say it is not available. "
         "Do not infer or reveal information about any other student."
     )
+
+
+def get_student_record_prompt(
+    vectorstore: Chroma,
+    student_name: str,
+    user_question: str,
+    student_id: str | None = None,
+) -> str:
+    """Retrieve scoped evidence and return the original contextualized prompt."""
+    evidence = retrieve_student_record_evidence(
+        vectorstore, student_name, user_question, student_id
+    )
+    return build_student_record_prompt(student_name, user_question, evidence)
 
 
 def extract_student_name(query: str) -> str | None:
@@ -138,8 +160,13 @@ def answer_question(
     user_input: str,
     user: dict | None = None,
     verifier: JevVerifier | None = None,
+    evidence_verification: bool = False,
 ) -> str:
-    """Answer general questions, or safely resolve, authorize, then retrieve a student record."""
+    """Answer a question; optionally verify the requested field against retrieved evidence.
+
+    Set evidence_verification=True only for the research experimental condition.
+    The default False preserves existing application behaviour.
+    """
     student_name = extract_student_name(user_input)
     is_record_question = bool(STUDENT_RECORD_TERMS.search(user_input))
 
@@ -206,11 +233,27 @@ def answer_question(
             f"Resolution status: ABSTAIN ({result.reason})"
         )
 
-    prompt = get_student_record_prompt(vectorstore, canonical_name, user_input, student_id)
+    evidence = retrieve_student_record_evidence(
+        vectorstore, canonical_name, user_input, student_id
+    )
+    prompt = build_student_record_prompt(canonical_name, user_input, evidence)
     if not prompt:
         return "The authorized student record could not be retrieved. No answer was generated."
 
-    return query_groq_api(prompt)
+    answer = query_groq_api(prompt)
+    if evidence_verification:
+        verification = verify_answer_against_evidence(
+            question=user_input,
+            answer=answer,
+            evidence_text="\n\n".join(evidence),
+        )
+        if not verification.supported:
+            return (
+                "I couldn't verify the requested answer against the retrieved student record. "
+                "I won't present it as a fact. "
+                f"Verification: {verification.reason}"
+            )
+    return answer
 
 
 def run_console() -> None:
