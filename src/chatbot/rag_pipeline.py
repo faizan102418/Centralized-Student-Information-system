@@ -2,6 +2,7 @@
 
 import re
 from pathlib import Path
+from typing import Callable
 
 from langchain_core.documents import Document
 from langchain_text_splitters import CharacterTextSplitter
@@ -162,6 +163,7 @@ def answer_question(
     verifier: JevVerifier | None = None,
     evidence_verification: bool = False,
     use_jev: bool = True,
+    diagnostic_callback: Callable[[dict], None] | None = None,
 ) -> str:
     """Answer a question; optionally verify the requested field against retrieved evidence.
 
@@ -256,12 +258,27 @@ def answer_question(
             answer=answer,
             evidence_text="\n\n".join(evidence),
         )
+        final_output = answer
         if not verification.supported:
-            return (
+            final_output = (
                 "I couldn't verify the requested answer against the retrieved student record. "
                 "I won't present it as a fact. "
                 f"Verification: {verification.reason}"
             )
+        if diagnostic_callback is not None:
+            diagnostic_callback({
+                "generated_answer": answer,
+                "evidence": list(evidence),
+                "verification": {
+                    "supported": verification.supported,
+                    "field": verification.field,
+                    "evidence_value": verification.evidence_value,
+                    "reason": verification.reason,
+                },
+                "final_output": final_output,
+            })
+        if not verification.supported:
+            return final_output
     return answer
 
 
