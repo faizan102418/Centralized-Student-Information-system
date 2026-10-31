@@ -1,0 +1,65 @@
+from pathlib import Path
+import json
+import sys
+import pytest
+from unittest.mock import Mock
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from run_research_experiment import classify_output, run_condition, select_cases
+
+
+def test_classifies_ambiguous_name_as_clarification():
+    assert classify_output("I found multiple possible students. Please provide the exact full name.") == "clarify"
+
+
+def test_classifies_evidence_rejection_as_abstention():
+    assert classify_output("I couldn't verify the requested answer. Verification: unrecognized_requested_field") == "abstain"
+
+
+def test_classifies_missing_information_as_abstention():
+    assert classify_output("Maya Patel's CGPA is not available in the provided record.") == "abstain"
+
+
+def test_classifies_api_failure_as_error_not_abstention():
+    assert classify_output("Could not reach the Groq API: timeout") == "error"
+    assert classify_output("Jev verification unavailable (Timeout).") == "error"
+
+
+def test_unknown_normal_response_is_answer():
+    assert classify_output("Maya Patel's discipline is Computer Science.") == "answer"
+
+
+def test_pilot_is_balanced_and_deterministic():
+    rows = ([{"case_id": f"a{i}", "category": "answerable"} for i in range(3)]
+            + [{"case_id": f"b{i}", "category": "ambiguous"} for i in range(3)]
+            + [{"case_id": f"m{i}", "category": "missing"} for i in range(3)])
+    assert [r["case_id"] for r in select_cases(rows, pilot=True)] == [
+        "a0", "a1", "b0", "b1", "m0", "m1"
+    ]
+
+
+def test_limit_selects_first_n_cases():
+    rows = [{"case_id": str(i)} for i in range(5)]
+    assert [r["case_id"] for r in select_cases(rows, limit=2)] == ["0", "1"]
+
+
+def test_operational_error_is_logged_but_not_scored(tmp_path):
+    with pytest.raises(RuntimeError, match="Stopped"):
+        run_condition("A", [{"case_id": "C1", "query": "q"}], tmp_path,
+                      object(), {"role": "faculty"},
+                      Mock(return_value="Jev verification unavailable (Timeout)."),
+                      Mock())
+    assert not (tmp_path / "system_a_predictions.jsonl").exists()
+    raw = json.loads((tmp_path / "system_a_raw.jsonl").read_text().strip())
+    assert raw["decision"] == "error"
+
+
+def test_success_writes_compact_scoring_answer_and_full_raw_output(tmp_path):
+    run_condition("B", [{"case_id": "C2", "query": "q"}], tmp_path,
+                  object(), {"role": "faculty"},
+                  Mock(return_value="Maya Patel's discipline is **Computer Science**."),
+                  Mock())
+    prediction = json.loads((tmp_path / "system_b_predictions.jsonl").read_text().strip())
+    raw = json.loads((tmp_path / "system_b_raw.jsonl").read_text().strip())
+    assert prediction == {"case_id": "C2", "decision": "answer", "answer": "Computer Science"}
+    assert "**Computer Science**" in raw["raw_output"]
