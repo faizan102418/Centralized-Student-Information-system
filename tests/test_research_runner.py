@@ -5,7 +5,9 @@ import pytest
 from unittest.mock import Mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from run_research_experiment import classify_output, run_condition, select_cases
+from run_research_experiment import (
+    classify_output, run_condition, select_cases, validate_diagnostic_scope,
+)
 
 
 def test_classifies_ambiguous_name_as_clarification():
@@ -106,3 +108,28 @@ def test_system_b_persists_diagnostics_separately_from_scoring_outputs(tmp_path)
     assert diagnostic["generated_answer"] == "The fee status is Paid."
     assert diagnostic["verification"]["reason"] == "answer_does_not_contain_evidence_value"
     assert prediction == {"case_id": "ANS-006", "decision": "abstain", "answer": ""}
+
+
+def test_diagnostic_scope_allows_pre_retrieval_cases_without_student_ids():
+    cases = [
+        {"case_id": "ANS-001", "student_id": "SYN-001"},
+        {"case_id": "AMB-001"},
+        {"case_id": "MIS-001", "student_id": "SYN-002"},
+    ]
+    validate_diagnostic_scope(cases, "research_eval")
+
+
+def test_diagnostic_scope_rejects_non_synthetic_student_ids():
+    with pytest.raises(ValueError, match="research_eval"):
+        validate_diagnostic_scope(
+            [{"case_id": "ANS-001", "student_id": "real-student-123"}],
+            "research_eval",
+        )
+
+
+def test_diagnostic_scope_rejects_non_research_database():
+    with pytest.raises(ValueError, match="research_eval"):
+        validate_diagnostic_scope(
+            [{"case_id": "AMB-001"}],
+            "university_db",
+        )
