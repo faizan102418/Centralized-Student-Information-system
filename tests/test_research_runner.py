@@ -81,3 +81,28 @@ def test_run_condition_passes_explicit_no_jev_configuration(tmp_path):
     assert answer_fn.call_args.kwargs["evidence_verification"] is False
     raw = json.loads((tmp_path / "system_a_raw.jsonl").read_text().strip())
     assert raw["jev_calls"] == []
+
+
+def test_system_b_persists_diagnostics_separately_from_scoring_outputs(tmp_path):
+    def answer_fn(*args, diagnostic_callback=None, **kwargs):
+        assert kwargs["evidence_verification"] is True
+        diagnostic_callback({
+            "generated_answer": "The fee status is Paid.",
+            "evidence": ["Student Name: Maya Patel -- Fee Status: Paid"],
+            "verification": {
+                "supported": False,
+                "field": "fee_status",
+                "evidence_value": "Paid",
+                "reason": "answer_does_not_contain_evidence_value",
+            },
+            "final_output": "I couldn't verify the requested answer.",
+        })
+        return "I couldn't verify the requested answer."
+
+    run_condition("B", [{"case_id": "ANS-006", "query": "q"}], tmp_path,
+                  object(), {"role": "faculty"}, answer_fn, None, use_jev=False)
+    diagnostic = json.loads((tmp_path / "system_b_diagnostics.jsonl").read_text().strip())
+    prediction = json.loads((tmp_path / "system_b_predictions.jsonl").read_text().strip())
+    assert diagnostic["generated_answer"] == "The fee status is Paid."
+    assert diagnostic["verification"]["reason"] == "answer_does_not_contain_evidence_value"
+    assert prediction == {"case_id": "ANS-006", "decision": "abstain", "answer": ""}
