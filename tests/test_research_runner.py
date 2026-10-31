@@ -133,3 +133,32 @@ def test_diagnostic_scope_rejects_non_research_database():
             [{"case_id": "AMB-001"}],
             "university_db",
         )
+
+
+
+def test_operational_exception_is_not_scored_and_resume_retries_case(tmp_path):
+    cases = [{"case_id": "C-RETRY", "query": "q"}]
+    failing_answer = Mock(side_effect=RuntimeError("temporary API failure"))
+    with pytest.raises(RuntimeError, match="Stopped at C-RETRY"):
+        run_condition("A", cases, tmp_path, object(), {"role": "faculty"},
+                      failing_answer, None, use_jev=False)
+
+    predictions = tmp_path / "system_a_predictions.jsonl"
+    raw = tmp_path / "system_a_raw.jsonl"
+    assert not predictions.exists()
+    failed_row = json.loads(raw.read_text(encoding="utf-8").splitlines()[0])
+    assert failed_row["decision"] == "error"
+    assert failed_row["error_type"] == "RuntimeError"
+
+    successful_answer = Mock(return_value="Computer Science")
+    run_condition("A", cases, tmp_path, object(), {"role": "faculty"},
+                  successful_answer, None, resume=True, use_jev=False)
+
+    rows = [json.loads(line) for line in raw.read_text(encoding="utf-8").splitlines()]
+    prediction = json.loads(predictions.read_text(encoding="utf-8").strip())
+    assert len(rows) == 2
+    assert rows[0]["decision"] == "error"
+    assert rows[1]["decision"] == "answer"
+    assert prediction == {
+        "case_id": "C-RETRY", "decision": "answer", "answer": "Computer Science"
+    }

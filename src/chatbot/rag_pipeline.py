@@ -14,7 +14,7 @@ from chatbot.candidate_matcher import match_candidate, normalize_name
 from chatbot.database import fetch_student_names_from_db, fetch_student_records_from_db
 from chatbot.evidence_verifier import verify_answer_against_evidence
 from chatbot.jev_verifier import JevVerifier
-from chatbot.llm_client import query_groq_api
+from chatbot.llm_client import GroqAPIError, query_groq_api
 
 EMBEDDING_MODEL = "sentence-transformers/all-mpnet-base-v2"
 DEBUG_DUMP_PATH = Path(__file__).resolve().parents[2] / "data" / "combined_student_records_from_db.txt"

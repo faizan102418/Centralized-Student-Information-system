@@ -11,8 +11,17 @@ SYSTEM_PROMPT = (
 )
 
 
+class GroqAPIError(RuntimeError):
+    """Raised when Groq cannot provide a valid model response.
+
+    This is an operational failure, not an answer or an abstention. Callers
+    should handle it at the application boundary or let experiment runners
+    record and retry the failed case.
+    """
+
+
 def query_groq_api(prompt: str, timeout: int = 30) -> str:
-    """Send a prompt to the Groq API and return the model's text response."""
+    """Send a prompt to Groq and return model text, or raise GroqAPIError."""
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json",
@@ -28,13 +37,28 @@ def query_groq_api(prompt: str, timeout: int = 30) -> str:
     }
 
     try:
-        response = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=timeout)
+        response = requests.post(
+            GROQ_API_URL, headers=headers, json=payload, timeout=timeout
+        )
         response.raise_for_status()
+    except requests.exceptions.HTTPError as exc:
+        status = exc.response.status_code if exc.response is not None else "unknown"
+        raise GroqAPIError(f"Groq API request failed (HTTP {status}).") from exc
     except requests.exceptions.RequestException as exc:
-        return f"⚠️ Could not reach the Groq API: {exc}"
+        raise GroqAPIError(
+            f"Groq API request failed ({type(exc).__name__})."
+        ) from exc
 
-    body = response.json()
     try:
-        return body["choices"][0]["message"]["content"]
-    except (KeyError, IndexError):
-        return f"⚠️ Unexpected response from Groq API: {body}"
+        body = response.json()
+    except (ValueError, requests.exceptions.JSONDecodeError) as exc:
+        raise GroqAPIError("Groq API returned invalid JSON.") from exc
+
+    try:
+        content = body["choices"][0]["message"]["content"]
+    except (KeyError, IndexError, TypeError) as exc:
+        raise GroqAPIError("Groq API response did not contain a model answer.") from exc
+
+    if not isinstance(content, str) or not content.strip():
+        raise GroqAPIError("Groq API response contained an empty model answer.")
+    return content
