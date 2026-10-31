@@ -158,8 +158,10 @@ verifier's acceptance rules. Diagnostic rows preserve the pre-verification
 generated answer, retrieved evidence snippets, structured verification
 result, and final output. Cases that return before generation/verification
 do not produce a diagnostic row. The runner restricts System B diagnostic
-runs to benchmark rows whose student IDs begin with `SYN-`; use only the
-fictional `research_eval` fixture. Do not point this diagnostic mode at real
+runs to the `research_eval` database and requires every supplied student ID
+to begin with `SYN-`. Cases without a student ID are permitted because
+ambiguous-name cases return before student-record retrieval; they cannot
+produce a diagnostic row. Use only the fictional fixture. Do not point this diagnostic mode at real
 student records or commit generated diagnostic artifacts. Local experiment
 outputs remain excluded by `.gitignore`.
 
