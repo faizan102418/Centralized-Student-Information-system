@@ -1,7 +1,7 @@
 [
   {
     "student_id": "SYN-001",
-    "name": "Alice Smith",
+    "name": "Maya Patel",
     "discipline": "Computer Science",
     "scholarship_name": "Merit Scholarship",
     "scholarship_status": "Enrolled",
@@ -11,7 +11,7 @@
   },
   {
     "student_id": "SYN-002",
-    "name": "Alice Johnson",
+    "name": "Maya Singh",
     "discipline": "Electrical Engineering",
     "scholarship_name": "Need-Based Grant",
     "scholarship_status": "Pending",
@@ -21,7 +21,7 @@
   },
   {
     "student_id": "SYN-003",
-    "name": "Ahmad Khan",
+    "name": "Omar Farooq",
     "discipline": "Mechanical Engineering",
     "scholarship_name": "Sports Scholarship",
     "scholarship_status": "Enrolled",
@@ -31,7 +31,7 @@
   },
   {
     "student_id": "SYN-004",
-    "name": "Ahmad Ali",
+    "name": "Omar Khan",
     "discipline": "Computer Science",
     "scholarship_name": "Merit Scholarship",
     "scholarship_status": "Enrolled",
@@ -41,7 +41,7 @@
   },
   {
     "student_id": "SYN-005",
-    "name": "Sara Ahmed",
+    "name": "Zain Ahmed",
     "discipline": "Software Engineering",
     "scholarship_name": "Women in STEM Grant",
     "scholarship_status": "Pending",
@@ -51,7 +51,7 @@
   },
   {
     "student_id": "SYN-006",
-    "name": "Sara Khan",
+    "name": "Zain Ali",
     "discipline": "Data Science",
     "scholarship_name": "Merit Scholarship",
     "scholarship_status": "Enrolled",
@@ -61,7 +61,7 @@
   },
   {
     "student_id": "SYN-007",
-    "name": "Bilal Hussain",
+    "name": "Noor Malik",
     "discipline": "Electrical Engineering",
     "scholarship_name": "Need-Based Grant",
     "scholarship_status": "Enrolled",
@@ -71,7 +71,7 @@
   },
   {
     "student_id": "SYN-008",
-    "name": "Bilal Ahmad",
+    "name": "Noor Shah",
     "discipline": "Civil Engineering",
     "scholarship_name": "Community Scholarship",
     "scholarship_status": "Pending",
@@ -81,7 +81,7 @@
   },
   {
     "student_id": "SYN-009",
-    "name": "Hina Shah",
+    "name": "Hamza Khan",
     "discipline": "Computer Science",
     "scholarship_name": "Merit Scholarship",
     "scholarship_status": "Enrolled",
@@ -91,7 +91,7 @@
   },
   {
     "student_id": "SYN-010",
-    "name": "Hina Malik",
+    "name": "Hamza Ahmed",
     "discipline": "Mathematics",
     "scholarship_name": "Research Grant",
     "scholarship_status": "Pending",
