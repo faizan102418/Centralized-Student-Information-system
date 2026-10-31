@@ -1,11 +1,13 @@
 import json
 import sys
+import pytest
 from pathlib import Path
 from unittest.mock import Mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from chatbot import rag_pipeline
+from chatbot.llm_client import GroqAPIError
 from chatbot.rag_pipeline import answer_question, extract_student_name
 
 
@@ -284,3 +286,35 @@ def test_no_jev_ablation_still_applies_evidence_verification(monkeypatch):
 
     assert "couldn't verify" in answer
     verifier.verify.assert_not_called()
+
+
+
+def test_groq_operational_error_bypasses_evidence_verifier(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    verifier.verify.return_value = Mock(decision="ACCEPT", reason="provisional")
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    monkeypatch.setattr(
+        rag_pipeline, "query_groq_api",
+        Mock(side_effect=GroqAPIError("Groq API request failed (HTTP 429).")),
+    )
+    diagnostics = []
+
+    with pytest.raises(GroqAPIError):
+        answer_question(
+            vectorstore,
+            "What is Alice Smith's discipline?",
+            user={"role": "admin"},
+            verifier=verifier,
+            evidence_verification=True,
+            diagnostic_callback=diagnostics.append,
+        )
+
+    assert diagnostics == []
