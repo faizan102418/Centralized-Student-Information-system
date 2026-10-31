@@ -63,3 +63,21 @@ def test_success_writes_compact_scoring_answer_and_full_raw_output(tmp_path):
     raw = json.loads((tmp_path / "system_b_raw.jsonl").read_text().strip())
     assert prediction == {"case_id": "C2", "decision": "answer", "answer": "Computer Science"}
     assert "**Computer Science**" in raw["raw_output"]
+
+
+def test_run_condition_passes_explicit_no_jev_configuration(tmp_path):
+    answer_fn = Mock(return_value="Computer Science")
+    run_condition(
+        "A",
+        [{"case_id": "C3", "query": "q"}],
+        tmp_path,
+        object(),
+        {"role": "faculty"},
+        answer_fn,
+        None,
+        use_jev=False,
+    )
+    assert answer_fn.call_args.kwargs["use_jev"] is False
+    assert answer_fn.call_args.kwargs["evidence_verification"] is False
+    raw = json.loads((tmp_path / "system_a_raw.jsonl").read_text().strip())
+    assert raw["jev_calls"] == []
