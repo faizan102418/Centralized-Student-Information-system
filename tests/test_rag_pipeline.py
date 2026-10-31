@@ -1,3 +1,4 @@
+import json
 import sys
 from pathlib import Path
 from unittest.mock import Mock
@@ -202,3 +203,10 @@ def test_baseline_mode_preserves_existing_answer_without_evidence_check(monkeypa
         evidence_verification=False,
     )
     assert answer == "Software Engineering"
+
+
+def test_all_seed_cases_extract_a_student_name():
+    dataset_path = Path(__file__).resolve().parents[1] / "data" / "eval" / "synthetic_eval.jsonl"
+    cases = [json.loads(line) for line in dataset_path.read_text(encoding="utf-8").splitlines()]
+    assert len(cases) == 200
+    assert all(extract_student_name(case["query"]) for case in cases)
