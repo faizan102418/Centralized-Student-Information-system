@@ -176,6 +176,11 @@ def answer_question(
     try:
         candidates = fetch_student_names_from_db()
     except RuntimeError:
+        if not student_name:
+            return (
+                "I couldn't safely identify one student from that question. "
+                "Please include the student's full name. No student record was accessed."
+            )
         return "Student lookup is temporarily unavailable. No student record was accessed."
 
     mentioned = _names_mentioned_in_query(user_input, candidates)
