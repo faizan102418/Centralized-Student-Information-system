@@ -129,3 +129,76 @@ def test_student_specific_question_without_name_does_not_use_general_llm(monkeyp
     answer = answer_question(Mock(), "What is the fee status?")
     assert "full name" in answer
     groq.assert_not_called()
+
+
+def test_evidence_verification_rejects_unsupported_generated_answer(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    verifier.verify.return_value = Mock(decision="ACCEPT", reason="provisional")
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Software Engineering")
+
+    answer = answer_question(
+        vectorstore,
+        "What is Alice Smith's discipline?",
+        user={"role": "admin"},
+        verifier=verifier,
+        evidence_verification=True,
+    )
+    assert "couldn't verify" in answer
+    assert "won't present it as a fact" in answer
+
+
+def test_evidence_verification_accepts_supported_answer(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    verifier.verify.return_value = Mock(decision="ACCEPT", reason="provisional")
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Computer Science")
+
+    answer = answer_question(
+        vectorstore,
+        "What is Alice Smith's discipline?",
+        user={"role": "admin"},
+        verifier=verifier,
+        evidence_verification=True,
+    )
+    assert answer == "Computer Science"
+
+
+def test_baseline_mode_preserves_existing_answer_without_evidence_check(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    verifier.verify.return_value = Mock(decision="ACCEPT", reason="provisional")
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Software Engineering")
+
+    answer = answer_question(
+        vectorstore,
+        "What is Alice Smith's discipline?",
+        user={"role": "admin"},
+        verifier=verifier,
+        evidence_verification=False,
+    )
+    assert answer == "Software Engineering"
