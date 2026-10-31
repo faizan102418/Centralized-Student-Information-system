@@ -146,14 +146,27 @@ def test_evidence_verification_rejects_unsupported_generated_answer(monkeypatch)
     ]
     monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Software Engineering")
 
+    diagnostics = []
     answer = answer_question(
         vectorstore,
         "What is Alice Smith's discipline?",
         user={"role": "admin"},
         verifier=verifier,
         evidence_verification=True,
+        diagnostic_callback=diagnostics.append,
     )
     assert "couldn't verify" in answer
+    assert diagnostics[0]["generated_answer"] == "Software Engineering"
+    assert diagnostics[0]["evidence"] == [
+        "Student Name: Alice Smith -- Discipline: Computer Science"
+    ]
+    assert diagnostics[0]["verification"] == {
+        "supported": False,
+        "field": "discipline",
+        "evidence_value": "Computer Science",
+        "reason": "answer_does_not_contain_evidence_value",
+    }
+    assert diagnostics[0]["final_output"] == answer
     assert "won't present it as a fact" in answer
 
 
@@ -171,14 +184,20 @@ def test_evidence_verification_accepts_supported_answer(monkeypatch):
     ]
     monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Computer Science")
 
+    diagnostics = []
     answer = answer_question(
         vectorstore,
         "What is Alice Smith's discipline?",
         user={"role": "admin"},
         verifier=verifier,
         evidence_verification=True,
+        diagnostic_callback=diagnostics.append,
     )
     assert answer == "Computer Science"
+    assert diagnostics[0]["generated_answer"] == answer
+    assert diagnostics[0]["verification"]["supported"] is True
+    assert diagnostics[0]["verification"]["evidence_value"] == "Computer Science"
+    assert diagnostics[0]["final_output"] == answer
 
 
 def test_baseline_mode_preserves_existing_answer_without_evidence_check(monkeypatch):
