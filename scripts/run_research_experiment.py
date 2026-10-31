@@ -130,7 +130,7 @@ def paths_for(output_dir: Path, system: str) -> tuple[Path, Path]:
 
 def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
                   vectorstore: Any, user: dict[str, Any], answer_fn: Callable[..., str],
-                  jev_verifier: Any, resume: bool = False) -> None:
+                  jev_verifier: Any, resume: bool = False, use_jev: bool = True) -> None:
     predictions_path, raw_path = paths_for(output_dir, system)
     if not resume and (predictions_path.exists() or raw_path.exists()):
         raise FileExistsError(f"Output exists for System {system}; use a new directory or --resume.")
@@ -152,7 +152,7 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
         started = time.perf_counter()
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
-                               evidence_verification=(system == "B"))
+                               evidence_verification=(system == "B"), use_jev=use_jev)
         except Exception as exc:
             output = f"EXPERIMENT_RUNNER_ERROR: {type(exc).__name__}"
         latency = round((time.perf_counter() - started) * 1000, 2)
@@ -177,17 +177,26 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
 
 
 def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
-                   groq_model: str, jev_model: str, threshold: float, db_name: str) -> None:
+                   groq_model: str, jev_model: str, threshold: float, db_name: str,
+                   use_jev: bool = True) -> None:
     metadata = {
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "python_version": platform.python_version(),
         "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest(),
         "selected_case_ids": [row["case_id"] for row in cases],
-        "groq_model": groq_model, "jev_model": jev_model, "jev_threshold": threshold,
+        "groq_model": groq_model,
+        "jev_enabled": use_jev,
+        "jev_model": jev_model if use_jev else None,
+        "jev_threshold": threshold if use_jev else None,
         "embedding_model": "sentence-transformers/all-mpnet-base-v2",
         "retrieval_k": 4, "database_name": db_name,
-        "conditions": {"A": "evidence_verification=False",
-                       "B": "evidence_verification=True"},
+        "conditions": ({
+            "A": "RAG + local candidate matching; Jev enabled; evidence_verification=False",
+            "B": "RAG + local candidate matching; Jev enabled; evidence_verification=True",
+        } if use_jev else {
+            "A": "RAG + local candidate matching; Jev disabled; evidence_verification=False",
+            "B": "RAG + local candidate matching; Jev disabled; evidence_verification=True",
+        }),
         "jev_score_note": "Recorded as jev_score; not asserted to be calibrated probability.",
     }
     path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
@@ -203,6 +212,8 @@ def main() -> int:
                         help="Run two cases per category (six total).")
     parser.add_argument("--resume", action="store_true",
                         help="Skip case IDs already saved successfully.")
+    parser.add_argument("--disable-jev", action="store_true",
+                        help="Run a separately labelled no-Jev ablation; local matching and RBAC remain enabled.")
     args = parser.parse_args()
 
     dataset = read_jsonl(args.dataset)
@@ -223,11 +234,13 @@ def main() -> int:
         if not args.resume:
             raise FileExistsError(f"{metadata_path} exists; use a new directory or --resume.")
         previous = json.loads(metadata_path.read_text(encoding="utf-8"))
-        if previous.get("dataset_sha256") != dataset_hash or previous.get("selected_case_ids") != case_ids:
-            raise ValueError("Cannot resume: dataset hash or selected case IDs differ.")
+        if (previous.get("dataset_sha256") != dataset_hash
+                or previous.get("selected_case_ids") != case_ids
+                or previous.get("jev_enabled", True) != (not args.disable_jev)):
+            raise ValueError("Cannot resume: dataset hash, selected case IDs, or Jev configuration differ.")
     else:
         write_metadata(metadata_path, args.dataset, cases, GROQ_MODEL, JEV_MODEL,
-                       DEFAULT_THRESHOLD, DB_NAME)
+                       DEFAULT_THRESHOLD, DB_NAME, use_jev=not args.disable_jev)
 
     user = get_user("faculty1")
     if not user or user.get("role") not in {"admin", "faculty"}:
@@ -236,9 +249,12 @@ def main() -> int:
     print("Building the vector store once for both conditions...", flush=True)
     vectorstore = setup_vector_db()
     systems = ("A", "B") if args.system == "both" else (args.system,)
+    jev_verifier = JevVerifier() if not args.disable_jev else None
+    if args.disable_jev:
+        print("Jev disabled for this ablation; local matching and authorization remain enabled.", flush=True)
     for system in systems:
         run_condition(system, cases, args.output_dir, vectorstore, user,
-                      answer_question, JevVerifier(), args.resume)
+                      answer_question, jev_verifier, args.resume, use_jev=not args.disable_jev)
     print(f"Run completed. Results: {args.output_dir}", flush=True)
     return 0
 
