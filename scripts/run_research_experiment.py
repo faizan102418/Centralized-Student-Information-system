@@ -180,7 +180,7 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
             error_type = type(exc).__name__
             output = f"EXPERIMENT_RUNNER_ERROR: {error_type}"
         latency = round((time.perf_counter() - started) * 1000, 2)
-        decision = classify_output(str(output))
+        decision = "error" if error_type else classify_output(str(output))
         append_jsonl(raw_path, {
             "case_id": case_id, "system": system,
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
