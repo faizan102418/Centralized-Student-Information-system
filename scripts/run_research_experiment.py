@@ -143,6 +143,7 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
     if not completed.issubset({row["case_id"] for row in cases}):
         raise ValueError("Existing predictions contain case IDs outside this selected run.")
 
+    diagnostics_path = output_dir / "system_b_diagnostics.jsonl"
     timed = TimedJevVerifier(jev_verifier)
     for index, case in enumerate(cases, start=1):
         case_id = case["case_id"]
@@ -150,9 +151,12 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
             continue
         timed.calls.clear()
         started = time.perf_counter()
+        case_diagnostics: list[dict[str, Any]] = []
+        diagnostic_callback = case_diagnostics.append if system == "B" else None
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
-                               evidence_verification=(system == "B"), use_jev=use_jev)
+                               evidence_verification=(system == "B"), use_jev=use_jev,
+                               diagnostic_callback=diagnostic_callback)
         except Exception as exc:
             output = f"EXPERIMENT_RUNNER_ERROR: {type(exc).__name__}"
         latency = round((time.perf_counter() - started) * 1000, 2)
@@ -172,6 +176,10 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
         append_jsonl(predictions_path, {
             "case_id": case_id, "decision": decision, "answer": answer,
         })
+        if case_diagnostics:
+            append_jsonl(diagnostics_path, {
+                "case_id": case_id, "system": system, **case_diagnostics[-1],
+            })
         print(f"[System {system}] {index}/{len(cases)} {case_id}: {decision} "
               f"({latency} ms; Jev calls: {len(timed.calls)})", flush=True)
 
@@ -198,6 +206,7 @@ def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
             "B": "RAG + local candidate matching; Jev disabled; evidence_verification=True",
         }),
         "jev_score_note": "Recorded as jev_score; not asserted to be calibrated probability.",
+        "diagnostics_schema_version": 1,
     }
     path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
 
@@ -226,6 +235,14 @@ def main() -> int:
     from chatbot.jev_verifier import DEFAULT_THRESHOLD, JEV_MODEL, JevVerifier
     from chatbot.rag_pipeline import answer_question, setup_vector_db
 
+    systems = ("A", "B") if args.system == "both" else (args.system,)
+    if "B" in systems and any(
+        not str(row.get("student_id", "")).startswith("SYN-") for row in cases
+    ):
+        raise ValueError(
+            "System B diagnostics are restricted to synthetic cases with SYN- student IDs."
+        )
+
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metadata_path = args.output_dir / "metadata.json"
     dataset_hash = hashlib.sha256(args.dataset.read_bytes()).hexdigest()
@@ -236,7 +253,8 @@ def main() -> int:
         previous = json.loads(metadata_path.read_text(encoding="utf-8"))
         if (previous.get("dataset_sha256") != dataset_hash
                 or previous.get("selected_case_ids") != case_ids
-                or previous.get("jev_enabled", True) != (not args.disable_jev)):
+                or previous.get("jev_enabled", True) != (not args.disable_jev)
+                or ("B" in systems and previous.get("diagnostics_schema_version") != 1)):
             raise ValueError("Cannot resume: dataset hash, selected case IDs, or Jev configuration differ.")
     else:
         write_metadata(metadata_path, args.dataset, cases, GROQ_MODEL, JEV_MODEL,
@@ -248,7 +266,6 @@ def main() -> int:
 
     print("Building the vector store once for both conditions...", flush=True)
     vectorstore = setup_vector_db()
-    systems = ("A", "B") if args.system == "both" else (args.system,)
     jev_verifier = JevVerifier() if not args.disable_jev else None
     if args.disable_jev:
         print("Jev disabled for this ablation; local matching and authorization remain enabled.", flush=True)
