@@ -103,3 +103,43 @@ conditions on the same completed case set.
    telemetry will therefore be absent for those cases.
 8. This PR contains no experimental results. Do not claim improvement until
    both conditions have been run.
+
+
+## Separately labelled no-Jev ablation (credit-free)
+
+The original Jev-enabled conditions above remain unchanged. When Jev inference
+credits are unavailable, the runner supports a distinct no-Jev ablation. This
+is NOT a replication of the original Jev-enabled A/B experiment and must not
+be pooled with, or reported as, its results.
+
+In this mode, deterministic local candidate matching, the authorization
+check, student-ID-scoped retrieval, and the same generation pipeline remain
+active. Only the external Jev candidate-resolution request is bypassed.
+
+- No-Jev A: RAG + local candidate matching + RBAC, with
+  evidence_verification=False.
+- No-Jev B: the same pipeline with evidence_verification=True.
+
+The paired contrast estimates the effect of enabling the existing
+post-generation evidence check under the no-Jev configuration. It does not
+estimate Jev's contribution or the interaction between Jev and evidence
+verification.
+
+Use a new output directory so the metadata and results cannot be confused
+with the original Jev-enabled pilot or full run:
+
+    PYTHONPATH=src uv run python scripts/run_research_experiment.py \
+      --system both \
+      --disable-jev \
+      --output-dir experiments/results/no_jev_200_case
+
+The runner records jev_enabled=false and explicit condition definitions in
+metadata.json. Resume rejects a run if the dataset, selected case IDs, or
+Jev-enabled setting differs. Raw logs should have empty jev_calls arrays.
+This mode still makes Groq inference calls and is not cost-free overall; it
+only avoids Jev credits.
+
+For a smoke test, add --pilot and use a separate directory such as
+experiments/results/no_jev_pilot. Inspect pilot outputs before starting the
+full 200-case run. Score only complete predictions from the same no-Jev run,
+and report this ablation separately from the Jev-enabled experiment.

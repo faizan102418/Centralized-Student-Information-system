@@ -35,3 +35,9 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Local secrets backups
+.env.backup
+
+# Generated experiment outputs
+experiments/results/

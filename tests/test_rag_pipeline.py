@@ -210,3 +210,58 @@ def test_all_seed_cases_extract_a_student_name():
     cases = [json.loads(line) for line in dataset_path.read_text(encoding="utf-8").splitlines()]
     assert len(cases) == 200
     assert all(extract_student_name(case["query"]) for case in cases)
+
+
+def test_no_jev_ablation_skips_external_verifier_but_keeps_authorized_retrieval(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Computer Science")
+
+    answer = answer_question(
+        vectorstore,
+        "What is Alice Smith's discipline?",
+        user={"role": "admin"},
+        verifier=verifier,
+        evidence_verification=False,
+        use_jev=False,
+    )
+
+    assert answer == "Computer Science"
+    verifier.verify.assert_not_called()
+    assert vectorstore.similarity_search.call_args.kwargs["filter"] == {
+        "student_id": "student-123"
+    }
+
+
+def test_no_jev_ablation_still_applies_evidence_verification(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    monkeypatch.setattr(rag_pipeline, "query_groq_api", lambda prompt: "Software Engineering")
+
+    answer = answer_question(
+        vectorstore,
+        "What is Alice Smith's discipline?",
+        user={"role": "admin"},
+        verifier=verifier,
+        evidence_verification=True,
+        use_jev=False,
+    )
+
+    assert "couldn't verify" in answer
+    verifier.verify.assert_not_called()
