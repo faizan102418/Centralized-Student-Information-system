@@ -161,11 +161,14 @@ def answer_question(
     user: dict | None = None,
     verifier: JevVerifier | None = None,
     evidence_verification: bool = False,
+    use_jev: bool = True,
 ) -> str:
     """Answer a question; optionally verify the requested field against retrieved evidence.
 
     Set evidence_verification=True only for the research experimental condition.
-    The default False preserves existing application behaviour.
+    Set use_jev=False only for the explicitly labelled no-Jev ablation; local
+    deterministic candidate matching and authorization remain enabled.
+    Defaults preserve the existing application behaviour.
     """
     student_name = extract_student_name(user_input)
     is_record_question = bool(STUDENT_RECORD_TERMS.search(user_input))
@@ -225,18 +228,19 @@ def answer_question(
             "Student accounts can only view their own record."
         )
 
-    verifier = verifier or JevVerifier()
-    result = verifier.verify(
-        query=user_input,
-        candidate=canonical_name,
-        # Data minimization: send only the already-resolved candidate name.
-        database_candidates=[canonical_name],
-    )
-    if result.decision != "ACCEPT":
-        return (
-            "I couldn't safely confirm which record to use, so I haven't retrieved any student data. "
-            f"Resolution status: ABSTAIN ({result.reason})"
+    if use_jev:
+        verifier = verifier or JevVerifier()
+        result = verifier.verify(
+            query=user_input,
+            candidate=canonical_name,
+            # Data minimization: send only the already-resolved candidate name.
+            database_candidates=[canonical_name],
         )
+        if result.decision != "ACCEPT":
+            return (
+                "I couldn't safely confirm which record to use, so I haven't retrieved any student data. "
+                f"Resolution status: ABSTAIN ({result.reason})"
+            )
 
     evidence = retrieve_student_record_evidence(
         vectorstore, canonical_name, user_input, student_id
