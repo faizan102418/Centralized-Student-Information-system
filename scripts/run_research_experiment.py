@@ -169,18 +169,23 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
         started = time.perf_counter()
         case_diagnostics: list[dict[str, Any]] = []
         diagnostic_callback = case_diagnostics.append if system == "B" else None
+        error_type = None
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
                                evidence_verification=(system == "B"), use_jev=use_jev,
                                diagnostic_callback=diagnostic_callback)
         except Exception as exc:
-            output = f"EXPERIMENT_RUNNER_ERROR: {type(exc).__name__}"
+            # Operational failures are logged separately and never become
+            # behavioral predictions (answer/clarify/abstain).
+            error_type = type(exc).__name__
+            output = f"EXPERIMENT_RUNNER_ERROR: {error_type}"
         latency = round((time.perf_counter() - started) * 1000, 2)
         decision = classify_output(str(output))
         append_jsonl(raw_path, {
             "case_id": case_id, "system": system,
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "raw_output": str(output), "decision": decision,
+            "error_type": error_type,
             "total_latency_ms": latency, "jev_calls": list(timed.calls),
         })
         if decision == "error" or str(output).startswith("EXPERIMENT_RUNNER_ERROR:"):
