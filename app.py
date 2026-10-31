@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 import streamlit as st
 
 from chatbot.auth import authenticate
+from chatbot.llm_client import GroqAPIError
 from chatbot.rag_pipeline import answer_question, setup_vector_db
 
 st.set_page_config(page_title="Student Record Chatbot", page_icon="🎓")
@@ -88,6 +89,13 @@ if prompt := st.chat_input("Ask a question..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = answer_question(vectorstore, prompt, user=user)
-            st.markdown(response)
+            try:
+                response = answer_question(vectorstore, prompt, user=user)
+                st.markdown(response)
+            except GroqAPIError:
+                response = (
+                    "The AI service is temporarily unavailable. "
+                    "Please try again in a little while."
+                )
+                st.error(response)
     st.session_state.messages.append({"role": "assistant", "content": response})
