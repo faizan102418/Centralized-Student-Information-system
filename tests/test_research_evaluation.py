@@ -56,3 +56,72 @@ def test_evaluator_requires_matching_case_ids():
             [case("a1", "answerable", "answer", "Paid")],
             [{"case_id": "x", "decision": "answer", "answer": "Paid"}],
         )
+
+
+def test_evaluator_keeps_systems_separate_for_same_case_and_run():
+    dataset = [case("a1", "answerable", "answer", "Paid")]
+    predictions = [
+        {"system": "A", "case_id": "a1", "run_number": 1, "decision": "answer",
+         "answer": "Paid", "latency_ms": 10},
+        {"system": "B", "case_id": "a1", "run_number": 1, "decision": "abstain",
+         "answer": "", "latency_ms": 20},
+    ]
+
+    result = evaluate(dataset, predictions)
+
+    assert result["n_systems"] == 2
+    assert result["systems"]["A"]["per_run"]["1"]["metrics"]["decision_accuracy"] == 1.0
+    assert result["systems"]["B"]["per_run"]["1"]["metrics"]["decision_accuracy"] == 0.0
+    assert result["systems"]["A"]["summary"]["median_latency_ms"]["mean_across_runs"] == 10
+    assert result["systems"]["B"]["summary"]["median_latency_ms"]["mean_across_runs"] == 20
+
+
+def test_evaluator_groups_repeated_runs_independently_per_system():
+    dataset = [case("a1", "answerable", "answer", "Paid")]
+    predictions = [
+        {"system": "A", "case_id": "a1", "run_number": 1, "decision": "answer",
+         "answer": "Paid", "latency_ms": 10},
+        {"system": "A", "case_id": "a1", "run_number": 2, "decision": "answer",
+         "answer": "Paid", "latency_ms": 20},
+        {"system": "B", "case_id": "a1", "run_number": 1, "decision": "answer",
+         "answer": "Paid", "latency_ms": 30},
+    ]
+
+    result = evaluate(dataset, predictions)
+
+    assert result["systems"]["A"]["n_runs"] == 2
+    assert result["systems"]["A"]["n_attempts"] == 2
+    assert result["systems"]["B"]["n_runs"] == 1
+    assert result["systems"]["B"]["n_attempts"] == 1
+
+
+def test_evaluator_rejects_duplicate_case_within_same_system_and_run():
+    dataset = [case("a1", "answerable", "answer", "Paid")]
+    predictions = [
+        {"system": "A", "case_id": "a1", "run_number": 1, "decision": "answer", "answer": "Paid"},
+        {"system": "A", "case_id": "a1", "run_number": 1, "decision": "answer", "answer": "Paid"},
+    ]
+
+    with pytest.raises(ValueError, match="Duplicate system/case/run key"):
+        evaluate(dataset, predictions)
+
+
+def test_evaluator_supports_a_matching_dataset_subset_for_each_system():
+    dataset = [
+        case("pilot-1", "answerable", "answer", "Paid"),
+        case("pilot-2", "missing", "abstain"),
+    ]
+    predictions = [
+        {"system": "A", "case_id": "pilot-1", "decision": "answer", "answer": "Paid"},
+        {"system": "A", "case_id": "pilot-2", "decision": "abstain", "answer": ""},
+        {"system": "B", "case_id": "pilot-1", "decision": "answer", "answer": "Paid"},
+        {"system": "B", "case_id": "pilot-2", "decision": "abstain", "answer": ""},
+    ]
+
+    result = evaluate(dataset, predictions)
+
+    assert result["n_queries"] == 2
+    assert result["systems"]["A"]["n_queries"] == 2
+    assert result["systems"]["B"]["n_queries"] == 2
+    assert result["systems"]["A"]["n_attempts"] == 2
+    assert result["systems"]["B"]["n_attempts"] == 2
