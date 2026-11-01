@@ -318,3 +318,35 @@ def test_groq_operational_error_bypasses_evidence_verifier(monkeypatch):
         )
 
     assert diagnostics == []
+
+
+def test_system_c_abstains_before_generation_when_requested_field_is_missing(monkeypatch):
+    monkeypatch.setattr(
+        rag_pipeline,
+        "fetch_student_names_from_db",
+        lambda: [{"student_id": "student-123", "name": "Alice Smith"}],
+    )
+    verifier = Mock()
+    verifier.verify.return_value = Mock(decision="ACCEPT", reason="accepted")
+    vectorstore = Mock()
+    vectorstore.similarity_search.return_value = [
+        Mock(page_content="Student Name: Alice Smith -- Discipline: Computer Science")
+    ]
+    generation = Mock(side_effect=AssertionError("System C must not call the LLM"))
+    monkeypatch.setattr(rag_pipeline, "query_groq_api", generation)
+    diagnostics = []
+
+    answer = answer_question(
+        vectorstore,
+        "What is Alice Smith's fee status?",
+        user={"role": "admin"},
+        verifier=verifier,
+        evidence_verification=True,
+        pre_generation_abstention=True,
+        diagnostic_callback=diagnostics.append,
+    )
+
+    assert "will not generate an answer" in answer
+    assert diagnostics[0]["stage"] == "pre_generation_evidence_gate"
+    assert diagnostics[0]["field"] == "fee_status"
+    generation.assert_not_called()
