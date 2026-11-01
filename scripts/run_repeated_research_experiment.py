@@ -71,13 +71,43 @@ def clean_answer(output: str) -> str:
     return cleaned.strip(" \t\r\n.,;:!?")
 
 
+def select_cases(
+    dataset: list[dict[str, Any]],
+    case_ids: list[str] | None = None,
+    limit: int | None = None,
+) -> list[dict[str, Any]]:
+    """Select cases by explicit ID or leading limit, preserving dataset order."""
+    if case_ids is not None and limit is not None:
+        raise ValueError("--limit and --case-ids cannot be used together")
+    if limit is not None:
+        if limit < 1:
+            raise ValueError("--limit must be positive")
+        return dataset[:limit]
+    if case_ids is None:
+        return dataset
+
+    if len(case_ids) != len(set(case_ids)):
+        raise ValueError("--case-ids contains duplicate IDs")
+    available_ids = [case["case_id"] for case in dataset]
+    if len(available_ids) != len(set(available_ids)):
+        raise ValueError("Dataset contains duplicate case_id values")
+    unknown = [case_id for case_id in case_ids if case_id not in set(available_ids)]
+    if unknown:
+        raise ValueError(f"Unknown case IDs: {', '.join(unknown)}")
+    requested = set(case_ids)
+    return [case for case in dataset if case["case_id"] in requested]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--system", choices=("A", "B", "C", "all"), default="all")
     parser.add_argument("--repeats", type=int, default=5)
-    parser.add_argument("--limit", type=int)
+    parser.add_argument("--limit", type=int,
+                        help="Select the first N cases (mutually exclusive with --case-ids).")
+    parser.add_argument("--case-ids", nargs="+", metavar="CASE_ID",
+                        help="Select explicit benchmark case IDs while retaining the full dataset hash.")
     parser.add_argument("--disable-jev", action="store_true",
                         help="Run a separately labelled no-Jev ablation; never pool with Jev-enabled runs.")
     parser.add_argument("--resume", action="store_true")
@@ -85,11 +115,9 @@ def main() -> int:
     args = parser.parse_args()
     if args.repeats < 1:
         raise ValueError("--repeats must be at least one")
-    cases = read_jsonl(args.dataset)
-    if args.limit is not None:
-        if args.limit < 1:
-            raise ValueError("--limit must be positive")
-        cases = cases[:args.limit]
+    cases = select_cases(
+        read_jsonl(args.dataset), case_ids=args.case_ids, limit=args.limit
+    )
     if not cases:
         raise ValueError("No cases selected.")
 
@@ -213,6 +241,7 @@ def main() -> int:
                     "case_id": case["case_id"], "run_number": run_number, "system": system,
                     "decision": decision,
                     "answer": clean_answer(str(output)) if decision == "answer" else "",
+                    "latency_ms": latency,
                 })
                 completed[system].add(key)
             print(f"  System {system}: {index}/{len(cases)} cases for run {run_number}", flush=True)
