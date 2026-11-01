@@ -250,8 +250,9 @@ call `answer_question(..., evidence_verification=True)` for System B. The verifi
 checks supported structured fields against retrieved evidence; it is not a
 general-purpose fact checker.
 
-The benchmark includes 200 fictional cases (100 answerable, 50 ambiguous, 50
-with missing fields). Score saved predictions without model/API calls:
+The benchmark includes 200 fictional cases (100 answerable, 50 ambiguous, and
+50 missing-information cases split evenly between SQL NULL fee_status values
+and absent fee-submission records). Score saved predictions without model/API calls:
 
 ```bash
 uv sync --extra dev
