@@ -121,8 +121,9 @@ RESEARCH_FIELD_COLUMNS = {
 def fetch_student_field_availability_from_db(student_id: str, field: str) -> dict:
     """Return source availability metadata without returning the field value.
 
-    This is used by System C's selective-decision gate. It distinguishes a
-    genuinely NULL/empty value or absent related row from a retrieval failure.
+    Distinguishes a NULL/empty source value or absent related row from a
+    source value that exists. This helper is not currently used by the
+    A/B/C experimental decision pipeline.
     """
     mapping = RESEARCH_FIELD_COLUMNS.get(field)
     if mapping is None:
