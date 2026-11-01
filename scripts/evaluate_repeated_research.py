@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 import statistics
@@ -129,7 +130,7 @@ def main() -> int:
     if not metadata_path.exists():
         raise FileNotFoundError(f"Missing experiment metadata: {metadata_path}")
     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
-    if metadata.get("dataset_sha256") != __import__("hashlib").sha256(args.dataset.read_bytes()).hexdigest():
+    if metadata.get("dataset_sha256") != hashlib.sha256(args.dataset.read_bytes()).hexdigest():
         raise ValueError("Dataset hash differs from the experiment metadata.")
     aggregate = {}
     attempt_summaries = {}
