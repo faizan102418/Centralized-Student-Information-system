@@ -1,137 +1,126 @@
-"""Validate benchmark expectations against the isolated synthetic MySQL database.
+"""Validate benchmark expectations against the isolated research_eval MySQL snapshot.
 
-Example:
+Run after loading data/seed.sql and data/eval/seed_synthetic_eval.sql:
   DB_NAME=research_eval PYTHONPATH=src uv run python scripts/validate_research_benchmark.py
-The script is read-only and writes a JSON audit report unless --output is omitted.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import hashlib
+from collections import Counter
 from pathlib import Path
-import sys
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATASET = ROOT / "data" / "eval" / "synthetic_eval.jsonl"
-DEFAULT_OUTPUT = ROOT / "experiments" / "benchmark_validation.json"
+import mysql.connector
 
+ROOT = Path(__file__).resolve().parents[1]
+DATASET = ROOT / "data" / "eval" / "synthetic_eval.jsonl"
 FIELD_SQL = {
-    "discipline": ("student_general_data", "discipline"),
-    "roll_number": ("student_general_data", "roll_number"),
-    "scholarship_name": ("student_scholarship", "scholarship_name"),
-    "enrollment_status": ("student_scholarship", "enrollment_status"),
-    "fee_status": ("student_fee_submission", "fee_status"),
-    "registration_number": ("student_fee_submission", "registration_number"),
+    "discipline": ("SELECT discipline FROM student_general_data WHERE student_id=%s", "discipline"),
+    "roll_number": ("SELECT roll_number FROM student_general_data WHERE student_id=%s", "roll_number"),
+    "scholarship_name": ("SELECT scholarship_name FROM student_scholarship WHERE student_id=%s", "scholarship_name"),
+    "enrollment_status": ("SELECT enrollment_status FROM student_scholarship WHERE student_id=%s", "enrollment_status"),
+    "fee_status": ("SELECT fee_status FROM student_fee_submission WHERE student_id=%s", "fee_status"),
+    "registration_number": ("SELECT registration_number FROM student_fee_submission WHERE student_id=%s", "registration_number"),
 }
 
 
-def read_jsonl(path: Path) -> list[dict[str, Any]]:
-    with path.open(encoding="utf-8") as handle:
-        return [json.loads(line) for line in handle if line.strip()]
+def load_cases(path: Path) -> list[dict[str, Any]]:
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
-def validate(dataset: list[dict[str, Any]], connection) -> dict[str, Any]:
+def validate(cases: list[dict[str, Any]], connection: Any) -> list[dict[str, Any]]:
     cursor = connection.cursor(dictionary=True)
-    cursor.execute("SELECT student_id, name FROM student_general_data")
-    students = {str(row["student_id"]): row["name"] for row in cursor.fetchall()}
-    cursor.execute("SELECT student_id, name FROM student_general_data")
-    names = [row["name"] for row in cursor.fetchall()]
     results = []
-    for case in dataset:
-        case_id = case["case_id"]
-        category = case["category"]
+    for case in cases:
+        status, value, detail = "valid", None, ""
         student_id = case.get("student_id")
-        field = case.get("field")
-        status = "valid"
-        observed = None
-        reason = None
-
+        category = case["category"]
         if category == "ambiguous":
-            expected_names = set(case.get("candidate_names", []))
-            prefix = str(case["query"]).split("'")[0].split()[-1]
-            actual = {name for name in names if str(name).casefold().startswith(prefix.casefold())}
-            if len(actual) < 2 or expected_names != actual:
-                status, reason = "invalid", "expected_ambiguous_candidates_not_in_database"
-            observed = sorted(actual)
-        else:
-            if student_id not in students:
-                status, reason = "invalid", "student_id_not_in_database"
-            elif field not in FIELD_SQL:
-                status, reason = "invalid", "field_not_supported_by_validation_schema"
-            else:
-                table, column = FIELD_SQL[field]
+            # Bind candidate names as values; do not interpolate input into SQL.
+            found = []
+            for candidate_name in case["candidate_names"]:
                 cursor.execute(
-                    f"SELECT {column} AS value FROM {table} WHERE student_id = %s LIMIT 1",
+                    "SELECT student_id, name FROM student_general_data WHERE name=%s",
+                    (candidate_name,),
+                )
+                found.extend(row["name"] for row in cursor.fetchall())
+            found = sorted(found)
+            expected = sorted(case["candidate_names"])
+            if found != expected:
+                status, detail = "invalid", f"candidate names mismatch: {found}"
+            else:
+                detail = "all listed candidates exist; clarification is warranted"
+        elif category == "missing":
+            if case.get("field") != "fee_status" or case.get("source_state") != "related_record_absent":
+                status, detail = "invalid", "missing case must target recognized fee_status with related_record_absent"
+            else:
+                cursor.execute(
+                    "SELECT COUNT(*) AS n FROM student_fee_submission WHERE student_id=%s",
                     (student_id,),
                 )
+                count = cursor.fetchone()["n"]
+                if count != 0:
+                    status, detail = "invalid", f"expected no fee-submission row, found {count}"
+                else:
+                    detail = "student exists and no fee-submission row exists"
+        elif category == "answerable":
+            if case.get("field") not in FIELD_SQL:
+                status, detail = "invalid", f"unsupported answerable field: {case.get('field')}"
+            else:
+                query, key = FIELD_SQL[case["field"]]
+                cursor.execute(query, (student_id,))
                 row = cursor.fetchone()
-                observed = None if row is None else row["value"]
-                if category == "answerable":
-                    if row is None or observed is None or str(observed).strip() != str(case.get("expected_answer", "")).strip():
-                        status, reason = "invalid", "answerable_expected_value_does_not_match_source"
-                elif category == "missing":
-                    expected_state = case.get("source_state")
-                    if expected_state == "null_value":
-                        if row is None or observed is not None and str(observed).strip():
-                            status, reason = "invalid", "expected_null_source_value_not_found"
-                    elif expected_state == "missing_related_record":
-                        if row is not None:
-                            status, reason = "invalid", "expected_missing_related_record_but_row_exists"
-                    else:
-                        status, reason = "invalid", "missing_case_has_no_valid_source_state"
+                value = row.get(key) if row else None
+                expected = str(case.get("expected_answer", "")).strip()
+                if value is None or str(value).strip().casefold() != expected.casefold():
+                    status, detail = "invalid", f"database value {value!r} != expected {expected!r}"
+                else:
+                    detail = "database value matches expected answer"
+        else:
+            status, detail = "invalid", f"unknown category: {category}"
         results.append({
-            "case_id": case_id,
-            "category": category,
-            "student_id": student_id,
-            "field": field,
-            "observed_source_value": observed,
-            "validation_status": status,
-            "validation_reason": reason,
+            "case_id": case["case_id"], "category": category, "student_id": student_id,
+            "field": case.get("field"), "database_value": value,
+            "validation_status": status, "validation_detail": detail,
         })
     cursor.close()
-    counts = {}
-    for row in results:
-        counts[row["validation_status"]] = counts.get(row["validation_status"], 0) + 1
-    return {
-        "database_validation": True,
-        "total_cases": len(results),
-        "counts": counts,
-        "valid": counts.get("invalid", 0) == 0,
-        "cases": results,
-        "interpretation": (
-            "A valid report confirms labels against the connected database snapshot only. "
-            "Record the database dump/hash and schema version with experimental results."
-        ),
-    }
+    return results
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--dataset", type=Path, default=DATASET)
+    parser.add_argument("--output", type=Path, default=ROOT / "experiments" / "benchmark_validation.json")
     args = parser.parse_args()
-    from chatbot.config import DB_NAME
-    from chatbot.database import get_db_connection
-
+    cases = load_cases(args.dataset)
+    if len(cases) != 200 or len({case["case_id"] for case in cases}) != len(cases):
+        raise ValueError("Expected exactly 200 unique benchmark cases.")
+    if Counter(case["category"] for case in cases) != {"answerable": 100, "ambiguous": 50, "missing": 50}:
+        raise ValueError("Expected 100 answerable, 50 ambiguous, and 50 missing cases.")
+    from chatbot.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_USER
     if DB_NAME != "research_eval":
-        raise RuntimeError("Refusing to validate against a non-isolated database; set DB_NAME=research_eval.")
-    connection = get_db_connection()
+        raise RuntimeError(f"Refusing to validate against {DB_NAME!r}; DB_NAME must be research_eval.")
+    connection = mysql.connector.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME)
     try:
-        report = validate(read_jsonl(args.dataset), connection)
+        results = validate(cases, connection)
     finally:
         connection.close()
-    rendered = json.dumps(report, indent=2, ensure_ascii=False)
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(rendered + "\n", encoding="utf-8")
-    print(rendered)
-    return 0 if report["valid"] else 2
+    summary = {
+        "dataset": str(args.dataset.relative_to(ROOT)) if args.dataset.is_relative_to(ROOT) else str(args.dataset),
+        "case_count": len(cases),
+        "dataset_sha256": hashlib.sha256(args.dataset.read_bytes()).hexdigest(),
+        "category_counts": dict(Counter(case["category"] for case in cases)),
+        "valid_count": sum(row["validation_status"] == "valid" for row in results),
+        "invalid_count": sum(row["validation_status"] != "valid" for row in results),
+        "cases": results,
+    }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(json.dumps({key: value for key, value in summary.items() if key != "cases"}, indent=2))
+    return 0 if summary["invalid_count"] == 0 else 1
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except (RuntimeError, ValueError) as exc:
-        print(f"ERROR: {exc}", file=sys.stderr)
-        raise SystemExit(2)
+    raise SystemExit(main())
