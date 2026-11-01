@@ -23,10 +23,12 @@ def test_benchmark_has_expected_stratification():
 def test_every_missing_case_uses_a_recognized_field_and_source_state():
     missing = [row for row in load_dataset() if row["category"] == "missing"]
     assert all(requested_field(row["query"]) == row["field"] for row in missing)
-    assert {row["source_state"] for row in missing} == {
-        "null_value", "missing_related_record"
+    from collections import Counter
+    assert Counter(row["source_state"] for row in missing) == {
+        "null_value": 25, "related_record_absent": 25
     }
-    assert all(row["field"] != "cgpa" for row in missing)
+    assert all(row["field"] == "fee_status" for row in missing)
+    assert all(row["database_table"] == "student_fee_submission" for row in missing)
 
 
 def test_ambiguous_cases_match_multiple_synthetic_candidates():
@@ -39,8 +41,10 @@ def test_ambiguous_cases_match_multiple_synthetic_candidates():
 
 def test_missing_case_groups_are_disjoint_and_use_added_students():
     missing = [row for row in load_dataset() if row["category"] == "missing"]
-    discipline_ids = {row["student_id"] for row in missing if row["field"] == "discipline"}
-    scholarship_ids = {row["student_id"] for row in missing if row["field"] == "scholarship_name"}
-    assert len(discipline_ids) == 5
-    assert len(scholarship_ids) == 5
-    assert discipline_ids.isdisjoint(scholarship_ids)
+    null_ids = {row["student_id"] for row in missing if row["source_state"] == "null_value"}
+    absent_ids = {row["student_id"] for row in missing if row["source_state"] == "related_record_absent"}
+    assert len(null_ids) == 10
+    assert len(absent_ids) == 10
+    assert null_ids.isdisjoint(absent_ids)
+    assert sum(row["source_state"] == "null_value" for row in missing) == 25
+    assert sum(row["source_state"] == "related_record_absent" for row in missing) == 25
