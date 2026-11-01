@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import hashlib
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -106,6 +107,7 @@ def main() -> int:
     summary = {
         "dataset": str(args.dataset.relative_to(ROOT)) if args.dataset.is_relative_to(ROOT) else str(args.dataset),
         "case_count": len(cases),
+        "dataset_sha256": hashlib.sha256(args.dataset.read_bytes()).hexdigest(),
         "category_counts": dict(Counter(case["category"] for case in cases)),
         "valid_count": sum(row["validation_status"] == "valid" for row in results),
         "invalid_count": sum(row["validation_status"] != "valid" for row in results),
