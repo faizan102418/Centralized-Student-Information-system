@@ -20,15 +20,15 @@ def test_evaluator_reports_answer_coverage_and_abstention_quality():
         {"case_id": "u1", "decision": "clarify", "answer": ""},
         {"case_id": "m1", "decision": "abstain", "answer": ""},
     ]
-    metrics = evaluate(dataset, predictions)["metrics"]
+    metrics = evaluate(dataset, predictions)["per_run"]["1"]["metrics"]
     assert metrics["decision_accuracy"] == 0.75
     assert metrics["answer_coverage_on_answerable"] == 0.5
     assert metrics["exact_answer_accuracy_when_answered"] == 1.0
     assert metrics["unnecessary_nonanswer_rate_on_answerable"] == 0.5
-    assert metrics["ambiguous_clarification_rate"] == 1.0
-    assert metrics["missing_information_abstention_rate"] == 1.0
+    assert metrics["clarification_precision"] == 1.0\n    assert metrics["clarification_recall"] == 1.0
+    assert metrics["missing_abstention_precision"] == 1.0\n    assert metrics["missing_abstention_recall"] == 1.0
 
 
 def test_evaluator_requires_matching_case_ids():
-    with pytest.raises(ValueError, match="do not match"):
+    with pytest.raises(ValueError, match="exactly one prediction"):
         evaluate([case("a1", "answerable", "answer", "Paid")], [{"case_id":"x","decision":"answer","answer":"Paid"}])
