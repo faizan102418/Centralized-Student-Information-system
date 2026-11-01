@@ -29,7 +29,9 @@ CLARIFY_MARKERS = (
 )
 ABSTAIN_MARKERS = (
     "couldn't verify the requested answer", "verification:",
-    "not available in the provided record", "could not be retrieved",
+    "not available in the provided record", "not available in the source student record",
+    "requested information is not available", "couldn't verify that the requested field is supported",
+    "could not be retrieved",
     "no answer was generated", "haven't retrieved any student data",
     "couldn't safely confirm which record", "couldn't find that student",
     "don't have permission", "please sign in",
@@ -162,7 +164,7 @@ def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], out
     if not completed.issubset({(row["case_id"], run_number) for row in cases}):
         raise ValueError("Existing predictions contain case IDs outside this selected run.")
 
-    diagnostics_path = output_dir / "system_b_diagnostics.jsonl"
+    diagnostics_path = output_dir / f"system_{system.lower()}_diagnostics.jsonl"
     timed = TimedJevVerifier(jev_verifier)
     for index, case in enumerate(cases, start=1):
         case_id = case["case_id"]
@@ -171,7 +173,7 @@ def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], out
         timed.calls.clear()
         started = time.perf_counter()
         case_diagnostics: list[dict[str, Any]] = []
-        diagnostic_callback = case_diagnostics.append if system == "B" else None
+        diagnostic_callback = case_diagnostics.append if system in {"B", "C"} else None
         error_type = None
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
@@ -269,7 +271,8 @@ def main() -> int:
     from chatbot.jev_verifier import DEFAULT_THRESHOLD, JEV_MODEL, JevVerifier
     from chatbot.rag_pipeline import answer_question, setup_vector_db
 
-    systems = ("A", "B", "C") if args.system in {"all", "both"} else (args.system,)
+    systems = (("A", "B", "C") if args.system == "all" else
+               ("A", "B") if args.system == "both" else (args.system,))
     if "B" in systems or "C" in systems:
         validate_diagnostic_scope(cases, DB_NAME)
 
