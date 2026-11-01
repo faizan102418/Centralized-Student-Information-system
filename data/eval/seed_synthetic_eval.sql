@@ -35,3 +35,18 @@ INSERT INTO student_fee_submission (registration_number, student_id, name, fee_s
 ('REG-SYN-008', 'SYN-008', 'Noor Shah', 'Pending'),
 ('REG-SYN-009', 'SYN-009', 'Hamza Khan', 'Paid'),
 ('REG-SYN-010', 'SYN-010', 'Hamza Ahmed', 'Overdue');
+
+-- Ten additional fictional students deliberately have no fee-submission row.
+-- fee_status is a recognized field, but the related record is genuinely absent.
+INSERT INTO student_general_data (roll_number, student_id, name, discipline) VALUES
+('2026-SYN-011', 'SYN-011', 'Avery Brooks', 'Computer Science'),
+('2026-SYN-012', 'SYN-012', 'Casey Morgan', 'Data Science'),
+('2026-SYN-013', 'SYN-013', 'Jordan Ellis', 'Software Engineering'),
+('2026-SYN-014', 'SYN-014', 'Riley Chen', 'Artificial Intelligence'),
+('2026-SYN-015', 'SYN-015', 'Taylor Reed', 'Computer Science'),
+('2026-SYN-016', 'SYN-016', 'Quinn Parker', 'Information Technology'),
+('2026-SYN-017', 'SYN-017', 'Skyler James', 'Data Science'),
+('2026-SYN-018', 'SYN-018', 'Morgan Blake', 'Cybersecurity'),
+('2026-SYN-019', 'SYN-019', 'Drew Carter', 'Computer Science'),
+('2026-SYN-020', 'SYN-020', 'Rowan Hayes', 'Software Engineering');
+-- Intentionally do not insert SYN-011..SYN-020 into student_fee_submission.
