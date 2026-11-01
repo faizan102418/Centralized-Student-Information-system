@@ -125,6 +125,12 @@ def main() -> int:
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     dataset = read_jsonl(args.dataset)
+    metadata_path = args.predictions_dir / "metadata.json"
+    if not metadata_path.exists():
+        raise FileNotFoundError(f"Missing experiment metadata: {metadata_path}")
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    if metadata.get("dataset_sha256") != __import__("hashlib").sha256(args.dataset.read_bytes()).hexdigest():
+        raise ValueError("Dataset hash differs from the experiment metadata.")
     aggregate = {}
     attempt_summaries = {}
     for system in SYSTEMS:
@@ -154,8 +160,13 @@ def main() -> int:
         if set(by_case) != expected_ids:
             raise ValueError(f"{system}: predictions do not cover exactly the selected benchmark cases.")
         run_counts = {len(rows) for rows in by_case.values()}
-        if len(run_counts) != 1:
-            raise ValueError(f"{system}: inconsistent repeat counts across queries.")
+        expected_runs = int(metadata["repeats"])
+        expected_run_numbers = set(range(1, expected_runs + 1))
+        if run_counts != {expected_runs}:
+            raise ValueError(f"{system}: expected exactly {expected_runs} repeats for every query.")
+        if any({int(row["run_number"]) for row in rows} != expected_run_numbers
+               for rows in by_case.values()):
+            raise ValueError(f"{system}: run numbers must be exactly 1..{expected_runs}.")
         aggregate[system] = query_level(dataset, attempts)
         attempt_summaries[system] = {"attempt_count": len(attempts), "repeats_per_query": next(iter(run_counts))}
     report = {
