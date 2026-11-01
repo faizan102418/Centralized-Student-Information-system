@@ -164,13 +164,16 @@ def answer_question(
     evidence_verification: bool = False,
     use_jev: bool = True,
     diagnostic_callback: Callable[[dict], None] | None = None,
+    pre_generation_abstention: bool = False,
 ) -> str:
     """Answer a question; optionally verify the requested field against retrieved evidence.
 
     Set evidence_verification=True only for the research experimental condition.
     Set use_jev=False only for the explicitly labelled no-Jev ablation; local
     deterministic candidate matching and authorization remain enabled.
-    Defaults preserve the existing application behaviour.
+    Set pre_generation_abstention=True for System C: recognized requested fields
+    absent from retrieved evidence are rejected before the LLM call. Defaults
+    preserve the existing application behaviour.
     """
     student_name = extract_student_name(user_input)
     is_record_question = bool(STUDENT_RECORD_TERMS.search(user_input))
@@ -248,6 +251,24 @@ def answer_question(
         vectorstore, canonical_name, user_input, student_id
     )
     prompt = build_student_record_prompt(canonical_name, user_input, evidence)
+    if pre_generation_abstention:
+        availability = verify_answer_against_evidence(
+            question=user_input, answer="", evidence_text="\\n\\n".join(evidence)
+        )
+        if availability.field is not None and availability.evidence_value is None:
+            diagnostic = {
+                "stage": "pre_generation_evidence_gate",
+                "field": availability.field,
+                "reason": availability.reason,
+                "decision": "abstain",
+            }
+            if diagnostic_callback is not None:
+                diagnostic_callback(diagnostic)
+            return (
+                "I could not verify that the requested field is present in the retrieved "
+                "student record, so I will not generate an answer. "
+                f"Evidence check: {availability.reason}"
+            )
     if not prompt:
         return "The authorized student record could not be retrieved. No answer was generated."
 
