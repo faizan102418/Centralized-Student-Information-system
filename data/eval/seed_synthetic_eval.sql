@@ -1,8 +1,13 @@
 -- Synthetic-only benchmark records. Apply data/seed.sql first.
 -- All names are fictional. This fixture deliberately contains source-level
 -- missing values and missing related records for the research benchmark.
--- Load only into the isolated research_eval database:
+-- Load only into the isolated research_eval database. Re-running this fixture
+-- replaces only SYN-* rows and leaves the demo UUID records untouched:
 --   mysql research_eval < data/eval/seed_synthetic_eval.sql
+
+DELETE FROM student_scholarship WHERE student_id LIKE 'SYN-%';
+DELETE FROM student_fee_submission WHERE student_id LIKE 'SYN-%';
+DELETE FROM student_general_data WHERE student_id LIKE 'SYN-%';
 
 INSERT INTO student_general_data (roll_number, student_id, name, discipline) VALUES
 ('2026-SYN-001', 'SYN-001', 'Maya Patel', 'Computer Science'),
