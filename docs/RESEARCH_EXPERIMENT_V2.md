@@ -7,9 +7,11 @@ Evaluate observable accuracy and trustworthiness of retrieval-augmented agents a
 The benchmark contains 200 fictional cases:
 - 100 answerable cases with source values present.
 - 50 ambiguous-name cases with multiple matching student records.
-- 50 missing-information cases targeting the recognized fee_status field for students who exist in student_general_data but have no corresponding row in student_fee_submission.
+- 50 missing-information cases targeting the recognized fee_status field, split evenly between two source states:
+  - 25 null_value cases: the student and fee-submission row exist, but fee_status is SQL NULL (SYN-021 through SYN-030).
+  - 25 related_record_absent cases: the student exists, but no fee-submission row exists (SYN-011 through SYN-020).
 
-The previous V1 missing cases asked for CGPA/GPA, a field not represented in the database schema. Those cases tested unsupported-field handling, not genuine missing-value detection. V2 replaces them with actual missing related records. The SQL fixture intentionally inserts ten additional synthetic students (SYN-011 through SYN-020) without fee-submission rows.
+The previous V1 missing cases asked for CGPA/GPA, a field not represented in the database schema. Those cases tested unsupported-field handling, not genuine missing-value detection. V2 replaces them with recognized-field cases that distinguish a NULL column value from an absent related record. The SQL fixture creates ten students for each missing state; the groups are disjoint.
 
 Load the isolated database:
 ```bash
@@ -23,7 +25,7 @@ Validate expected labels against the database:
 ```bash
 DB_NAME=research_eval PYTHONPATH=src uv run python scripts/validate_research_benchmark.py
 ```
-The validator refuses to run against a database whose configured name is not research_eval. It checks answerable values, candidate existence for ambiguous cases, and absence of fee-submission rows for missing cases. Preserve the generated validation JSON alongside the experiment artifacts. The validator checks source-state validity; it does not prove that vector retrieval succeeds.
+The validator refuses to run against a database whose configured name is not research_eval. It checks answerable values, candidate existence for ambiguous cases, SQL NULL values for null_value cases, and absent fee-submission rows for related_record_absent cases. Preserve the generated validation JSON alongside the experiment artifacts. The validator checks source-state validity; it does not prove that vector retrieval succeeds.
 
 ## Experimental conditions
 All conditions share local deterministic candidate matching, ambiguity clarification, role-based authorization, database snapshot, retrieval settings, prompt/model configuration, and student-ID-scoped retrieval. Ambiguity clarification is a shared safety control and is not claimed as a treatment effect.

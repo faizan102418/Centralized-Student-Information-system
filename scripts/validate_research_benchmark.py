@@ -53,9 +53,21 @@ def validate(cases: list[dict[str, Any]], connection: Any) -> list[dict[str, Any
             else:
                 detail = "all listed candidates exist; clarification is warranted"
         elif category == "missing":
-            if case.get("field") != "fee_status" or case.get("source_state") != "related_record_absent":
-                status, detail = "invalid", "missing case must target recognized fee_status with related_record_absent"
-            else:
+            if case.get("field") != "fee_status":
+                status, detail = "invalid", "missing case must target recognized fee_status"
+            elif case.get("source_state") == "null_value":
+                cursor.execute(
+                    "SELECT fee_status FROM student_fee_submission WHERE student_id=%s",
+                    (student_id,),
+                )
+                row = cursor.fetchone()
+                if row is None:
+                    status, detail = "invalid", "expected a fee-submission row with NULL fee_status, but no row exists"
+                elif row["fee_status"] is not None:
+                    status, detail = "invalid", f"expected SQL NULL fee_status, found {row['fee_status']!r}"
+                else:
+                    detail = "fee-submission row exists and fee_status is SQL NULL"
+            elif case.get("source_state") == "related_record_absent":
                 cursor.execute(
                     "SELECT COUNT(*) AS n FROM student_fee_submission WHERE student_id=%s",
                     (student_id,),
@@ -65,6 +77,8 @@ def validate(cases: list[dict[str, Any]], connection: Any) -> list[dict[str, Any
                     status, detail = "invalid", f"expected no fee-submission row, found {count}"
                 else:
                     detail = "student exists and no fee-submission row exists"
+            else:
+                status, detail = "invalid", f"unsupported missing source_state: {case.get('source_state')!r}"
         elif category == "answerable":
             if case.get("field") not in FIELD_SQL:
                 status, detail = "invalid", f"unsupported answerable field: {case.get('field')}"
