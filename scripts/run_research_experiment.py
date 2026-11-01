@@ -56,8 +56,7 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
 def append_jsonl(path: Path, row: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(row, ensure_ascii=False) + "
-")
+        handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
 def classify_output(output: str) -> str:
@@ -79,15 +78,14 @@ def scoring_answer(output: str) -> str:
     match = re.search(r"\bis\s+(.+)$", cleaned, flags=re.IGNORECASE)
     if match:
         cleaned = match.group(1).strip()
-    return cleaned.strip(" \t\r
-.,;:!?")
+    return cleaned.strip(" \\t\\r\\n.,;:!?")
 
 
 def validate_diagnostic_scope(cases: list[dict[str, Any]], db_name: str) -> None:
     """Allow pre-retrieval cases without IDs; constrain every supplied ID to synthetic data."""
     if db_name != "research_eval":
         raise ValueError(
-            "System B diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
+            "Systems B/C diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
         )
     if any(
         row.get("student_id") is not None
@@ -237,7 +235,7 @@ def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
             "C": "B + pre-generation source-field availability gate.",
         }),
         "clarification_note": "Name ambiguity clarification is common to A/B/C and is a controlled baseline behaviour, not a C-specific intervention.",
-        "repeated_run_note": "run_number identifies repeated executions; query/case_id is the inferential unit, not each attempt."
+        "repeated_run_note": "run_number identifies repeated executions; query/case_id is the inferential unit, not each attempt.",
         "jev_score_note": "Recorded as jev_score; not asserted to be calibrated probability.",
         "diagnostics_schema_version": 1,
     }
