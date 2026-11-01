@@ -172,7 +172,7 @@ def main() -> int:
             "Latency summaries are descriptive and use each query's median across its repeats.",
         ],
     }
-    for left, right in (("B", "A"), ("C", "B"), ("C", "A")):
+    for left, right in (("A", "B"), ("B", "C"), ("C", "A")):
         if left in aggregate and right in aggregate:
             report["paired_query_bootstrap_decision_accuracy_differences"][f"{left}_minus_{right}"] = bootstrap_difference(
                 aggregate[left], aggregate[right], seed=2026 + ord(left) + ord(right)
