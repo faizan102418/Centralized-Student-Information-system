@@ -1,5 +1,6 @@
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,9 +18,25 @@ def test_v2_benchmark_has_three_balanced_categories_and_real_missing_field_cases
     assert counts == {"answerable": 100, "ambiguous": 50, "missing": 50}
     missing = [row for row in rows if row["category"] == "missing"]
     assert all(row["field"] == "fee_status" for row in missing)
-    assert all(row["source_state"] == "related_record_absent" for row in missing)
+    assert Counter(row["source_state"] for row in missing) == {
+        "null_value": 25,
+        "related_record_absent": 25,
+    }
     assert all(row["database_table"] == "student_fee_submission" for row in missing)
-    assert len({row["student_id"] for row in missing}) == 10
+
+    null_value_ids = {
+        row["student_id"]
+        for row in missing
+        if row["source_state"] == "null_value"
+    }
+    absent_record_ids = {
+        row["student_id"]
+        for row in missing
+        if row["source_state"] == "related_record_absent"
+    }
+    assert len(null_value_ids) == 10
+    assert len(absent_record_ids) == 10
+    assert null_value_ids.isdisjoint(absent_record_ids)
 
 
 def test_all_v2_queries_are_parseable_by_the_student_name_extractor():
