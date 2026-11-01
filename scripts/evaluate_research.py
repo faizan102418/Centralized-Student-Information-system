@@ -149,10 +149,10 @@ def evaluate(dataset: list[dict[str, Any]], predictions: list[dict[str, Any]]) -
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
-    parser.add_argument("--predictions", type=Path, required=True)
+    parser.add_argument("--predictions", type=Path, nargs="+", required=True,\n                        help="One or more per-run prediction JSONL files.")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    result = evaluate(read_jsonl(args.dataset), read_jsonl(args.predictions))
+    predictions = [row for path in args.predictions for row in read_jsonl(path)]\n    result = evaluate(read_jsonl(args.dataset), predictions)
     rendered = json.dumps(result, indent=2, ensure_ascii=False)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
