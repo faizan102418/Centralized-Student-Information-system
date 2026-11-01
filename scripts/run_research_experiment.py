@@ -1,4 +1,4 @@
-"""Run paired System A/System B evaluations on the frozen synthetic benchmark."""
+"""Run repeated, paired A/B/C evaluations on the frozen synthetic benchmark."""
 from __future__ import annotations
 
 import argparse
@@ -29,7 +29,9 @@ CLARIFY_MARKERS = (
 )
 ABSTAIN_MARKERS = (
     "couldn't verify the requested answer", "verification:",
-    "not available in the provided record", "could not be retrieved",
+    "not available in the provided record", "not available in the source student record",
+    "requested information is not available", "couldn't verify that the requested field is supported",
+    "could not be retrieved",
     "no answer was generated", "haven't retrieved any student data",
     "couldn't safely confirm which record", "couldn't find that student",
     "don't have permission", "please sign in",
@@ -83,7 +85,7 @@ def validate_diagnostic_scope(cases: list[dict[str, Any]], db_name: str) -> None
     """Allow pre-retrieval cases without IDs; constrain every supplied ID to synthetic data."""
     if db_name != "research_eval":
         raise ValueError(
-            "System B diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
+            "Systems B/C diagnostics require DB_NAME=research_eval and synthetic SYN- student IDs."
         )
     if any(
         row.get("student_id") is not None
@@ -138,41 +140,43 @@ class TimedJevVerifier:
         return result
 
 
-def paths_for(output_dir: Path, system: str) -> tuple[Path, Path]:
+def paths_for(output_dir: Path, system: str, run_number: int) -> tuple[Path, Path]:
     suffix = system.lower()
-    return (output_dir / f"system_{suffix}_predictions.jsonl",
-            output_dir / f"system_{suffix}_raw.jsonl")
+    stem = f"system_{suffix}_run_{run_number:02d}"
+    return (output_dir / f"{stem}_predictions.jsonl",
+            output_dir / f"{stem}_raw.jsonl")
 
 
-def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
+def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], output_dir: Path,
                   vectorstore: Any, user: dict[str, Any], answer_fn: Callable[..., str],
                   jev_verifier: Any, resume: bool = False, use_jev: bool = True) -> None:
-    predictions_path, raw_path = paths_for(output_dir, system)
+    predictions_path, raw_path = paths_for(output_dir, system, run_number)
     if not resume and (predictions_path.exists() or raw_path.exists()):
         raise FileExistsError(f"Output exists for System {system}; use a new directory or --resume.")
     completed = set()
     if resume and predictions_path.exists():
         existing = read_jsonl(predictions_path)
-        completed = {row["case_id"] for row in existing}
+        completed = {(row["case_id"], row.get("run_number", 1)) for row in existing}
         if len(completed) != len(existing):
-            raise ValueError(f"Duplicate case IDs in {predictions_path}")
-    if not completed.issubset({row["case_id"] for row in cases}):
+            raise ValueError(f"Duplicate case/run keys in {predictions_path}")
+    if not completed.issubset({(row["case_id"], run_number) for row in cases}):
         raise ValueError("Existing predictions contain case IDs outside this selected run.")
 
-    diagnostics_path = output_dir / "system_b_diagnostics.jsonl"
+    diagnostics_path = output_dir / f"system_{system.lower()}_diagnostics.jsonl"
     timed = TimedJevVerifier(jev_verifier)
     for index, case in enumerate(cases, start=1):
         case_id = case["case_id"]
-        if case_id in completed:
+        if (case_id, run_number) in completed:
             continue
         timed.calls.clear()
         started = time.perf_counter()
         case_diagnostics: list[dict[str, Any]] = []
-        diagnostic_callback = case_diagnostics.append if system == "B" else None
+        diagnostic_callback = case_diagnostics.append if system in {"B", "C"} else None
         error_type = None
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
-                               evidence_verification=(system == "B"), use_jev=use_jev,
+                               evidence_verification=(system in {"B", "C"}),
+                               selective_decisions=(system == "C"), use_jev=use_jev,
                                diagnostic_callback=diagnostic_callback)
         except Exception as exc:
             # Operational failures are logged separately and never become
@@ -182,7 +186,7 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
         latency = round((time.perf_counter() - started) * 1000, 2)
         decision = "error" if error_type else classify_output(str(output))
         append_jsonl(raw_path, {
-            "case_id": case_id, "system": system,
+            "case_id": case_id, "system": system, "run_number": run_number,
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "raw_output": str(output), "decision": decision,
             "error_type": error_type,
@@ -195,11 +199,12 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
             )
         answer = scoring_answer(str(output)) if decision == "answer" else ""
         append_jsonl(predictions_path, {
-            "case_id": case_id, "decision": decision, "answer": answer,
+            "case_id": case_id, "run_number": run_number, "system": system,
+            "decision": decision, "answer": answer, "latency_ms": latency,
         })
         if case_diagnostics:
             append_jsonl(diagnostics_path, {
-                "case_id": case_id, "system": system, **case_diagnostics[-1],
+                "case_id": case_id, "system": system, "run_number": run_number, **case_diagnostics[-1],
             })
         print(f"[System {system}] {index}/{len(cases)} {case_id}: {decision} "
               f"({latency} ms; Jev calls: {len(timed.calls)})", flush=True)
@@ -207,12 +212,13 @@ def run_condition(system: str, cases: list[dict[str, Any]], output_dir: Path,
 
 def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
                    groq_model: str, jev_model: str, threshold: float, db_name: str,
-                   use_jev: bool = True) -> None:
+                   repeats: int, use_jev: bool = True) -> None:
     metadata = {
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "python_version": platform.python_version(),
         "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest(),
         "selected_case_ids": [row["case_id"] for row in cases],
+        "repeats": repeats,
         "groq_model": groq_model,
         "jev_enabled": use_jev,
         "jev_model": jev_model if use_jev else None,
@@ -220,12 +226,16 @@ def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
         "embedding_model": "sentence-transformers/all-mpnet-base-v2",
         "retrieval_k": 4, "database_name": db_name,
         "conditions": ({
-            "A": "RAG + local candidate matching; Jev enabled; evidence_verification=False",
-            "B": "RAG + local candidate matching; Jev enabled; evidence_verification=True",
+            "A": "Shared candidate resolution/RBAC + RAG; no post-generation evidence verifier.",
+            "B": "A + deterministic post-generation requested-field evidence verifier.",
+            "C": "B + pre-generation source-field availability gate; abstains on NULL/empty source values or missing related rows.",
         } if use_jev else {
-            "A": "RAG + local candidate matching; Jev disabled; evidence_verification=False",
-            "B": "RAG + local candidate matching; Jev disabled; evidence_verification=True",
+            "A": "No-Jev ablation: local candidate matching/RBAC + RAG.",
+            "B": "A + deterministic post-generation requested-field evidence verifier.",
+            "C": "B + pre-generation source-field availability gate.",
         }),
+        "clarification_note": "Name ambiguity clarification is common to A/B/C and is a controlled baseline behaviour, not a C-specific intervention.",
+        "repeated_run_note": "run_number identifies repeated executions; query/case_id is the inferential unit, not each attempt.",
         "jev_score_note": "Recorded as jev_score; not asserted to be calibrated probability.",
         "diagnostics_schema_version": 1,
     }
@@ -236,7 +246,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
-    parser.add_argument("--system", choices=("A", "B", "both"), default="both")
+    parser.add_argument("--system", choices=("A", "B", "C", "both", "all"), default="all")
+    parser.add_argument("--repeats", type=int, default=5, help="Independent executions per query and condition (default: 5).")
     parser.add_argument("--limit", type=int, help="Run the first N cases.")
     parser.add_argument("--pilot", action="store_true",
                         help="Run two cases per category (six total).")
@@ -246,6 +257,8 @@ def main() -> int:
                         help="Run a separately labelled no-Jev ablation; local matching and RBAC remain enabled.")
     args = parser.parse_args()
 
+    if args.repeats < 1:
+        raise ValueError("--repeats must be at least 1")
     dataset = read_jsonl(args.dataset)
     cases = select_cases(dataset, args.limit, args.pilot)
     if not cases:
@@ -256,8 +269,9 @@ def main() -> int:
     from chatbot.jev_verifier import DEFAULT_THRESHOLD, JEV_MODEL, JevVerifier
     from chatbot.rag_pipeline import answer_question, setup_vector_db
 
-    systems = ("A", "B") if args.system == "both" else (args.system,)
-    if "B" in systems:
+    systems = (("A", "B", "C") if args.system == "all" else
+               ("A", "B") if args.system == "both" else (args.system,))
+    if "B" in systems or "C" in systems:
         validate_diagnostic_scope(cases, DB_NAME)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -271,11 +285,12 @@ def main() -> int:
         if (previous.get("dataset_sha256") != dataset_hash
                 or previous.get("selected_case_ids") != case_ids
                 or previous.get("jev_enabled", True) != (not args.disable_jev)
-                or ("B" in systems and previous.get("diagnostics_schema_version") != 1)):
+                or previous.get("repeats") != args.repeats
+                or (("B" in systems or "C" in systems) and previous.get("diagnostics_schema_version") != 1)):
             raise ValueError("Cannot resume: dataset hash, selected case IDs, or Jev configuration differ.")
     else:
         write_metadata(metadata_path, args.dataset, cases, GROQ_MODEL, JEV_MODEL,
-                       DEFAULT_THRESHOLD, DB_NAME, use_jev=not args.disable_jev)
+                       DEFAULT_THRESHOLD, DB_NAME, args.repeats, use_jev=not args.disable_jev)
 
     user = get_user("faculty1")
     if not user or user.get("role") not in {"admin", "faculty"}:
@@ -286,10 +301,15 @@ def main() -> int:
     jev_verifier = JevVerifier() if not args.disable_jev else None
     if args.disable_jev:
         print("Jev disabled for this ablation; local matching and authorization remain enabled.", flush=True)
-    for system in systems:
-        run_condition(system, cases, args.output_dir, vectorstore, user,
-                      answer_question, jev_verifier, args.resume, use_jev=not args.disable_jev)
-    print(f"Run completed. Results: {args.output_dir}", flush=True)
+    for run_number in range(1, args.repeats + 1):
+        # Rotate condition order across runs to reduce fixed-order/time drift.
+        offset = (run_number - 1) % len(systems)
+        ordered_systems = systems[offset:] + systems[:offset]
+        for system in ordered_systems:
+            run_condition(system, run_number, cases, args.output_dir, vectorstore, user,
+                          answer_question, jev_verifier, args.resume,
+                          use_jev=not args.disable_jev)
+    print(f"{args.repeats} repeated run(s) completed. Results: {args.output_dir}", flush=True)
     return 0
 
 
