@@ -261,3 +261,29 @@ uv run python scripts/evaluate_research.py --predictions experiments/results/sys
 
 See the experiment document for metrics, limitations, and safeguards. No results
 are claimed until both conditions have been run.
+
+
+### Research experiment v2: agent accuracy and trustworthiness
+
+The updated research workflow validates benchmark labels against the isolated
+synthetic MySQL database, compares three experimental conditions (baseline,
+post-generation evidence verification, and a pre-generation evidence gate),
+and supports five repeated executions per query. Ambiguity clarification and
+RBAC are shared controls, not claimed as System C interventions.
+
+See:
+- [Research experiment v2](docs/RESEARCH_EXPERIMENT_V2.md)
+- [Human-validation protocol](docs/HUMAN_VALIDATION_PROTOCOL.md)
+- [Northeastern University, Shenyang CSC proposal draft](docs/PROPOSAL_NORTHEASTERN_UNIVERSITY_SHENYANG.md)
+- [Dalian Maritime University proposal draft for Professor Xie](docs/PROPOSAL_DALIAN_MARITIME_XIE_XINQIANG.md)
+
+Validate the database-backed benchmark before running the new experiment:
+
+```bash
+DB_NAME=research_eval PYTHONPATH=src uv run python scripts/validate_research_benchmark.py
+DB_NAME=research_eval PYTHONPATH=src uv run python scripts/run_repeated_research_experiment.py --system all --repeats 5 --output-dir experiments/repeated_abc
+uv run python scripts/evaluate_repeated_research.py --predictions-dir experiments/repeated_abc
+```
+
+These are experiment instructions, not reported results. See the v2 document
+for fixture setup, limitations, and interpretation guidance.
