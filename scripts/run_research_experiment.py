@@ -54,7 +54,8 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
 def append_jsonl(path: Path, row: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+        handle.write(json.dumps(row, ensure_ascii=False) + "
+")
 
 
 def classify_output(output: str) -> str:
@@ -76,7 +77,8 @@ def scoring_answer(output: str) -> str:
     match = re.search(r"\bis\s+(.+)$", cleaned, flags=re.IGNORECASE)
     if match:
         cleaned = match.group(1).strip()
-    return cleaned.strip(" \t\r\n.,;:!?")
+    return cleaned.strip(" \t\r
+.,;:!?")
 
 
 def validate_diagnostic_scope(cases: list[dict[str, Any]], db_name: str) -> None:
@@ -173,7 +175,8 @@ def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], out
         error_type = None
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
-                               evidence_verification=(system in {"B", "C"}),\n                               selective_decisions=(system == "C"), use_jev=use_jev,
+                               evidence_verification=(system in {"B", "C"}),
+                               selective_decisions=(system == "C"), use_jev=use_jev,
                                diagnostic_callback=diagnostic_callback)
         except Exception as exc:
             # Operational failures are logged separately and never become
@@ -196,7 +199,8 @@ def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], out
             )
         answer = scoring_answer(str(output)) if decision == "answer" else ""
         append_jsonl(predictions_path, {
-            "case_id": case_id, "run_number": run_number, "system": system,\n            "decision": decision, "answer": answer, "latency_ms": latency,
+            "case_id": case_id, "run_number": run_number, "system": system,
+            "decision": decision, "answer": answer, "latency_ms": latency,
         })
         if case_diagnostics:
             append_jsonl(diagnostics_path, {
@@ -213,7 +217,8 @@ def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "python_version": platform.python_version(),
         "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest(),
-        "selected_case_ids": [row["case_id"] for row in cases],\n        "repeats": repeats,
+        "selected_case_ids": [row["case_id"] for row in cases],
+        "repeats": repeats,
         "groq_model": groq_model,
         "jev_enabled": use_jev,
         "jev_model": jev_model if use_jev else None,
@@ -234,7 +239,8 @@ def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
         "jev_score_note": "Recorded as jev_score; not asserted to be calibrated probability.",
         "diagnostics_schema_version": 1,
     }
-    path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(metadata, indent=2) + "
+", encoding="utf-8")
 
 
 def main() -> int:
@@ -252,7 +258,10 @@ def main() -> int:
                         help="Run a separately labelled no-Jev ablation; local matching and RBAC remain enabled.")
     args = parser.parse_args()
 
-    if args.repeats < 1:\n        raise ValueError("--repeats must be at least 1")\n    dataset = read_jsonl(args.dataset)\n    cases = select_cases(dataset, args.limit, args.pilot)
+    if args.repeats < 1:
+        raise ValueError("--repeats must be at least 1")
+    dataset = read_jsonl(args.dataset)
+    cases = select_cases(dataset, args.limit, args.pilot)
     if not cases:
         raise ValueError("No benchmark cases selected.")
 
@@ -261,7 +270,8 @@ def main() -> int:
     from chatbot.jev_verifier import DEFAULT_THRESHOLD, JEV_MODEL, JevVerifier
     from chatbot.rag_pipeline import answer_question, setup_vector_db
 
-    systems = ("A", "B", "C") if args.system in {"all", "both"} else (args.system,)\n    if "B" in systems or "C" in systems:
+    systems = ("A", "B", "C") if args.system in {"all", "both"} else (args.system,)
+    if "B" in systems or "C" in systems:
         validate_diagnostic_scope(cases, DB_NAME)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -275,7 +285,8 @@ def main() -> int:
         if (previous.get("dataset_sha256") != dataset_hash
                 or previous.get("selected_case_ids") != case_ids
                 or previous.get("jev_enabled", True) != (not args.disable_jev)
-                or previous.get("repeats") != args.repeats\n                or (("B" in systems or "C" in systems) and previous.get("diagnostics_schema_version") != 1)):
+                or previous.get("repeats") != args.repeats
+                or (("B" in systems or "C" in systems) and previous.get("diagnostics_schema_version") != 1)):
             raise ValueError("Cannot resume: dataset hash, selected case IDs, or Jev configuration differ.")
     else:
         write_metadata(metadata_path, args.dataset, cases, GROQ_MODEL, JEV_MODEL,
