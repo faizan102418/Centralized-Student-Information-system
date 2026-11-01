@@ -104,3 +104,48 @@ def fetch_student_names_from_db() -> list[dict]:
 def fetch_student_data_from_db() -> str:
     """Backward-compatible text dump used by diagnostics and existing callers."""
     return "\n\n".join(record["text"] for record in fetch_student_records_from_db())
+
+
+
+# Only these fixed identifiers may be interpolated into SQL. Values remain parameters.
+RESEARCH_FIELD_COLUMNS = {
+    "discipline": ("student_general_data", "discipline"),
+    "roll_number": ("student_general_data", "roll_number"),
+    "scholarship_name": ("student_scholarship", "scholarship_name"),
+    "enrollment_status": ("student_scholarship", "enrollment_status"),
+    "registration_number": ("student_fee_submission", "registration_number"),
+    "fee_status": ("student_fee_submission", "fee_status"),
+}
+
+
+def fetch_student_field_availability_from_db(student_id: str, field: str) -> dict:
+    """Return source availability metadata without returning the field value.
+
+    This is used by System C's selective-decision gate. It distinguishes a
+    genuinely NULL/empty value or absent related row from a retrieval failure.
+    """
+    mapping = RESEARCH_FIELD_COLUMNS.get(field)
+    if mapping is None:
+        return {"available": False, "reason": "unsupported_field"}
+    table, column = mapping
+    connection = None
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        query = (
+            f"SELECT CASE WHEN {column} IS NOT NULL AND TRIM({column}) <> '' "
+            f"THEN 1 ELSE 0 END AS available FROM {table} "
+            "WHERE student_id = %s LIMIT 1"
+        )
+        cursor.execute(query, (student_id,))
+        row = cursor.fetchone()
+        if row is None:
+            return {"available": False, "reason": "missing_related_record"}
+        if not bool(row["available"]):
+            return {"available": False, "reason": "null_or_empty_value"}
+        return {"available": True, "reason": "source_value_present"}
+    except Exception as exc:
+        raise RuntimeError(f"Failed to inspect source field availability: {exc}") from exc
+    finally:
+        if connection is not None and connection.is_connected():
+            connection.close()

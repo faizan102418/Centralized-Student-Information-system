@@ -1,194 +1,126 @@
-# Evidence-verification experiment
+# Evaluating evidence verification and selective decisions in structured RAG agents
 
-## Purpose
-Compare the existing RAG pipeline (System A) with the same pipeline plus a
-deterministic post-generation evidence check (System B). The checker tests
-whether the answer contains the value for a recognized structured field in
-the evidence retrieved for the authorized student ID.
+## Research objective
 
-This is a narrow intervention, not a general-purpose fact checker. It does not
-prove every sentence is grounded or establish that verification improves performance.
+Evaluate observable accuracy and trustworthiness outcomes of a retrieval-augmented agent answering structured student-record questions. The study evaluates final answers, retrieved evidence, entity-resolution outcomes, and answer/clarify/abstain decisions. It does not inspect or score hidden chain-of-thought.
 
-## Conditions
-- System A: answer_question with evidence_verification=False (default).
-- System B: answer_question with evidence_verification=True.
-- Keep dataset, DB snapshot, user permissions, model, prompt, embedding model,
-  retrieval k=4, and Jev candidate-resolution setting identical.
-- The intended difference is the post-generation evidence check.
-- Supported fields: discipline, scholarship name/status, fee status, roll
-  number, and registration number. Unknown fields fail closed.
+## Experimental conditions
 
-## Benchmark
-synthetic_eval.jsonl contains 200 fictional cases: 100 answerable, 50
-ambiguous, and 50 with a missing requested field. The associated synthetic
-records are in data/eval/synthetic_students.json. The benchmark is frozen.
+All conditions use the same synthetic database snapshot, candidate matcher, authorization checks, RAG prompt, model configuration, embedding model, and retrieval settings.
 
-The V1 missing-field cases ask for CGPA/GPA, which the current checker does
-not recognize. System B therefore tests fail-closed handling of an
-unrecognized field, not successful detection that the source record lacks
-CGPA. A future benchmark version should separately test recognized fields
-absent from source records and retrieval failures.
+- **System A — Baseline RAG:** entity matching, RBAC, scoped retrieval, and LLM answer generation. No experimental post-generation evidence verifier.
+- **System B — Evidence verification:** System A plus a deterministic post-generation verifier. It checks whether the generated answer contains the value for the requested recognized field in retrieved evidence. This is a narrow structured-field check, not a general-purpose fact checker.
+- **System C — Evidence verification + source-aware selective decisions:** System B plus a pre-generation source-state gate. For a recognized field, it checks whether a non-empty source value or related source record exists. It abstains when the value is genuinely NULL/empty or the related record is absent. The gate returns availability metadata only; it does not return the field value or replace RAG generation.
 
-Load the fixture into the isolated research database after applying data/seed.sql:
-```bash
-sudo mariadb research_eval < data/eval/seed_synthetic_eval.sql
-```
-Do not use the production/default project_data database. The seed cases are
-not representative of real student queries.
+Name-ambiguity clarification and RBAC are shared by A/B/C. Clarification is therefore a controlled common behaviour, not an incremental contribution of System C. The planned contrasts are A-B (post-generation evidence verification), B-C (source-aware selective decision gate), and A-C (combined intervention).
 
-## Running the experiment
-The runner makes real Groq and Jev API calls. It loads the faculty1 research
-identity, builds the vector store once, then runs the selected conditions
-against the same in-memory store. Keep the research database limited to
-fictional seed records.
+## Benchmark and source validation
 
-Start with a balanced six-case smoke test (two cases per category):
-```bash
-PYTHONPATH=src uv run python scripts/run_research_experiment.py --pilot --system both
-```
+The data/eval/synthetic_eval.jsonl benchmark contains 200 fictional cases:
 
-Run the full benchmark only after inspecting pilot outputs:
-```bash
-PYTHONPATH=src uv run python scripts/run_research_experiment.py --system both
-```
+- 100 answerable;
+- 50 ambiguous entity queries;
+- 50 source-missing queries.
 
-Run one condition independently with --system A or --system B. Use --limit N
-for the first N cases instead of --pilot. Use --output-dir PATH to isolate
-runs. Existing output is never silently overwritten. If an API/operational
-error stops a run, fix the cause and rerun with --resume; successful case IDs
-are skipped. Resume validates the dataset hash and selected case IDs. The raw
-error entry is retained; errors are not scored as abstentions.
+The 50 missing cases now use recognized fields and explicit source states:
+- five synthetic students have discipline = NULL;
+- five synthetic students have no related student_scholarship row, so scholarship_name is absent.
 
-## Output files
-- system_a_predictions.jsonl / system_b_predictions.jsonl: evaluator input
-  with case_id, decision, and answer. Common answer framing is stripped for
-  exact-match scoring; inspect this derived field manually.
-- system_a_raw.jsonl / system_b_raw.jsonl: final response text, observable
-  decision, total latency, and per-call Jev telemetry. For System B, this may
-  be the verifier's abstention message rather than the original LLM answer.
-- system_b_diagnostics.jsonl: for cases reaching post-generation verification,
-  stores the generated answer, retrieved evidence, verifier fields/reason, and
-  final output. This file is separate from evaluator predictions and is not
-  used for scoring.
-- metadata.json: dataset SHA-256, selected case IDs, model IDs, threshold,
-  embedding model, retrieval k, database name, and condition definitions.
+The corresponding synthetic SQL fixture adds those ten students and deliberately omits the five scholarship rows. The fixture deletes/replaces only SYN-* records when re-run; demo UUID records remain untouched.
 
-The response classifier uses deterministic string rules for answer, clarify,
-abstain, and error. It is an operational classifier, not a semantic judge.
-Review raw outputs before interpreting metrics. "Not available" is counted
-as abstention. Jev/API failures are errors and stop the run. Jev's numeric
-value is recorded as jev_score, not as a calibrated probability.
+**Do not interpret the benchmark as validated until the database validation script reports zero invalid cases.** Use a fresh, isolated database and never use the production/default project database.
 
-## Scoring
-After a complete run:
-```bash
-uv run python scripts/evaluate_research.py --predictions experiments/results/system_a_predictions.jsonl
-uv run python scripts/evaluate_research.py --predictions experiments/results/system_b_predictions.jsonl
-```
-Add --output results.json to save metrics. The evaluator reports decision
-accuracy, answer coverage, exact answer accuracy among answered cases,
-correct-answer rate over all answerable cases, unnecessary non-answer rate,
-unsafe-answer rate on unanswerable cases, clarification rate for ambiguous
-cases, and abstention rate for missing fields. Exact matching is conservative:
-manually review paraphrases. Report counts and denominators with rates. Compare
-conditions on the same completed case set.
+~~~bash
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS research_eval;"
+mysql research_eval < data/seed.sql
+mysql research_eval < data/eval/seed_synthetic_eval.sql
+~~~
 
-## Limitations and safeguards
-1. The verifier checks whether the requested field value occurs as a substring
-   in the generated answer. It can miss additional unsupported claims.
-2. A field missing from retrieved context may be a retrieval failure even if
-   the source database contains it.
-3. Rule-based matching may reject valid paraphrases or unusual field labels.
-4. Synthetic results do not establish generalization to other institutions,
-   languages, schemas, or agent architectures.
-5. Keep RBAC enabled in both conditions. Verification never grants authorization.
-6. Do not use real student data with third-party APIs without approval, consent,
-   and suitable data-protection safeguards.
-7. Ambiguous cases are resolved locally before Jev and Groq calls; Jev
-   telemetry will therefore be absent for those cases.
-8. This PR contains no experimental results. Do not claim improvement until
-   both conditions have been run.
+Set DB_NAME=research_eval in the local environment, then run:
 
+~~~bash
+PYTHONPATH=src uv run python scripts/validate_research_benchmark.py
+~~~
 
-## Separately labelled no-Jev ablation (credit-free)
+The validator checks answerable expected values against the database, verifies that each ambiguous case has multiple expected candidates in the directory, and confirms the source state for every missing case. It writes experiments/benchmark_validation.json. Preserve the SQL fixture, schema version, dataset SHA-256, and validation report with experimental outputs.
 
-The original Jev-enabled conditions above remain unchanged. When Jev inference
-credits are unavailable, the runner supports a distinct no-Jev ablation. This
-is NOT a replication of the original Jev-enabled A/B experiment and must not
-be pooled with, or reported as, its results.
+## Repeated experiment execution
 
-In this mode, deterministic local candidate matching, the authorization
-check, student-ID-scoped retrieval, and the same generation pipeline remain
-active. Only the external Jev candidate-resolution request is bypassed.
+The runner defaults to five repeated executions per query and supports A, B, C, both (A/B), or all (A/B/C). It makes real Groq and, unless disabled, Jev API calls.
 
-- No-Jev A: RAG + local candidate matching + RBAC, with
-  evidence_verification=False.
-- No-Jev B: the same pipeline with evidence_verification=True.
+Start with a six-case smoke test, one run per system:
 
-The paired contrast estimates the effect of enabling the existing
-post-generation evidence check under the no-Jev configuration. It does not
-estimate Jev's contribution or the interaction between Jev and evidence
-verification.
+~~~bash
+PYTHONPATH=src uv run python scripts/run_research_experiment.py --pilot --system all --repeats 1 --output-dir experiments/pilot_abc
+~~~
 
-Use a new output directory so the metadata and results cannot be confused
-with the original Jev-enabled pilot or full run:
+Inspect raw output, decisions, diagnostics, and errors before proceeding. Then run the full benchmark:
 
-    PYTHONPATH=src uv run python scripts/run_research_experiment.py \
-      --system both \
-      --disable-jev \
-      --output-dir experiments/results/no_jev_200_case
+~~~bash
+PYTHONPATH=src uv run python scripts/run_research_experiment.py --system all --repeats 5 --output-dir experiments/results/abc_5runs
+~~~
 
-The runner records jev_enabled=false and explicit condition definitions in
-metadata.json. Resume rejects a run if the dataset, selected case IDs, or
-Jev-enabled setting differs. Raw logs should have empty jev_calls arrays.
-This mode still makes Groq inference calls and is not cost-free overall; it
-only avoids Jev credits.
+Each run produces separate files such as:
+- system_a_run_01_predictions.jsonl and system_a_run_01_raw.jsonl;
+- system_b_run_01_predictions.jsonl and system_b_run_01_raw.jsonl;
+- system_c_run_01_predictions.jsonl and system_c_run_01_raw.jsonl.
 
-For a smoke test, add --pilot and use a separate directory such as
-experiments/results/no_jev_pilot. Inspect pilot outputs before starting the
-full 200-case run. Score only complete predictions from the same no-Jev run,
-and report this ablation separately from the Jev-enabled experiment.
+System B/C diagnostics are saved separately by condition. Raw logs preserve the response, observable decision, latency, error information, and Jev telemetry. Resume uses each case/run pair and checks the dataset hash, selected cases, repeat count, and Jev configuration. Do not mix Jev-enabled and no-Jev runs.
 
+For a no-Jev ablation, use a separate output directory and label it explicitly:
 
-## Verification diagnostics and privacy
+~~~bash
+PYTHONPATH=src uv run python scripts/run_research_experiment.py --system all --repeats 5 --disable-jev --output-dir experiments/results/abc_5runs_no_jev
+~~~
 
-The research runner captures an optional diagnostic callback from System B
-without changing `answer_question`'s existing string return value or the
-verifier's acceptance rules. Diagnostic rows preserve the pre-verification
-generated answer, retrieved evidence snippets, structured verification
-result, and final output. Cases that return before generation/verification
-do not produce a diagnostic row. The runner restricts System B diagnostic
-runs to the `research_eval` database and requires every supplied student ID
-to begin with `SYN-`. Cases without a student ID are permitted because
-ambiguous-name cases return before student-record retrieval; they cannot
-produce a diagnostic row. Use only the fictional fixture. Do not point this diagnostic mode at real
-student records or commit generated diagnostic artifacts. Local experiment
-outputs remain excluded by `.gitignore`.
+This is not a replication of the Jev-enabled experiment and must not be pooled with it.
 
-Existing output files from runs created before this diagnostics schema are
-not resumable as System B runs under the updated runner. Use a fresh output
-directory for diagnostic runs. The callback is optional and does not alter
-baseline application behavior when omitted.
+## Evaluation and statistical analysis
 
+Aggregate repeated runs for a single condition:
 
-## Operational API failures (corrected handling)
+~~~bash
+PYTHONPATH=src uv run python scripts/evaluate_research.py \
+  --predictions experiments/results/abc_5runs/system_a_run_*_predictions.jsonl \
+  --output experiments/results/abc_5runs/system_a_metrics.json
+~~~
 
-Groq transport errors, HTTP errors (including rate limits), invalid JSON, and
-malformed/empty completion payloads raise `GroqAPIError`. They are not returned
-as natural-language answer strings and are never passed to the evidence
-verifier. The Streamlit interface catches this exception and displays a
-temporary-service message.
+Repeat for B and C. The evaluator reports per-run counts and metrics plus means and standard deviations across runs. It includes:
+- decision accuracy;
+- answer coverage on answerable queries;
+- exact answer accuracy among answered cases;
+- correct-answer rate over all answerable cases;
+- unnecessary non-answer rate;
+- unsafe-answer and correct-nonanswer rates on ambiguous/missing cases;
+- clarification precision and recall;
+- missing-information abstention precision and recall;
+- median latency.
 
-During research runs, an exception is recorded in the raw log with
-`decision="error"` and its exception class in `error_type`. No prediction
-row is written for that case, so the evaluator cannot count an infrastructure
-failure as an answer, clarification, or abstention. The run stops and can be
-resumed after the operational issue is addressed; successful case IDs are
-skipped, while the failed case is retried. Earlier error records remain in the
-raw log for auditability.
+Exact matching is conservative; manually adjudicate semantic paraphrases. The evaluator does not automatically score evidence faithfulness.
 
-When reporting results, disclose operational failures and the number of
-successfully evaluated cases. Do not silently treat errors as abstentions or
-include them in behavioral decision metrics. Existing benchmark artifacts
-created before this fix are retained as historical outputs and should be
-labelled provisional where their API-error handling may have affected scores.
+For paired system comparisons:
+
+~~~bash
+PYTHONPATH=src uv run python scripts/analyze_repeated_experiment.py \
+  --results-dir experiments/results/abc_5runs \
+  --bootstrap-samples 10000
+~~~
+
+This computes paired, category-stratified bootstrap confidence intervals for A-B, B-C, and A-C. It averages repeated attempts within each query before resampling. The inferential unit is the query/case ID, not each repeated attempt. Report the number of queries and attempts separately. Positive latency difference means the right-hand system is slower.
+
+## Human validation
+
+Follow the human-validation protocol in HUMAN_VALIDATION_PROTOCOL.md and use data/eval/human_review_template.csv. The planned review selects 40 unique queries (20 answerable, 10 ambiguous, 10 missing) and reviews all five runs across all three systems (up to 600 outputs). Two reviewers independently annotate action appropriateness, answer correctness, evidence support, evidence sufficiency, and unsupported claims. Report Cohen's kappa and raw agreement. This is exploratory validation; it is not a substitute for a larger study.
+
+## Important interpretation rules
+
+1. A field absent from retrieved context is not necessarily absent from the source database. Check source state separately.
+2. A missing related record, a NULL/empty field, an unsupported schema field, and a retrieval failure are distinct labels.
+3. System C's source-state gate checks availability only; it does not itself establish that a generated answer is supported.
+4. A/B/C share candidate matching and ambiguity clarification. Do not attribute clarification differences to the C-specific gate.
+5. Keep RBAC enabled in every condition. Authorization is a constant safety safeguard, not an experimental intervention.
+6. A deterministic substring check can miss unsupported additional claims and valid paraphrases. Human validation is needed.
+7. API and infrastructure failures are operational errors, not abstentions.
+8. Synthetic results do not establish generalization to real institutions, other schemas, languages, or general-purpose autonomous agents.
+9. No performance improvement is claimed by this repository change. Results must be generated and interpreted after benchmark validation.
+10. Use only fictional data. Do not send real student records to third-party model APIs without institutional authorization and suitable privacy safeguards.
