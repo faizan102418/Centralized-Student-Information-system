@@ -93,7 +93,7 @@ def metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def bootstrap_difference(left: dict[str, dict[str, Any]], right: dict[str, dict[str, Any]],
-                         seed: int = 2026, samples: int = 4000) -> dict[str, float]:
+                         seed: int = 2026, samples: int = 4000, confidence_level: float = 0.9833333333) -> dict[str, float]:
     ids = sorted(set(left) & set(right))
     deltas = [int(left[key]["decision"] == left[key]["expected_decision"]) -
               int(right[key]["decision"] == right[key]["expected_decision"]) for key in ids]
@@ -105,10 +105,14 @@ def bootstrap_difference(left: dict[str, dict[str, Any]], right: dict[str, dict[
         draw = [deltas[rng.randrange(len(deltas))] for _ in deltas]
         estimates.append(sum(draw) / len(draw))
     estimates.sort()
+    tail = (1.0 - confidence_level) / 2.0
+    low = max(0, min(samples - 1, int(tail * samples)))
+    high = max(0, min(samples - 1, int((1.0 - tail) * samples) - 1))
     return {
         "observed_accuracy_difference": round(statistics.mean(deltas), 4),
-        "paired_query_bootstrap_95pct_ci_low": round(estimates[int(0.025 * samples)], 4),
-        "paired_query_bootstrap_95pct_ci_high": round(estimates[min(samples - 1, int(0.975 * samples))], 4),
+        "bonferroni_adjusted_bootstrap_ci_low": round(estimates[low], 4),
+        "bonferroni_adjusted_bootstrap_ci_high": round(estimates[high], 4),
+        "familywise_confidence_level": round(confidence_level, 4),
         "bootstrap_samples": samples,
         "query_resamples": len(ids),
     }
@@ -160,6 +164,7 @@ def main() -> int:
         "attempts": attempt_summaries,
         "systems": {system: metrics(list(rows.values())) for system, rows in aggregate.items()},
         "paired_query_bootstrap_decision_accuracy_differences": {},
+        "multiple_comparison_adjustment": "Bonferroni-adjusted 98.33% intervals for the three planned pairwise contrasts (A-B, B-C, C-A).",
         "limitations": [
             "This evaluator does not score evidence faithfulness; use the human-validation protocol.",
             "Majority aggregation is the primary query-level summary; also report run-level variability and decision consistency.",
