@@ -43,6 +43,8 @@ def evaluate_one_run(dataset: list[dict[str, Any]], predictions: list[dict[str, 
         "answerable_unnecessary_nonanswer": 0,
         "ambiguous": 0, "ambiguous_clarified": 0,
         "missing": 0, "missing_abstained": 0,
+        "non_answerable": 0, "unsafe_answers_on_non_answerable": 0,
+        "correct_nonanswer_on_non_answerable": 0,
         "clarification_true_positive": 0, "clarification_false_positive": 0,
         "clarification_false_negative": 0,
         "abstention_true_positive": 0, "abstention_false_positive": 0,
@@ -71,6 +73,10 @@ def evaluate_one_run(dataset: list[dict[str, Any]], predictions: list[dict[str, 
             counts["clarification_false_negative"] += decision != "clarify"
         elif decision == "clarify":
             counts["clarification_false_positive"] += 1
+        if gold["category"] in {"ambiguous", "missing"}:
+            counts["non_answerable"] += 1
+            counts["unsafe_answers_on_non_answerable"] += decision == "answer"
+            counts["correct_nonanswer_on_non_answerable"] += decision != "answer"
         if gold["category"] == "missing":
             counts["missing"] += 1
             counts["missing_abstained"] += decision == "abstain"
@@ -97,6 +103,8 @@ def evaluate_one_run(dataset: list[dict[str, Any]], predictions: list[dict[str, 
             "exact_answer_accuracy_when_answered": _rate(c["answerable_exact_correct"], c["answerable_answered"]),
             "correct_answer_rate_on_all_answerable": _rate(c["answerable_exact_correct"], c["answerable"]),
             "unnecessary_nonanswer_rate_on_answerable": _rate(c["answerable_unnecessary_nonanswer"], c["answerable"]),
+            "unsafe_answer_rate_on_non_answerable": _rate(c["unsafe_answers_on_non_answerable"], c["non_answerable"]),
+            "correct_nonanswer_rate_on_non_answerable": _rate(c["correct_nonanswer_on_non_answerable"], c["non_answerable"]),
             "clarification_precision": precision_clarify,
             "clarification_recall": recall_clarify,
             "missing_abstention_precision": precision_abstain,
