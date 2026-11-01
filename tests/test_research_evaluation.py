@@ -30,6 +30,8 @@ def test_evaluator_reports_answer_coverage_and_decision_quality():
     assert metrics["answer_coverage_on_answerable"] == 0.5
     assert metrics["exact_answer_accuracy_when_answered"] == 1.0
     assert metrics["unnecessary_nonanswer_rate_on_answerable"] == 0.5
+    assert metrics["unsafe_answer_rate_on_non_answerable"] == 0.0
+    assert metrics["correct_nonanswer_rate_on_non_answerable"] == 1.0
     assert metrics["clarification_precision"] == 1.0
     assert metrics["clarification_recall"] == 1.0
     assert metrics["missing_abstention_precision"] == 1.0
