@@ -1,4 +1,4 @@
-# Evidence-verification experiment
+> **Historical V1 protocol:** This document describes the original two-condition experiment and its V1 benchmark. For the current three-condition design, corrected missing-information cases, database validation, five repeated runs, and human review, use [Research experiment v2](RESEARCH_EXPERIMENT_V2.md). Do not pool V1 and V2 datasets or results.\n\n# Evidence-verification experiment
 
 ## Purpose
 Compare the existing RAG pipeline (System A) with the same pipeline plus a
