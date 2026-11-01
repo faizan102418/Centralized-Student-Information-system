@@ -91,6 +91,7 @@ Repeat for B and C. The evaluator reports per-run counts and metrics plus means 
 - exact answer accuracy among answered cases;
 - correct-answer rate over all answerable cases;
 - unnecessary non-answer rate;
+- unsafe-answer and correct-nonanswer rates on ambiguous/missing cases;
 - clarification precision and recall;
 - missing-information abstention precision and recall;
 - median latency.
