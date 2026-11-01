@@ -51,7 +51,7 @@ def validate(dataset: list[dict[str, Any]], connection) -> dict[str, Any]:
             expected_names = set(case.get("candidate_names", []))
             prefix = str(case["query"]).split("'")[0].split()[-1]
             actual = {name for name in names if str(name).casefold().startswith(prefix.casefold())}
-            if len(actual) < 2 or not expected_names.issubset(actual):
+            if len(actual) < 2 or expected_names != actual:
                 status, reason = "invalid", "expected_ambiguous_candidates_not_in_database"
             observed = sorted(actual)
         else:
