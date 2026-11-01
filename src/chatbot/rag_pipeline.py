@@ -253,7 +253,7 @@ def answer_question(
     prompt = build_student_record_prompt(canonical_name, user_input, evidence)
     if pre_generation_abstention:
         availability = verify_answer_against_evidence(
-            question=user_input, answer="", evidence_text="\\n\\n".join(evidence)
+            question=user_input, answer="", evidence_text="\n\n".join(evidence)
         )
         if availability.field is not None and availability.evidence_value is None:
             diagnostic = {
