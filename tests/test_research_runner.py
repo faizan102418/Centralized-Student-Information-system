@@ -47,23 +47,23 @@ def test_limit_selects_first_n_cases():
 
 def test_operational_error_is_logged_but_not_scored(tmp_path):
     with pytest.raises(RuntimeError, match="Stopped"):
-        run_condition("A", [{"case_id": "C1", "query": "q"}], tmp_path,
+        run_condition("A", 1, [{"case_id": "C1", "query": "q"}], tmp_path,
                       object(), {"role": "faculty"},
                       Mock(return_value="Jev verification unavailable (Timeout)."),
                       Mock())
-    assert not (tmp_path / "system_a_predictions.jsonl").exists()
-    raw = json.loads((tmp_path / "system_a_raw.jsonl").read_text().strip())
+    assert not (tmp_path / "system_a_run_01_predictions.jsonl").exists()
+    raw = json.loads((tmp_path / "system_a_run_01_raw.jsonl").read_text().strip())
     assert raw["decision"] == "error"
 
 
 def test_success_writes_compact_scoring_answer_and_full_raw_output(tmp_path):
-    run_condition("B", [{"case_id": "C2", "query": "q"}], tmp_path,
+    run_condition("B", 1, [{"case_id": "C2", "query": "q"}], tmp_path,
                   object(), {"role": "faculty"},
                   Mock(return_value="Maya Patel's discipline is **Computer Science**."),
                   Mock())
-    prediction = json.loads((tmp_path / "system_b_predictions.jsonl").read_text().strip())
-    raw = json.loads((tmp_path / "system_b_raw.jsonl").read_text().strip())
-    assert prediction == {"case_id": "C2", "decision": "answer", "answer": "Computer Science"}
+    prediction = json.loads((tmp_path / "system_b_run_01_predictions.jsonl").read_text().strip())
+    raw = json.loads((tmp_path / "system_b_run_01_raw.jsonl").read_text().strip())
+    assert prediction["case_id"] == "C2"\n    assert prediction["run_number"] == 1\n    assert prediction["system"] == "B"\n    assert prediction["decision"] == "answer"\n    assert prediction["answer"] == "Computer Science"\n    assert prediction["latency_ms"] >= 0
     assert "**Computer Science**" in raw["raw_output"]
 
 
@@ -101,13 +101,13 @@ def test_system_b_persists_diagnostics_separately_from_scoring_outputs(tmp_path)
         })
         return "I couldn't verify the requested answer."
 
-    run_condition("B", [{"case_id": "ANS-006", "query": "q"}], tmp_path,
+    run_condition("B", 1, [{"case_id": "ANS-006", "query": "q"}], tmp_path,
                   object(), {"role": "faculty"}, answer_fn, None, use_jev=False)
     diagnostic = json.loads((tmp_path / "system_b_diagnostics.jsonl").read_text().strip())
     prediction = json.loads((tmp_path / "system_b_predictions.jsonl").read_text().strip())
     assert diagnostic["generated_answer"] == "The fee status is Paid."
     assert diagnostic["verification"]["reason"] == "answer_does_not_contain_evidence_value"
-    assert prediction == {"case_id": "ANS-006", "decision": "abstain", "answer": ""}
+    assert prediction["case_id"] == "ANS-006"\n    assert prediction["run_number"] == 1\n    assert prediction["decision"] == "abstain"\n    assert prediction["answer"] == ""
 
 
 def test_diagnostic_scope_allows_pre_retrieval_cases_without_student_ids():
@@ -140,7 +140,7 @@ def test_operational_exception_is_not_scored_and_resume_retries_case(tmp_path):
     cases = [{"case_id": "C-RETRY", "query": "q"}]
     failing_answer = Mock(side_effect=RuntimeError("temporary API failure"))
     with pytest.raises(RuntimeError, match="Stopped at C-RETRY"):
-        run_condition("A", cases, tmp_path, object(), {"role": "faculty"},
+        run_condition("A", 1, cases, tmp_path, object(), {"role": "faculty"},
                       failing_answer, None, use_jev=False)
 
     predictions = tmp_path / "system_a_predictions.jsonl"
