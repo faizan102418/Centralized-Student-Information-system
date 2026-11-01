@@ -166,12 +166,15 @@ def answer_question(
     user: dict | None = None,
     verifier: JevVerifier | None = None,
     evidence_verification: bool = False,
+    selective_decisions: bool = False,
     use_jev: bool = True,
     diagnostic_callback: Callable[[dict], None] | None = None,
 ) -> str:
     """Answer a question; optionally verify the requested field against retrieved evidence.
 
-    Set evidence_verification=True only for the research experimental condition.
+    Set evidence_verification=True for Systems B/C. System C additionally
+    checks source-field availability before generation and abstains on genuine
+    source-level missing values or related records.
     Set use_jev=False only for the explicitly labelled no-Jev ablation; local
     deterministic candidate matching and authorization remain enabled.
     Defaults preserve the existing application behaviour.
