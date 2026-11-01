@@ -78,7 +78,7 @@ def scoring_answer(output: str) -> str:
     match = re.search(r"\bis\s+(.+)$", cleaned, flags=re.IGNORECASE)
     if match:
         cleaned = match.group(1).strip()
-    return cleaned.strip(" \\t\\r\\n.,;:!?")
+    return cleaned.strip(" \t\r\n.,;:!?")
 
 
 def validate_diagnostic_scope(cases: list[dict[str, Any]], db_name: str) -> None:
