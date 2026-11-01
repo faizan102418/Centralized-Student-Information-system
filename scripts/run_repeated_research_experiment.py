@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import platform
 import random
 import re
 import sys
@@ -107,8 +108,22 @@ def main() -> int:
     metadata_path = args.output_dir / "metadata.json"
     dataset_hash = hashlib.sha256(args.dataset.read_bytes()).hexdigest()
     case_ids = [case["case_id"] for case in cases]
+    validation_path = ROOT / "experiments" / "benchmark_validation.json"
+    if not validation_path.exists():
+        raise RuntimeError("Run scripts/validate_research_benchmark.py successfully before starting the experiment.")
+    validation = json.loads(validation_path.read_text(encoding="utf-8"))
+    if (validation.get("dataset_sha256") != dataset_hash
+            or validation.get("invalid_count") != 0
+            or validation.get("case_count") != 200):
+        raise RuntimeError("Benchmark validation is missing, failed, or belongs to a different dataset.")
     config = {
-        "dataset_sha256": dataset_hash, "selected_case_ids": case_ids,
+        "dataset_sha256": dataset_hash,
+        "benchmark_validation_sha256": hashlib.sha256(validation_path.read_bytes()).hexdigest(),
+        "schema_seed_sha256": hashlib.sha256((ROOT / "data" / "seed.sql").read_bytes()).hexdigest(),
+        "synthetic_seed_sha256": hashlib.sha256((ROOT / "data" / "eval" / "seed_synthetic_eval.sql").read_bytes()).hexdigest(),
+        "python_version": platform.python_version(),
+        "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+        "retrieval_k": 4, "selected_case_ids": case_ids,
         "repeats": args.repeats, "systems": list(systems), "jev_enabled": not args.disable_jev,
         "seed": args.seed, "database_name": DB_NAME, "groq_model": GROQ_MODEL,
         "jev_model": JEV_MODEL if not args.disable_jev else None,
