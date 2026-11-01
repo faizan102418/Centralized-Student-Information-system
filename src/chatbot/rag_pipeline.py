@@ -11,12 +11,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from chatbot.auth import can_access_student
 from chatbot.candidate_matcher import match_candidate, normalize_name
-from chatbot.database import (
-    fetch_student_field_availability_from_db,
-    fetch_student_names_from_db,
-    fetch_student_records_from_db,
-)
-from chatbot.evidence_verifier import requested_field, verify_answer_against_evidence
+from chatbot.database import fetch_student_names_from_db, fetch_student_records_from_db
+from chatbot.evidence_verifier import verify_answer_against_evidence
 from chatbot.jev_verifier import JevVerifier
 from chatbot.llm_client import GroqAPIError, query_groq_api
 
@@ -166,18 +162,18 @@ def answer_question(
     user: dict | None = None,
     verifier: JevVerifier | None = None,
     evidence_verification: bool = False,
-    selective_decisions: bool = False,
     use_jev: bool = True,
     diagnostic_callback: Callable[[dict], None] | None = None,
+    pre_generation_abstention: bool = False,
 ) -> str:
     """Answer a question; optionally verify the requested field against retrieved evidence.
 
-    Set evidence_verification=True for Systems B/C. System C additionally
-    checks source-field availability before generation and abstains on genuine
-    source-level missing values or related records.
+    Set evidence_verification=True only for the research experimental condition.
     Set use_jev=False only for the explicitly labelled no-Jev ablation; local
     deterministic candidate matching and authorization remain enabled.
-    Defaults preserve the existing application behaviour.
+    Set pre_generation_abstention=True for System C: recognized requested fields
+    absent from retrieved evidence are rejected before the LLM call. Defaults
+    preserve the existing application behaviour.
     """
     student_name = extract_student_name(user_input)
     is_record_question = bool(STUDENT_RECORD_TERMS.search(user_input))
@@ -251,25 +247,28 @@ def answer_question(
                 f"Resolution status: ABSTAIN ({result.reason})"
             )
 
-    if selective_decisions:
-        field = requested_field(user_input)
-        if field is None:
-            return (
-                "I couldn't verify that the requested field is supported by the "
-                "structured student-record schema. I won't guess."
-            )
-        source_state = fetch_student_field_availability_from_db(student_id, field)
-        if not source_state["available"]:
-            reason = source_state["reason"]
-            return (
-                "The requested information is not available in the source student record. "
-                f"Source check: {reason}. I will abstain rather than infer it."
-            )
-
     evidence = retrieve_student_record_evidence(
         vectorstore, canonical_name, user_input, student_id
     )
     prompt = build_student_record_prompt(canonical_name, user_input, evidence)
+    if pre_generation_abstention:
+        availability = verify_answer_against_evidence(
+            question=user_input, answer="", evidence_text="\n\n".join(evidence)
+        )
+        if availability.field is not None and availability.evidence_value is None:
+            diagnostic = {
+                "stage": "pre_generation_evidence_gate",
+                "field": availability.field,
+                "reason": availability.reason,
+                "decision": "abstain",
+            }
+            if diagnostic_callback is not None:
+                diagnostic_callback(diagnostic)
+            return (
+                "I could not verify that the requested field is present in the retrieved "
+                "student record, so I will not generate an answer. "
+                f"Evidence check: {availability.reason}"
+            )
     if not prompt:
         return "The authorized student record could not be retrieved. No answer was generated."
 
