@@ -14,7 +14,7 @@ Official guide summary (checked 1 November 2026):
 - English-medium applicants may provide IELTS 5.5 or above, TOEFL 80 or above, Duolingo 100 or above, or an English-medium instruction certificate. Chinese-medium applicants need HSK-4 (180 or above).
 - The physical examination must be dated on or after 1 November 2026; the passport should be valid beyond 1 December 2027. The guide also specifies a six-month validity period for the non-criminal record.
 - The 2027 master's and PhD programme lists are separate annexes. The exact programme title and language of instruction must be checked against the master's list before submitting.
-- The guide lists a supervisor acceptance-letter template as an annex. Confirm with NEU whether it is required for the specific master's programme; do not assume a letter from a DMU professor satisfies an NEU requirement.
+- The guide includes a supervisor acceptance-letter template as an annex, but explicitly states that it is optional for master's applicants and mandatory for PhD applicants. A DMU professor's letter is not an NEU supervisor letter.
 
 The draft in NEU_CSC_2027_Study_Plan.md is approximately 1,825 words and exceeds the stated minimum. It is a content draft, not a reproduction of Annex III's exact layout; the downloadable DOCX template has not yet been incorporated. Before upload, download Annex III from the guide, transfer the content into that template if required, confirm the exact programme title and language against Annex I, and update the supervisor/department fit section with verified information. Your IELTS 6.5 exceeds the published 5.5 minimum for English-medium applicants, subject to the programme accepting that test result.
 
