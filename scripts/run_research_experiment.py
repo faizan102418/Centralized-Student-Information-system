@@ -239,8 +239,7 @@ def write_metadata(path: Path, dataset_path: Path, cases: list[dict[str, Any]],
         "jev_score_note": "Recorded as jev_score; not asserted to be calibrated probability.",
         "diagnostics_schema_version": 1,
     }
-    path.write_text(json.dumps(metadata, indent=2) + "
-", encoding="utf-8")
+    path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> int:
