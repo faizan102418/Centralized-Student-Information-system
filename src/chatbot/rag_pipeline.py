@@ -11,8 +11,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from chatbot.auth import can_access_student
 from chatbot.candidate_matcher import match_candidate, normalize_name
-from chatbot.database import fetch_student_names_from_db, fetch_student_records_from_db
-from chatbot.evidence_verifier import verify_answer_against_evidence
+from chatbot.database import (\n    fetch_student_field_availability_from_db,\n    fetch_student_names_from_db,\n    fetch_student_records_from_db,\n)
+from chatbot.evidence_verifier import requested_field, verify_answer_against_evidence
 from chatbot.jev_verifier import JevVerifier
 from chatbot.llm_client import GroqAPIError, query_groq_api
 
@@ -242,6 +242,21 @@ def answer_question(
             return (
                 "I couldn't safely confirm which record to use, so I haven't retrieved any student data. "
                 f"Resolution status: ABSTAIN ({result.reason})"
+            )
+
+    if selective_decisions:
+        field = requested_field(user_input)
+        if field is None:
+            return (
+                "I couldn't verify that the requested field is supported by the "
+                "structured student-record schema. I won't guess."
+            )
+        source_state = fetch_student_field_availability_from_db(student_id, field)
+        if not source_state["available"]:
+            reason = source_state["reason"]
+            return (
+                "The requested information is not available in the source student record. "
+                f"Source check: {reason}. I will abstain rather than infer it."
             )
 
     evidence = retrieve_student_record_evidence(
