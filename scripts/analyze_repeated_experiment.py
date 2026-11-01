@@ -33,9 +33,17 @@ def load_system(results_dir: Path, system: str) -> dict[str, list[dict[str, Any]
     if not files:
         raise FileNotFoundError(f"No repeated prediction files found for System {system} in {results_dir}")
     rows: dict[str, list[dict[str, Any]]] = {}
+    seen = set()
     for path in files:
         for row in read_jsonl(path):
+            key = (row["case_id"], int(row.get("run_number", 1)))
+            if key in seen:
+                raise ValueError(f"{system}: duplicate case/run output {key}")
+            seen.add(key)
             rows.setdefault(row["case_id"], []).append(row)
+    run_counts = {len(attempts) for attempts in rows.values()}
+    if len(run_counts) != 1:
+        raise ValueError(f"{system}: queries do not all have the same number of repeated runs")
     return rows
 
 
@@ -102,6 +110,10 @@ def main() -> int:
         raise ValueError("--bootstrap-samples must be at least 100")
     dataset = read_jsonl(args.dataset)
     systems = {name: load_system(args.results_dir, name) for name in ("A", "B", "C")}
+    run_counts = {system: min(len(rows) for rows in by_case.values())
+                  for system, by_case in systems.items()}
+    if len(set(run_counts.values())) != 1:
+        raise ValueError(f"Systems have different repeat counts: {run_counts}")
     outcomes = query_outcomes(dataset, systems)
     categories = {row["case_id"]: row["category"] for row in dataset}
     comparisons = {}
@@ -120,10 +132,7 @@ def main() -> int:
             )
     report = {
         "inferential_unit": "query/case_id",
-        "repeated_runs_per_query": {
-            system: min(len(rows) for rows in by_case.values())
-            for system, by_case in systems.items()
-        },
+        "repeated_runs_per_query": run_counts,
         "comparisons": comparisons,
         "interpretation": [
             "Differences are right minus left; positive latency means the right-hand system is slower.",
