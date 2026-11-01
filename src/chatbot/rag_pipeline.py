@@ -11,7 +11,11 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from chatbot.auth import can_access_student
 from chatbot.candidate_matcher import match_candidate, normalize_name
-from chatbot.database import (\n    fetch_student_field_availability_from_db,\n    fetch_student_names_from_db,\n    fetch_student_records_from_db,\n)
+from chatbot.database import (
+    fetch_student_field_availability_from_db,
+    fetch_student_names_from_db,
+    fetch_student_records_from_db,
+)
 from chatbot.evidence_verifier import requested_field, verify_answer_against_evidence
 from chatbot.jev_verifier import JevVerifier
 from chatbot.llm_client import GroqAPIError, query_groq_api
