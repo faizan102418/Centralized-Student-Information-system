@@ -17,6 +17,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from experiment_error_utils import safe_exception_details
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = ROOT / "data" / "eval" / "synthetic_eval.jsonl"
 DEFAULT_OUTPUT = ROOT / "experiments" / "repeated_abc"
@@ -213,7 +215,7 @@ def main() -> int:
                             "latency_ms": round((time.perf_counter() - t0) * 1000, 2),
                         })
                         return result
-                error_type = None
+                error_details = None
                 try:
                     output = answer_question(
                         vectorstore, case["query"], user=user,
@@ -225,14 +227,15 @@ def main() -> int:
                     )
                     decision = classify(str(output))
                 except Exception as exc:
-                    error_type = type(exc).__name__
-                    output = f"EXPERIMENT_RUNNER_ERROR: {error_type}"
+                    error_details = safe_exception_details(exc)
+                    output = f"EXPERIMENT_RUNNER_ERROR: {error_details['error_type']}"
                     decision = "error"
                 latency = round((time.perf_counter() - started) * 1000, 2)
                 append_jsonl(raw_paths[system], {
                     "case_id": case["case_id"], "run_number": run_number, "system": system,
                     "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-                    "raw_output": str(output), "decision": decision, "error_type": error_type,
+                    "raw_output": str(output), "decision": decision,
+                    **(error_details or {"error_type": None}),
                     "total_latency_ms": latency, "jev_calls": calls, "diagnostics": diagnostics,
                 })
                 if decision == "error":
