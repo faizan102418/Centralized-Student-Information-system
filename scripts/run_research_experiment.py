@@ -12,7 +12,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
-from experiment_error_utils import safe_exception_details
+try:
+    from .experiment_error_utils import safe_exception_details
+except ImportError:  # Support direct execution as a script.
+    from experiment_error_utils import safe_exception_details
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = ROOT / "data" / "eval" / "synthetic_eval.jsonl"
