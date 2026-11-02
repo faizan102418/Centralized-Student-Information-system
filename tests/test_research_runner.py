@@ -2,12 +2,14 @@ from pathlib import Path
 import json
 import sys
 import pytest
+import requests
 from unittest.mock import Mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from run_research_experiment import (
     classify_output, run_condition, select_cases, validate_diagnostic_scope,
 )
+from experiment_error_utils import safe_exception_details
 
 
 def test_classifies_ambiguous_name_as_clarification():
@@ -158,6 +160,8 @@ def test_operational_exception_is_not_scored_and_resume_retries_case(tmp_path):
     failed_row = json.loads(raw.read_text(encoding="utf-8").splitlines()[0])
     assert failed_row["decision"] == "error"
     assert failed_row["error_type"] == "RuntimeError"
+    assert failed_row["error_category"] == "application_error"
+    assert "error_message" not in failed_row
 
     successful_answer = Mock(return_value="Computer Science")
     run_condition("A", 1, cases, tmp_path, object(), {"role": "faculty"},
@@ -172,3 +176,57 @@ def test_operational_exception_is_not_scored_and_resume_retries_case(tmp_path):
     assert prediction["run_number"] == 1
     assert prediction["decision"] == "answer"
     assert prediction["answer"] == "Computer Science"
+
+
+
+def test_safe_groq_diagnostics_preserve_http_status_without_request_message():
+    class GroqAPIError(RuntimeError):
+        pass
+
+    response = Mock()
+    response.status_code = 503
+    cause = requests.exceptions.HTTPError(
+        "sensitive request detail should not be logged", response=response
+    )
+    error = GroqAPIError("Groq API request failed (HTTP 503) after 3 attempts.")
+    error.__cause__ = cause
+
+    details = safe_exception_details(error)
+
+    assert details == {
+        "error_type": "GroqAPIError",
+        "error_message": "Groq API request failed (HTTP 503) after 3 attempts.",
+        "error_cause_type": "HTTPError",
+        "http_status": 503,
+        "error_category": "http_error",
+    }
+    assert "sensitive request detail" not in str(details)
+
+
+def test_runner_logs_groq_failure_details_but_never_scores_it(tmp_path):
+    class GroqAPIError(RuntimeError):
+        pass
+
+    response = Mock()
+    response.status_code = 429
+    cause = requests.exceptions.HTTPError("rate limit response body", response=response)
+    error = GroqAPIError("Groq API request failed (HTTP 429) after 3 attempts.")
+    error.__cause__ = cause
+
+    with pytest.raises(RuntimeError, match="Stopped at C-GROQ"):
+        run_condition(
+            "A", 1, [{"case_id": "C-GROQ", "query": "q"}], tmp_path,
+            object(), {"role": "faculty"}, Mock(side_effect=error), None,
+            use_jev=False,
+        )
+
+    raw_path = tmp_path / "system_a_run_01_raw.jsonl"
+    predictions_path = tmp_path / "system_a_run_01_predictions.jsonl"
+    row = json.loads(raw_path.read_text(encoding="utf-8").strip())
+    assert row["decision"] == "error"
+    assert row["error_type"] == "GroqAPIError"
+    assert row["http_status"] == 429
+    assert row["error_category"] == "http_error"
+    assert row["error_message"].endswith("after 3 attempts.")
+    assert "rate limit response body" not in raw_path.read_text(encoding="utf-8")
+    assert not predictions_path.exists()
