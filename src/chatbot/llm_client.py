@@ -1,5 +1,7 @@
 """Thin client for calling the Groq chat completions API."""
 
+import time
+
 import requests
 
 from chatbot.config import GROQ_API_KEY, GROQ_MODEL
@@ -9,6 +11,9 @@ SYSTEM_PROMPT = (
     "You are an intelligent assistant that extracts and synthesizes "
     "student records from provided text."
 )
+MAX_ATTEMPTS = 3
+RETRYABLE_HTTP_STATUSES = {429, 500, 502, 503, 504}
+RETRY_BACKOFF_SECONDS = 1
 
 
 class GroqAPIError(RuntimeError):
@@ -21,7 +26,7 @@ class GroqAPIError(RuntimeError):
 
 
 def query_groq_api(prompt: str, timeout: int = 30) -> str:
-    """Send a prompt to Groq and return model text, or raise GroqAPIError."""
+    """Send a prompt to Groq, retry transient failures, or raise GroqAPIError."""
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json",
@@ -36,18 +41,41 @@ def query_groq_api(prompt: str, timeout: int = 30) -> str:
         "max_tokens": 300,
     }
 
-    try:
-        response = requests.post(
-            GROQ_API_URL, headers=headers, json=payload, timeout=timeout
-        )
-        response.raise_for_status()
-    except requests.exceptions.HTTPError as exc:
-        status = exc.response.status_code if exc.response is not None else "unknown"
-        raise GroqAPIError(f"Groq API request failed (HTTP {status}).") from exc
-    except requests.exceptions.RequestException as exc:
-        raise GroqAPIError(
-            f"Groq API request failed ({type(exc).__name__})."
-        ) from exc
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        try:
+            response = requests.post(
+                GROQ_API_URL, headers=headers, json=payload, timeout=timeout
+            )
+            response.raise_for_status()
+            break
+        except requests.exceptions.HTTPError as exc:
+            status = exc.response.status_code if exc.response is not None else None
+
+            if status not in RETRYABLE_HTTP_STATUSES:
+                raise GroqAPIError(
+                    f"Groq API request failed (HTTP {status or 'unknown'})."
+                ) from exc
+
+            if attempt == MAX_ATTEMPTS:
+                raise GroqAPIError(
+                    f"Groq API request failed (HTTP {status}) after "
+                    f"{MAX_ATTEMPTS} attempts."
+                ) from exc
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+        ) as exc:
+            if attempt == MAX_ATTEMPTS:
+                raise GroqAPIError(
+                    f"Groq API request failed ({type(exc).__name__}) after "
+                    f"{MAX_ATTEMPTS} attempts."
+                ) from exc
+        except requests.exceptions.RequestException as exc:
+            raise GroqAPIError(
+                f"Groq API request failed ({type(exc).__name__})."
+            ) from exc
+
+        time.sleep(RETRY_BACKOFF_SECONDS * (2 ** (attempt - 1)))
 
     try:
         body = response.json()
