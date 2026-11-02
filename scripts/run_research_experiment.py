@@ -12,6 +12,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from experiment_error_utils import safe_exception_details
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = ROOT / "data" / "eval" / "synthetic_eval.jsonl"
 DEFAULT_OUTPUT_DIR = ROOT / "experiments" / "results"
@@ -172,7 +174,7 @@ def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], out
         started = time.perf_counter()
         case_diagnostics: list[dict[str, Any]] = []
         diagnostic_callback = case_diagnostics.append if system in {"B", "C"} else None
-        error_type = None
+        error_details = None
         try:
             output = answer_fn(vectorstore, case["query"], user=user, verifier=timed,
                                evidence_verification=(system in {"B", "C"}),
@@ -181,15 +183,15 @@ def run_condition(system: str, run_number: int, cases: list[dict[str, Any]], out
         except Exception as exc:
             # Operational failures are logged separately and never become
             # behavioral predictions (answer/clarify/abstain).
-            error_type = type(exc).__name__
-            output = f"EXPERIMENT_RUNNER_ERROR: {error_type}"
+            error_details = safe_exception_details(exc)
+            output = f"EXPERIMENT_RUNNER_ERROR: {error_details['error_type']}"
         latency = round((time.perf_counter() - started) * 1000, 2)
-        decision = "error" if error_type else classify_output(str(output))
+        decision = "error" if error_details else classify_output(str(output))
         append_jsonl(raw_path, {
             "case_id": case_id, "system": system, "run_number": run_number,
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "raw_output": str(output), "decision": decision,
-            "error_type": error_type,
+            **(error_details or {"error_type": None}),
             "total_latency_ms": latency, "jev_calls": list(timed.calls),
         })
         if decision == "error" or str(output).startswith("EXPERIMENT_RUNNER_ERROR:"):
