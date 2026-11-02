@@ -114,18 +114,11 @@ def evaluate_one_run(dataset: list[dict[str, Any]], predictions: list[dict[str, 
     }
 
 
-def evaluate(dataset: list[dict[str, Any]], predictions: list[dict[str, Any]]) -> dict[str, Any]:
+def _evaluate_system(dataset: list[dict[str, Any]], predictions: list[dict[str, Any]]) -> dict[str, Any]:
     runs: dict[int, list[dict[str, Any]]] = {}
-    seen = set()
     for row in predictions:
         run_number = int(row.get("run_number", 1))
-        key = (row["case_id"], run_number)
-        if key in seen:
-            raise ValueError(f"Duplicate case/run key: {key}")
-        seen.add(key)
         runs.setdefault(run_number, []).append(row)
-    if not runs:
-        raise ValueError("No predictions supplied.")
     per_run = {str(number): evaluate_one_run(dataset, rows)
                for number, rows in sorted(runs.items())}
     metric_names = list(next(iter(per_run.values()))["metrics"])
@@ -144,6 +137,32 @@ def evaluate(dataset: list[dict[str, Any]], predictions: list[dict[str, Any]]) -
         "n_attempts": len(predictions),
         "per_run": per_run,
         "summary": summary,
+    }
+
+
+def evaluate(dataset: list[dict[str, Any]], predictions: list[dict[str, Any]]) -> dict[str, Any]:
+    systems: dict[str, list[dict[str, Any]]] = {}
+    seen: set[tuple[str, str, int]] = set()
+    for row in predictions:
+        system = str(row.get("system") or "default")
+        run_number = int(row.get("run_number", 1))
+        key = (system, row["case_id"], run_number)
+        if key in seen:
+            raise ValueError(f"Duplicate system/case/run key: {key}")
+        seen.add(key)
+        systems.setdefault(system, []).append(row)
+    if not systems:
+        raise ValueError("No predictions supplied.")
+
+    evaluated = {
+        system: _evaluate_system(dataset, rows)
+        for system, rows in sorted(systems.items())
+    }
+    result: dict[str, Any] = {
+        "n_systems": len(evaluated),
+        "n_queries": len(dataset),
+        "n_attempts": len(predictions),
+        "systems": evaluated,
         "notes": [
             "Repeated attempts are nested within queries; do not treat n_attempts as independent observations.",
             "The standard deviation describes run-to-run variability, not uncertainty across a population of queries.",
@@ -152,13 +171,18 @@ def evaluate(dataset: list[dict[str, Any]], predictions: list[dict[str, Any]]) -
             "Report operational errors separately; do not relabel them as abstentions.",
         ],
     }
+    # Preserve the original result shape for callers evaluating a single system
+    # or legacy prediction files that do not contain a system field.
+    if len(evaluated) == 1:
+        result.update(next(iter(evaluated.values())))
+    return result
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--predictions", type=Path, nargs="+", required=True,
-                        help="One or more per-run prediction JSONL files.")
+                        help="One or more prediction JSONL files; records are grouped by system and run_number.")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     predictions = [row for path in args.predictions for row in read_jsonl(path)]
