@@ -30,6 +30,9 @@ def norm(value: Any) -> str:
 
 def load_system(results_dir: Path, system: str) -> dict[str, list[dict[str, Any]]]:
     files = sorted(results_dir.glob(f"system_{system.lower()}_run_*_predictions.jsonl"))
+    combined_file = results_dir / f"system_{system.lower()}_predictions.jsonl"
+    if not files and combined_file.is_file():
+        files = [combined_file]
     if not files:
         raise FileNotFoundError(f"No repeated prediction files found for System {system} in {results_dir}")
     rows: dict[str, list[dict[str, Any]]] = {}
