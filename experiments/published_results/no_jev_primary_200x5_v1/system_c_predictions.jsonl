@@ -1,0 +1,1000 @@
+{"case_id": "ANS-001", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1949.44}
+{"case_id": "ANS-002", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2039.42}
+{"case_id": "ANS-003", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4091.88}
+{"case_id": "ANS-004", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 715.68}
+{"case_id": "ANS-005", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4404.11}
+{"case_id": "ANS-006", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 815.82}
+{"case_id": "ANS-007", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2012.34}
+{"case_id": "ANS-008", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1945.74}
+{"case_id": "ANS-009", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4096.19}
+{"case_id": "ANS-010", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 815.53}
+{"case_id": "ANS-011", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 1845.09}
+{"case_id": "ANS-012", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4012.39}
+{"case_id": "ANS-013", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 684.85}
+{"case_id": "ANS-014", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4199.46}
+{"case_id": "ANS-015", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 817.49}
+{"case_id": "ANS-016", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1843.48}
+{"case_id": "ANS-017", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4391.06}
+{"case_id": "ANS-018", "run_number": 1, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 1234.44}
+{"case_id": "ANS-019", "run_number": 1, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 2040.32}
+{"case_id": "ANS-020", "run_number": 1, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4096.13}
+{"case_id": "ANS-021", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 692.74}
+{"case_id": "ANS-022", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 2059.44}
+{"case_id": "ANS-023", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4141.2}
+{"case_id": "ANS-024", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 779.47}
+{"case_id": "ANS-025", "run_number": 1, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2042.92}
+{"case_id": "ANS-026", "run_number": 1, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 4197.52}
+{"case_id": "ANS-027", "run_number": 1, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 906.82}
+{"case_id": "ANS-028", "run_number": 1, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 2047.82}
+{"case_id": "ANS-029", "run_number": 1, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 2227.26}
+{"case_id": "ANS-030", "run_number": 1, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 1973.16}
+{"case_id": "ANS-031", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4194.4}
+{"case_id": "ANS-032", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 707.21}
+{"case_id": "ANS-033", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1934.23}
+{"case_id": "ANS-034", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4096.57}
+{"case_id": "ANS-035", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 819.42}
+{"case_id": "ANS-036", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2045.45}
+{"case_id": "ANS-037", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1934.4}
+{"case_id": "ANS-038", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4094.16}
+{"case_id": "ANS-039", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 584.62}
+{"case_id": "ANS-040", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4103.77}
+{"case_id": "ANS-041", "run_number": 1, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 4065.24}
+{"case_id": "ANS-042", "run_number": 1, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 649.66}
+{"case_id": "ANS-043", "run_number": 1, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 4285.89}
+{"case_id": "ANS-044", "run_number": 1, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 912.42}
+{"case_id": "ANS-045", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2528.37}
+{"case_id": "ANS-046", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1977.94}
+{"case_id": "ANS-047", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4294.08}
+{"case_id": "ANS-048", "run_number": 1, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 811.84}
+{"case_id": "ANS-049", "run_number": 1, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2049.23}
+{"case_id": "ANS-050", "run_number": 1, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 4151.81}
+{"case_id": "ANS-051", "run_number": 1, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 760.01}
+{"case_id": "ANS-052", "run_number": 1, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 2013.28}
+{"case_id": "ANS-053", "run_number": 1, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 4095.42}
+{"case_id": "ANS-054", "run_number": 1, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 815.34}
+{"case_id": "ANS-055", "run_number": 1, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 4203.99}
+{"case_id": "ANS-056", "run_number": 1, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 814.82}
+{"case_id": "ANS-057", "run_number": 1, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 1910.02}
+{"case_id": "ANS-058", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4095.24}
+{"case_id": "ANS-059", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 813.97}
+{"case_id": "ANS-060", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4000.07}
+{"case_id": "ANS-061", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 711.27}
+{"case_id": "ANS-062", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4105.44}
+{"case_id": "ANS-063", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 798.21}
+{"case_id": "ANS-064", "run_number": 1, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4118.02}
+{"case_id": "ANS-065", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 896.81}
+{"case_id": "ANS-066", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2053.29}
+{"case_id": "ANS-067", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2008.55}
+{"case_id": "ANS-068", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 4093.54}
+{"case_id": "ANS-069", "run_number": 1, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 817.02}
+{"case_id": "ANS-070", "run_number": 1, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4314.51}
+{"case_id": "ANS-071", "run_number": 1, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 771.46}
+{"case_id": "ANS-072", "run_number": 1, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 4112.8}
+{"case_id": "ANS-073", "run_number": 1, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 1104.1}
+{"case_id": "ANS-074", "run_number": 1, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 1866.68}
+{"case_id": "ANS-075", "run_number": 1, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 4079.74}
+{"case_id": "ANS-076", "run_number": 1, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 696.61}
+{"case_id": "ANS-077", "run_number": 1, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 4098.55}
+{"case_id": "ANS-078", "run_number": 1, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 816.09}
+{"case_id": "ANS-079", "run_number": 1, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 2064.87}
+{"case_id": "ANS-080", "run_number": 1, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 2237.46}
+{"case_id": "ANS-081", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4198.4}
+{"case_id": "ANS-082", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 814.59}
+{"case_id": "ANS-083", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4404.38}
+{"case_id": "ANS-084", "run_number": 1, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 822.97}
+{"case_id": "ANS-085", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4298.69}
+{"case_id": "ANS-086", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 711.18}
+{"case_id": "ANS-087", "run_number": 1, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4086.42}
+{"case_id": "ANS-088", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 713.79}
+{"case_id": "ANS-089", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4200.66}
+{"case_id": "ANS-090", "run_number": 1, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1020.39}
+{"case_id": "ANS-091", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 1845.2}
+{"case_id": "ANS-092", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 4187.79}
+{"case_id": "ANS-093", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 818.0}
+{"case_id": "ANS-094", "run_number": 1, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 4095.61}
+{"case_id": "ANS-095", "run_number": 1, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 1042.63}
+{"case_id": "ANS-096", "run_number": 1, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 3726.68}
+{"case_id": "ANS-097", "run_number": 1, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2994.27}
+{"case_id": "ANS-098", "run_number": 1, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 4055.95}
+{"case_id": "ANS-099", "run_number": 1, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 3081.69}
+{"case_id": "ANS-100", "run_number": 1, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 4403.63}
+{"case_id": "AMB-001", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.86}
+{"case_id": "AMB-002", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.53}
+{"case_id": "AMB-003", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.41}
+{"case_id": "AMB-004", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.45}
+{"case_id": "AMB-005", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.56}
+{"case_id": "AMB-006", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.57}
+{"case_id": "AMB-007", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.17}
+{"case_id": "AMB-008", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.76}
+{"case_id": "AMB-009", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.99}
+{"case_id": "AMB-010", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.17}
+{"case_id": "AMB-011", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.7}
+{"case_id": "AMB-012", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.56}
+{"case_id": "AMB-013", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.54}
+{"case_id": "AMB-014", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.39}
+{"case_id": "AMB-015", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.61}
+{"case_id": "AMB-016", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.52}
+{"case_id": "AMB-017", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.77}
+{"case_id": "AMB-018", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.33}
+{"case_id": "AMB-019", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.85}
+{"case_id": "AMB-020", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.79}
+{"case_id": "AMB-021", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.73}
+{"case_id": "AMB-022", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.4}
+{"case_id": "AMB-023", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.7}
+{"case_id": "AMB-024", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.12}
+{"case_id": "AMB-025", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.42}
+{"case_id": "AMB-026", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.78}
+{"case_id": "AMB-027", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.08}
+{"case_id": "AMB-028", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.66}
+{"case_id": "AMB-029", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.21}
+{"case_id": "AMB-030", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.58}
+{"case_id": "AMB-031", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.32}
+{"case_id": "AMB-032", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.82}
+{"case_id": "AMB-033", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.33}
+{"case_id": "AMB-034", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.12}
+{"case_id": "AMB-035", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.36}
+{"case_id": "AMB-036", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.16}
+{"case_id": "AMB-037", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.83}
+{"case_id": "AMB-038", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.47}
+{"case_id": "AMB-039", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.8}
+{"case_id": "AMB-040", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.63}
+{"case_id": "AMB-041", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.18}
+{"case_id": "AMB-042", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.37}
+{"case_id": "AMB-043", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.15}
+{"case_id": "AMB-044", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.13}
+{"case_id": "AMB-045", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.11}
+{"case_id": "AMB-046", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.61}
+{"case_id": "AMB-047", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.76}
+{"case_id": "AMB-048", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.68}
+{"case_id": "AMB-049", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.95}
+{"case_id": "AMB-050", "run_number": 1, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.0}
+{"case_id": "MIS-001", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.31}
+{"case_id": "MIS-002", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 61.83}
+{"case_id": "MIS-003", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 74.78}
+{"case_id": "MIS-004", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 59.43}
+{"case_id": "MIS-005", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.22}
+{"case_id": "MIS-006", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 86.96}
+{"case_id": "MIS-007", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.57}
+{"case_id": "MIS-008", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 55.75}
+{"case_id": "MIS-009", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.34}
+{"case_id": "MIS-010", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 55.25}
+{"case_id": "MIS-011", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 55.5}
+{"case_id": "MIS-012", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 81.3}
+{"case_id": "MIS-013", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 87.26}
+{"case_id": "MIS-014", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.14}
+{"case_id": "MIS-015", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 56.57}
+{"case_id": "MIS-016", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 56.71}
+{"case_id": "MIS-017", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 56.71}
+{"case_id": "MIS-018", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 56.63}
+{"case_id": "MIS-019", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 59.98}
+{"case_id": "MIS-020", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.54}
+{"case_id": "MIS-021", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.81}
+{"case_id": "MIS-022", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.41}
+{"case_id": "MIS-023", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.96}
+{"case_id": "MIS-024", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.6}
+{"case_id": "MIS-025", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.03}
+{"case_id": "MIS-026", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 62.47}
+{"case_id": "MIS-027", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 74.79}
+{"case_id": "MIS-028", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 83.11}
+{"case_id": "MIS-029", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 60.18}
+{"case_id": "MIS-030", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.04}
+{"case_id": "MIS-031", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.64}
+{"case_id": "MIS-032", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.56}
+{"case_id": "MIS-033", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.48}
+{"case_id": "MIS-034", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.54}
+{"case_id": "MIS-035", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.56}
+{"case_id": "MIS-036", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 84.51}
+{"case_id": "MIS-037", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.29}
+{"case_id": "MIS-038", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.29}
+{"case_id": "MIS-039", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.85}
+{"case_id": "MIS-040", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.35}
+{"case_id": "MIS-041", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 59.09}
+{"case_id": "MIS-042", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.13}
+{"case_id": "MIS-043", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 83.33}
+{"case_id": "MIS-044", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 62.9}
+{"case_id": "MIS-045", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.17}
+{"case_id": "MIS-046", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.0}
+{"case_id": "MIS-047", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 62.14}
+{"case_id": "MIS-048", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 57.87}
+{"case_id": "MIS-049", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.85}
+{"case_id": "MIS-050", "run_number": 1, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.93}
+{"case_id": "ANS-001", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 881.78}
+{"case_id": "ANS-002", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1025.59}
+{"case_id": "ANS-003", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2047.8}
+{"case_id": "ANS-004", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2147.3}
+{"case_id": "ANS-005", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2141.69}
+{"case_id": "ANS-006", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1955.84}
+{"case_id": "ANS-007", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4709.68}
+{"case_id": "ANS-008", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 895.96}
+{"case_id": "ANS-009", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1954.43}
+{"case_id": "ANS-010", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2346.88}
+{"case_id": "ANS-011", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3480.19}
+{"case_id": "ANS-012", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4188.61}
+{"case_id": "ANS-013", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 923.9}
+{"case_id": "ANS-014", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 1922.44}
+{"case_id": "ANS-015", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2237.32}
+{"case_id": "ANS-016", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4195.53}
+{"case_id": "ANS-017", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 713.94}
+{"case_id": "ANS-018", "run_number": 2, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4200.33}
+{"case_id": "ANS-019", "run_number": 2, "system": "C", "decision": "answer", "answer": "the Need-Based Grant", "latency_ms": 576.7}
+{"case_id": "ANS-020", "run_number": 2, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 3959.78}
+{"case_id": "ANS-021", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 3988.67}
+{"case_id": "ANS-022", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4264.07}
+{"case_id": "ANS-023", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 664.26}
+{"case_id": "ANS-024", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4589.29}
+{"case_id": "ANS-025", "run_number": 2, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2166.9}
+{"case_id": "ANS-026", "run_number": 2, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 3052.09}
+{"case_id": "ANS-027", "run_number": 2, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 902.98}
+{"case_id": "ANS-028", "run_number": 2, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 2287.93}
+{"case_id": "ANS-029", "run_number": 2, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 2192.65}
+{"case_id": "ANS-030", "run_number": 2, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 4187.8}
+{"case_id": "ANS-031", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1017.75}
+{"case_id": "ANS-032", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2080.26}
+{"case_id": "ANS-033", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2020.34}
+{"case_id": "ANS-034", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2046.6}
+{"case_id": "ANS-035", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2138.36}
+{"case_id": "ANS-036", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 3356.2}
+{"case_id": "ANS-037", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 5657.42}
+{"case_id": "ANS-038", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1400.8}
+{"case_id": "ANS-039", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1709.95}
+{"case_id": "ANS-040", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 6973.95}
+{"case_id": "ANS-041", "run_number": 2, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 2276.81}
+{"case_id": "ANS-042", "run_number": 2, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 1419.54}
+{"case_id": "ANS-043", "run_number": 2, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 2686.23}
+{"case_id": "ANS-044", "run_number": 2, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 3747.1}
+{"case_id": "ANS-045", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2372.82}
+{"case_id": "ANS-046", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1850.37}
+{"case_id": "ANS-047", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2964.17}
+{"case_id": "ANS-048", "run_number": 2, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2048.52}
+{"case_id": "ANS-049", "run_number": 2, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2049.25}
+{"case_id": "ANS-050", "run_number": 2, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2044.15}
+{"case_id": "ANS-051", "run_number": 2, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 5299.94}
+{"case_id": "ANS-052", "run_number": 2, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 1169.68}
+{"case_id": "ANS-053", "run_number": 2, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 4413.08}
+{"case_id": "ANS-054", "run_number": 2, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 2536.87}
+{"case_id": "ANS-055", "run_number": 2, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 1833.51}
+{"case_id": "ANS-056", "run_number": 2, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 4221.33}
+{"case_id": "ANS-057", "run_number": 2, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 786.78}
+{"case_id": "ANS-058", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1945.94}
+{"case_id": "ANS-059", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4401.85}
+{"case_id": "ANS-060", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 713.21}
+{"case_id": "ANS-061", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4095.03}
+{"case_id": "ANS-062", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 809.59}
+{"case_id": "ANS-063", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4096.59}
+{"case_id": "ANS-064", "run_number": 2, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 905.25}
+{"case_id": "ANS-065", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1962.7}
+{"case_id": "ANS-066", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4087.78}
+{"case_id": "ANS-067", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 711.47}
+{"case_id": "ANS-068", "run_number": 2, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4081.16}
+{"case_id": "ANS-069", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 663.58}
+{"case_id": "ANS-070", "run_number": 2, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4083.54}
+{"case_id": "ANS-071", "run_number": 2, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 586.52}
+{"case_id": "ANS-072", "run_number": 2, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 4091.03}
+{"case_id": "ANS-073", "run_number": 2, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 4055.55}
+{"case_id": "ANS-074", "run_number": 2, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 919.47}
+{"case_id": "ANS-075", "run_number": 2, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 1946.44}
+{"case_id": "ANS-076", "run_number": 2, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 4102.87}
+{"case_id": "ANS-077", "run_number": 2, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 875.1}
+{"case_id": "ANS-078", "run_number": 2, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 1880.68}
+{"case_id": "ANS-079", "run_number": 2, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 4266.13}
+{"case_id": "ANS-080", "run_number": 2, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 1840.87}
+{"case_id": "ANS-081", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4060.88}
+{"case_id": "ANS-082", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 712.1}
+{"case_id": "ANS-083", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 3997.23}
+{"case_id": "ANS-084", "run_number": 2, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 662.94}
+{"case_id": "ANS-085", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 5172.59}
+{"case_id": "ANS-086", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1014.01}
+{"case_id": "ANS-087", "run_number": 2, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4171.92}
+{"case_id": "ANS-088", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 897.21}
+{"case_id": "ANS-089", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2001.75}
+{"case_id": "ANS-090", "run_number": 2, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2140.63}
+{"case_id": "ANS-091", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 1855.65}
+{"case_id": "ANS-092", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 4182.64}
+{"case_id": "ANS-093", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 819.51}
+{"case_id": "ANS-094", "run_number": 2, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 2148.01}
+{"case_id": "ANS-095", "run_number": 2, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 1947.99}
+{"case_id": "ANS-096", "run_number": 2, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 3880.65}
+{"case_id": "ANS-097", "run_number": 2, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 913.7}
+{"case_id": "ANS-098", "run_number": 2, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 2049.37}
+{"case_id": "ANS-099", "run_number": 2, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 2049.05}
+{"case_id": "ANS-100", "run_number": 2, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 1946.0}
+{"case_id": "AMB-001", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.61}
+{"case_id": "AMB-002", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.16}
+{"case_id": "AMB-003", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.28}
+{"case_id": "AMB-004", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.22}
+{"case_id": "AMB-005", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.75}
+{"case_id": "AMB-006", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.96}
+{"case_id": "AMB-007", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.52}
+{"case_id": "AMB-008", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.47}
+{"case_id": "AMB-009", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.77}
+{"case_id": "AMB-010", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.52}
+{"case_id": "AMB-011", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.11}
+{"case_id": "AMB-012", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.63}
+{"case_id": "AMB-013", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.71}
+{"case_id": "AMB-014", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.67}
+{"case_id": "AMB-015", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.49}
+{"case_id": "AMB-016", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.63}
+{"case_id": "AMB-017", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.71}
+{"case_id": "AMB-018", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.33}
+{"case_id": "AMB-019", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.45}
+{"case_id": "AMB-020", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.31}
+{"case_id": "AMB-021", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.54}
+{"case_id": "AMB-022", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.02}
+{"case_id": "AMB-023", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.57}
+{"case_id": "AMB-024", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.49}
+{"case_id": "AMB-025", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.9}
+{"case_id": "AMB-026", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.37}
+{"case_id": "AMB-027", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.46}
+{"case_id": "AMB-028", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.51}
+{"case_id": "AMB-029", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.47}
+{"case_id": "AMB-030", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.69}
+{"case_id": "AMB-031", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.53}
+{"case_id": "AMB-032", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.96}
+{"case_id": "AMB-033", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.16}
+{"case_id": "AMB-034", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.05}
+{"case_id": "AMB-035", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.09}
+{"case_id": "AMB-036", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.33}
+{"case_id": "AMB-037", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.97}
+{"case_id": "AMB-038", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.32}
+{"case_id": "AMB-039", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.77}
+{"case_id": "AMB-040", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.35}
+{"case_id": "AMB-041", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.2}
+{"case_id": "AMB-042", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.99}
+{"case_id": "AMB-043", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.03}
+{"case_id": "AMB-044", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.98}
+{"case_id": "AMB-045", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.13}
+{"case_id": "AMB-046", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.18}
+{"case_id": "AMB-047", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.86}
+{"case_id": "AMB-048", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.57}
+{"case_id": "AMB-049", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.17}
+{"case_id": "AMB-050", "run_number": 2, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.47}
+{"case_id": "MIS-001", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 100.93}
+{"case_id": "MIS-002", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 84.57}
+{"case_id": "MIS-003", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 101.79}
+{"case_id": "MIS-004", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 101.9}
+{"case_id": "MIS-005", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 67.26}
+{"case_id": "MIS-006", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 68.85}
+{"case_id": "MIS-007", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 67.67}
+{"case_id": "MIS-008", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 69.23}
+{"case_id": "MIS-009", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 68.58}
+{"case_id": "MIS-010", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 96.99}
+{"case_id": "MIS-011", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 87.31}
+{"case_id": "MIS-012", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 81.0}
+{"case_id": "MIS-013", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 81.08}
+{"case_id": "MIS-014", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 69.53}
+{"case_id": "MIS-015", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 68.19}
+{"case_id": "MIS-016", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.08}
+{"case_id": "MIS-017", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 74.88}
+{"case_id": "MIS-018", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.05}
+{"case_id": "MIS-019", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.38}
+{"case_id": "MIS-020", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.04}
+{"case_id": "MIS-021", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.15}
+{"case_id": "MIS-022", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 70.86}
+{"case_id": "MIS-023", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.15}
+{"case_id": "MIS-024", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 80.08}
+{"case_id": "MIS-025", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 87.25}
+{"case_id": "MIS-026", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 68.28}
+{"case_id": "MIS-027", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.62}
+{"case_id": "MIS-028", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 65.47}
+{"case_id": "MIS-029", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.51}
+{"case_id": "MIS-030", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 64.31}
+{"case_id": "MIS-031", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 65.63}
+{"case_id": "MIS-032", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.9}
+{"case_id": "MIS-033", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 93.45}
+{"case_id": "MIS-034", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 89.98}
+{"case_id": "MIS-035", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 65.86}
+{"case_id": "MIS-036", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.02}
+{"case_id": "MIS-037", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 68.06}
+{"case_id": "MIS-038", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 67.08}
+{"case_id": "MIS-039", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 67.03}
+{"case_id": "MIS-040", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.49}
+{"case_id": "MIS-041", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 93.11}
+{"case_id": "MIS-042", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 67.42}
+{"case_id": "MIS-043", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.33}
+{"case_id": "MIS-044", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.02}
+{"case_id": "MIS-045", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 65.19}
+{"case_id": "MIS-046", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 65.56}
+{"case_id": "MIS-047", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 67.28}
+{"case_id": "MIS-048", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.42}
+{"case_id": "MIS-049", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 98.86}
+{"case_id": "MIS-050", "run_number": 2, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.12}
+{"case_id": "ANS-001", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 5017.39}
+{"case_id": "ANS-002", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2354.07}
+{"case_id": "ANS-003", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1742.29}
+{"case_id": "ANS-004", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2642.75}
+{"case_id": "ANS-005", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2264.86}
+{"case_id": "ANS-006", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 3389.27}
+{"case_id": "ANS-007", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2732.14}
+{"case_id": "ANS-008", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2575.79}
+{"case_id": "ANS-009", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2764.79}
+{"case_id": "ANS-010", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 3769.35}
+{"case_id": "ANS-011", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 1254.78}
+{"case_id": "ANS-012", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3574.23}
+{"case_id": "ANS-013", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 602.28}
+{"case_id": "ANS-014", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 2761.67}
+{"case_id": "ANS-015", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2431.46}
+{"case_id": "ANS-016", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2682.44}
+{"case_id": "ANS-017", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2548.69}
+{"case_id": "ANS-018", "run_number": 3, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 2570.47}
+{"case_id": "ANS-019", "run_number": 3, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 3059.95}
+{"case_id": "ANS-020", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 3275.92}
+{"case_id": "ANS-021", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 2356.2}
+{"case_id": "ANS-022", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 3213.56}
+{"case_id": "ANS-023", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 2105.7}
+{"case_id": "ANS-024", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 2752.08}
+{"case_id": "ANS-025", "run_number": 3, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2868.86}
+{"case_id": "ANS-026", "run_number": 3, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2150.03}
+{"case_id": "ANS-027", "run_number": 3, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2640.24}
+{"case_id": "ANS-028", "run_number": 3, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 2275.99}
+{"case_id": "ANS-029", "run_number": 3, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 2765.73}
+{"case_id": "ANS-030", "run_number": 3, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 4083.61}
+{"case_id": "ANS-031", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4402.35}
+{"case_id": "ANS-032", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1842.29}
+{"case_id": "ANS-033", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1128.48}
+{"case_id": "ANS-034", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2545.78}
+{"case_id": "ANS-035", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2877.16}
+{"case_id": "ANS-036", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2959.33}
+{"case_id": "ANS-037", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2831.04}
+{"case_id": "ANS-038", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2420.08}
+{"case_id": "ANS-039", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2853.42}
+{"case_id": "ANS-040", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2322.15}
+{"case_id": "ANS-041", "run_number": 3, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 2628.04}
+{"case_id": "ANS-042", "run_number": 3, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 3513.73}
+{"case_id": "ANS-043", "run_number": 3, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 2562.78}
+{"case_id": "ANS-044", "run_number": 3, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 2272.48}
+{"case_id": "ANS-045", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2929.4}
+{"case_id": "ANS-046", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 3862.39}
+{"case_id": "ANS-047", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1397.24}
+{"case_id": "ANS-048", "run_number": 3, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2907.52}
+{"case_id": "ANS-049", "run_number": 3, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2850.82}
+{"case_id": "ANS-050", "run_number": 3, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 2602.89}
+{"case_id": "ANS-051", "run_number": 3, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 3843.44}
+{"case_id": "ANS-052", "run_number": 3, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 1029.42}
+{"case_id": "ANS-053", "run_number": 3, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 2665.17}
+{"case_id": "ANS-054", "run_number": 3, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 2358.02}
+{"case_id": "ANS-055", "run_number": 3, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2533.82}
+{"case_id": "ANS-056", "run_number": 3, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2611.93}
+{"case_id": "ANS-057", "run_number": 3, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2612.52}
+{"case_id": "ANS-058", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2428.22}
+{"case_id": "ANS-059", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2046.98}
+{"case_id": "ANS-060", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4829.29}
+{"case_id": "ANS-061", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 1320.27}
+{"case_id": "ANS-062", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 2772.5}
+{"case_id": "ANS-063", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3089.52}
+{"case_id": "ANS-064", "run_number": 3, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3142.29}
+{"case_id": "ANS-065", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 3502.77}
+{"case_id": "ANS-066", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2772.36}
+{"case_id": "ANS-067", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2698.65}
+{"case_id": "ANS-068", "run_number": 3, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 2483.33}
+{"case_id": "ANS-069", "run_number": 3, "system": "C", "decision": "answer", "answer": "the Need-Based Grant", "latency_ms": 3310.3}
+{"case_id": "ANS-070", "run_number": 3, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 2234.66}
+{"case_id": "ANS-071", "run_number": 3, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 3181.6}
+{"case_id": "ANS-072", "run_number": 3, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 2601.42}
+{"case_id": "ANS-073", "run_number": 3, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 3104.08}
+{"case_id": "ANS-074", "run_number": 3, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 3274.63}
+{"case_id": "ANS-075", "run_number": 3, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2832.43}
+{"case_id": "ANS-076", "run_number": 3, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2246.78}
+{"case_id": "ANS-077", "run_number": 3, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2291.77}
+{"case_id": "ANS-078", "run_number": 3, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 2498.08}
+{"case_id": "ANS-079", "run_number": 3, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 4864.01}
+{"case_id": "ANS-080", "run_number": 3, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 1293.92}
+{"case_id": "ANS-081", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 3307.34}
+{"case_id": "ANS-082", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2555.87}
+{"case_id": "ANS-083", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2865.49}
+{"case_id": "ANS-084", "run_number": 3, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2459.33}
+{"case_id": "ANS-085", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2225.57}
+{"case_id": "ANS-086", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2689.43}
+{"case_id": "ANS-087", "run_number": 3, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2053.22}
+{"case_id": "ANS-088", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2245.52}
+{"case_id": "ANS-089", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2743.82}
+{"case_id": "ANS-090", "run_number": 3, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4511.16}
+{"case_id": "ANS-091", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 1538.67}
+{"case_id": "ANS-092", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 3487.56}
+{"case_id": "ANS-093", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 2754.15}
+{"case_id": "ANS-094", "run_number": 3, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 2462.68}
+{"case_id": "ANS-095", "run_number": 3, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 3259.79}
+{"case_id": "ANS-096", "run_number": 3, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2765.35}
+{"case_id": "ANS-097", "run_number": 3, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 3990.43}
+{"case_id": "ANS-098", "run_number": 3, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 2296.91}
+{"case_id": "ANS-099", "run_number": 3, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 3038.4}
+{"case_id": "ANS-100", "run_number": 3, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 2373.98}
+{"case_id": "AMB-001", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.92}
+{"case_id": "AMB-002", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.61}
+{"case_id": "AMB-003", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.31}
+{"case_id": "AMB-004", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.59}
+{"case_id": "AMB-005", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.52}
+{"case_id": "AMB-006", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.49}
+{"case_id": "AMB-007", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.28}
+{"case_id": "AMB-008", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.75}
+{"case_id": "AMB-009", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.33}
+{"case_id": "AMB-010", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.95}
+{"case_id": "AMB-011", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.33}
+{"case_id": "AMB-012", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.43}
+{"case_id": "AMB-013", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.4}
+{"case_id": "AMB-014", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.66}
+{"case_id": "AMB-015", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.64}
+{"case_id": "AMB-016", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.39}
+{"case_id": "AMB-017", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.51}
+{"case_id": "AMB-018", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.44}
+{"case_id": "AMB-019", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.56}
+{"case_id": "AMB-020", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.45}
+{"case_id": "AMB-021", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 39.45}
+{"case_id": "AMB-022", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 44.66}
+{"case_id": "AMB-023", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 35.79}
+{"case_id": "AMB-024", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 34.54}
+{"case_id": "AMB-025", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 34.51}
+{"case_id": "AMB-026", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 25.99}
+{"case_id": "AMB-027", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.48}
+{"case_id": "AMB-028", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.52}
+{"case_id": "AMB-029", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 25.3}
+{"case_id": "AMB-030", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 25.36}
+{"case_id": "AMB-031", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.48}
+{"case_id": "AMB-032", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.49}
+{"case_id": "AMB-033", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.8}
+{"case_id": "AMB-034", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.77}
+{"case_id": "AMB-035", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.9}
+{"case_id": "AMB-036", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.05}
+{"case_id": "AMB-037", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.61}
+{"case_id": "AMB-038", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.2}
+{"case_id": "AMB-039", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.95}
+{"case_id": "AMB-040", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 41.08}
+{"case_id": "AMB-041", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 39.04}
+{"case_id": "AMB-042", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 34.63}
+{"case_id": "AMB-043", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 34.51}
+{"case_id": "AMB-044", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 29.44}
+{"case_id": "AMB-045", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.3}
+{"case_id": "AMB-046", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 33.37}
+{"case_id": "AMB-047", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 32.92}
+{"case_id": "AMB-048", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 31.28}
+{"case_id": "AMB-049", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.75}
+{"case_id": "AMB-050", "run_number": 3, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 29.76}
+{"case_id": "MIS-001", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 144.87}
+{"case_id": "MIS-002", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 114.95}
+{"case_id": "MIS-003", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 126.32}
+{"case_id": "MIS-004", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 101.65}
+{"case_id": "MIS-005", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.72}
+{"case_id": "MIS-006", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.53}
+{"case_id": "MIS-007", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.17}
+{"case_id": "MIS-008", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.21}
+{"case_id": "MIS-009", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 105.7}
+{"case_id": "MIS-010", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 93.33}
+{"case_id": "MIS-011", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.34}
+{"case_id": "MIS-012", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.59}
+{"case_id": "MIS-013", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 69.55}
+{"case_id": "MIS-014", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 74.03}
+{"case_id": "MIS-015", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 69.8}
+{"case_id": "MIS-016", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 96.14}
+{"case_id": "MIS-017", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 88.99}
+{"case_id": "MIS-018", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.11}
+{"case_id": "MIS-019", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.97}
+{"case_id": "MIS-020", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.15}
+{"case_id": "MIS-021", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 81.52}
+{"case_id": "MIS-022", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 89.96}
+{"case_id": "MIS-023", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.17}
+{"case_id": "MIS-024", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 99.68}
+{"case_id": "MIS-025", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 95.42}
+{"case_id": "MIS-026", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 70.61}
+{"case_id": "MIS-027", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.88}
+{"case_id": "MIS-028", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 70.47}
+{"case_id": "MIS-029", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.52}
+{"case_id": "MIS-030", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 95.45}
+{"case_id": "MIS-031", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 99.76}
+{"case_id": "MIS-032", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.66}
+{"case_id": "MIS-033", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 74.85}
+{"case_id": "MIS-034", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.35}
+{"case_id": "MIS-035", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 70.31}
+{"case_id": "MIS-036", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.11}
+{"case_id": "MIS-037", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.79}
+{"case_id": "MIS-038", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.39}
+{"case_id": "MIS-039", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 100.23}
+{"case_id": "MIS-040", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 93.42}
+{"case_id": "MIS-041", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 74.1}
+{"case_id": "MIS-042", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.58}
+{"case_id": "MIS-043", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.51}
+{"case_id": "MIS-044", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 82.1}
+{"case_id": "MIS-045", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.19}
+{"case_id": "MIS-046", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 109.03}
+{"case_id": "MIS-047", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 85.42}
+{"case_id": "MIS-048", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 70.36}
+{"case_id": "MIS-049", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.77}
+{"case_id": "MIS-050", "run_number": 3, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.49}
+{"case_id": "ANS-001", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2153.47}
+{"case_id": "ANS-002", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1940.17}
+{"case_id": "ANS-003", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4083.7}
+{"case_id": "ANS-004", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 719.41}
+{"case_id": "ANS-005", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2047.55}
+{"case_id": "ANS-006", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 3991.3}
+{"case_id": "ANS-007", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 815.97}
+{"case_id": "ANS-008", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2040.36}
+{"case_id": "ANS-009", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2139.12}
+{"case_id": "ANS-010", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2159.48}
+{"case_id": "ANS-011", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4095.9}
+{"case_id": "ANS-012", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 612.35}
+{"case_id": "ANS-013", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4188.26}
+{"case_id": "ANS-014", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 759.79}
+{"case_id": "ANS-015", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4143.24}
+{"case_id": "ANS-016", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4098.95}
+{"case_id": "ANS-017", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 915.36}
+{"case_id": "ANS-018", "run_number": 4, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 1556.14}
+{"case_id": "ANS-019", "run_number": 4, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4347.32}
+{"case_id": "ANS-020", "run_number": 4, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 2456.95}
+{"case_id": "ANS-021", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 1842.87}
+{"case_id": "ANS-022", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4419.12}
+{"case_id": "ANS-023", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 1403.14}
+{"case_id": "ANS-024", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 2639.57}
+{"case_id": "ANS-025", "run_number": 4, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 3401.63}
+{"case_id": "ANS-026", "run_number": 4, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2486.05}
+{"case_id": "ANS-027", "run_number": 4, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2334.28}
+{"case_id": "ANS-028", "run_number": 4, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 3357.41}
+{"case_id": "ANS-029", "run_number": 4, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 4379.93}
+{"case_id": "ANS-030", "run_number": 4, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 1022.38}
+{"case_id": "ANS-031", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2576.93}
+{"case_id": "ANS-032", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2335.67}
+{"case_id": "ANS-033", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2244.56}
+{"case_id": "ANS-034", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 2666.34}
+{"case_id": "ANS-035", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1837.02}
+{"case_id": "ANS-036", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4096.7}
+{"case_id": "ANS-037", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 712.41}
+{"case_id": "ANS-038", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1867.25}
+{"case_id": "ANS-039", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4139.17}
+{"case_id": "ANS-040", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4094.68}
+{"case_id": "ANS-041", "run_number": 4, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 827.06}
+{"case_id": "ANS-042", "run_number": 4, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 2039.4}
+{"case_id": "ANS-043", "run_number": 4, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 4186.63}
+{"case_id": "ANS-044", "run_number": 4, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 761.81}
+{"case_id": "ANS-045", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4052.8}
+{"case_id": "ANS-046", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 803.01}
+{"case_id": "ANS-047", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 3995.06}
+{"case_id": "ANS-048", "run_number": 4, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 806.46}
+{"case_id": "ANS-049", "run_number": 4, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 4613.35}
+{"case_id": "ANS-050", "run_number": 4, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 823.16}
+{"case_id": "ANS-051", "run_number": 4, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 4085.52}
+{"case_id": "ANS-052", "run_number": 4, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 817.13}
+{"case_id": "ANS-053", "run_number": 4, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 4134.73}
+{"case_id": "ANS-054", "run_number": 4, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 1280.39}
+{"case_id": "ANS-055", "run_number": 4, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2152.03}
+{"case_id": "ANS-056", "run_number": 4, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 4096.23}
+{"case_id": "ANS-057", "run_number": 4, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 792.86}
+{"case_id": "ANS-058", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2526.08}
+{"case_id": "ANS-059", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2504.07}
+{"case_id": "ANS-060", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2354.18}
+{"case_id": "ANS-061", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 2355.18}
+{"case_id": "ANS-062", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 2251.98}
+{"case_id": "ANS-063", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 2037.33}
+{"case_id": "ANS-064", "run_number": 4, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4199.1}
+{"case_id": "ANS-065", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 712.35}
+{"case_id": "ANS-066", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4916.4}
+{"case_id": "ANS-067", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1843.91}
+{"case_id": "ANS-068", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 4093.95}
+{"case_id": "ANS-069", "run_number": 4, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 703.39}
+{"case_id": "ANS-070", "run_number": 4, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4218.98}
+{"case_id": "ANS-071", "run_number": 4, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 789.58}
+{"case_id": "ANS-072", "run_number": 4, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 2263.02}
+{"case_id": "ANS-073", "run_number": 4, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 2251.62}
+{"case_id": "ANS-074", "run_number": 4, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 4365.48}
+{"case_id": "ANS-075", "run_number": 4, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 591.89}
+{"case_id": "ANS-076", "run_number": 4, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2581.64}
+{"case_id": "ANS-077", "run_number": 4, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 2046.46}
+{"case_id": "ANS-078", "run_number": 4, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 4161.08}
+{"case_id": "ANS-079", "run_number": 4, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 676.88}
+{"case_id": "ANS-080", "run_number": 4, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 3996.55}
+{"case_id": "ANS-081", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4095.66}
+{"case_id": "ANS-082", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 3787.61}
+{"case_id": "ANS-083", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 703.8}
+{"case_id": "ANS-084", "run_number": 4, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4407.86}
+{"case_id": "ANS-085", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 494.1}
+{"case_id": "ANS-086", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4168.1}
+{"case_id": "ANS-087", "run_number": 4, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 2088.95}
+{"case_id": "ANS-088", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2254.03}
+{"case_id": "ANS-089", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2137.87}
+{"case_id": "ANS-090", "run_number": 4, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 1945.27}
+{"case_id": "ANS-091", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 4199.68}
+{"case_id": "ANS-092", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 4404.43}
+{"case_id": "ANS-093", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 1018.39}
+{"case_id": "ANS-094", "run_number": 4, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 2525.48}
+{"case_id": "ANS-095", "run_number": 4, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 1845.44}
+{"case_id": "ANS-096", "run_number": 4, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 2202.95}
+{"case_id": "ANS-097", "run_number": 4, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 4039.33}
+{"case_id": "ANS-098", "run_number": 4, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 713.3}
+{"case_id": "ANS-099", "run_number": 4, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 3941.4}
+{"case_id": "ANS-100", "run_number": 4, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 759.51}
+{"case_id": "AMB-001", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 24.14}
+{"case_id": "AMB-002", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.66}
+{"case_id": "AMB-003", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.53}
+{"case_id": "AMB-004", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.22}
+{"case_id": "AMB-005", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.28}
+{"case_id": "AMB-006", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 22.16}
+{"case_id": "AMB-007", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.24}
+{"case_id": "AMB-008", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.86}
+{"case_id": "AMB-009", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.55}
+{"case_id": "AMB-010", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.23}
+{"case_id": "AMB-011", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.72}
+{"case_id": "AMB-012", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.06}
+{"case_id": "AMB-013", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.75}
+{"case_id": "AMB-014", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.68}
+{"case_id": "AMB-015", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.75}
+{"case_id": "AMB-016", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.79}
+{"case_id": "AMB-017", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.76}
+{"case_id": "AMB-018", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.29}
+{"case_id": "AMB-019", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.53}
+{"case_id": "AMB-020", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.42}
+{"case_id": "AMB-021", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.72}
+{"case_id": "AMB-022", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.02}
+{"case_id": "AMB-023", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.45}
+{"case_id": "AMB-024", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.39}
+{"case_id": "AMB-025", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.25}
+{"case_id": "AMB-026", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.31}
+{"case_id": "AMB-027", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 21.43}
+{"case_id": "AMB-028", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.36}
+{"case_id": "AMB-029", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.64}
+{"case_id": "AMB-030", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.41}
+{"case_id": "AMB-031", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.0}
+{"case_id": "AMB-032", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.21}
+{"case_id": "AMB-033", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.35}
+{"case_id": "AMB-034", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.36}
+{"case_id": "AMB-035", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.38}
+{"case_id": "AMB-036", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.11}
+{"case_id": "AMB-037", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.73}
+{"case_id": "AMB-038", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.86}
+{"case_id": "AMB-039", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.66}
+{"case_id": "AMB-040", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.2}
+{"case_id": "AMB-041", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.78}
+{"case_id": "AMB-042", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.66}
+{"case_id": "AMB-043", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.86}
+{"case_id": "AMB-044", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.42}
+{"case_id": "AMB-045", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.22}
+{"case_id": "AMB-046", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.68}
+{"case_id": "AMB-047", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.65}
+{"case_id": "AMB-048", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.06}
+{"case_id": "AMB-049", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 20.08}
+{"case_id": "AMB-050", "run_number": 4, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 19.48}
+{"case_id": "MIS-001", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.5}
+{"case_id": "MIS-002", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 58.63}
+{"case_id": "MIS-003", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 50.41}
+{"case_id": "MIS-004", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 51.36}
+{"case_id": "MIS-005", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.32}
+{"case_id": "MIS-006", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.98}
+{"case_id": "MIS-007", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.61}
+{"case_id": "MIS-008", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 49.09}
+{"case_id": "MIS-009", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 50.88}
+{"case_id": "MIS-010", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.76}
+{"case_id": "MIS-011", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.61}
+{"case_id": "MIS-012", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 56.32}
+{"case_id": "MIS-013", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 45.1}
+{"case_id": "MIS-014", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.06}
+{"case_id": "MIS-015", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.2}
+{"case_id": "MIS-016", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.81}
+{"case_id": "MIS-017", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.38}
+{"case_id": "MIS-018", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 45.8}
+{"case_id": "MIS-019", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 49.36}
+{"case_id": "MIS-020", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 45.38}
+{"case_id": "MIS-021", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 45.84}
+{"case_id": "MIS-022", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.6}
+{"case_id": "MIS-023", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.49}
+{"case_id": "MIS-024", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 50.93}
+{"case_id": "MIS-025", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 66.39}
+{"case_id": "MIS-026", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.23}
+{"case_id": "MIS-027", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.6}
+{"case_id": "MIS-028", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.85}
+{"case_id": "MIS-029", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.75}
+{"case_id": "MIS-030", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 48.89}
+{"case_id": "MIS-031", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 48.15}
+{"case_id": "MIS-032", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.23}
+{"case_id": "MIS-033", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.96}
+{"case_id": "MIS-034", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.62}
+{"case_id": "MIS-035", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.24}
+{"case_id": "MIS-036", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.95}
+{"case_id": "MIS-037", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 48.65}
+{"case_id": "MIS-038", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 52.19}
+{"case_id": "MIS-039", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 55.52}
+{"case_id": "MIS-040", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 54.51}
+{"case_id": "MIS-041", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 51.97}
+{"case_id": "MIS-042", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 50.44}
+{"case_id": "MIS-043", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.74}
+{"case_id": "MIS-044", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 48.44}
+{"case_id": "MIS-045", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 45.95}
+{"case_id": "MIS-046", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.04}
+{"case_id": "MIS-047", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 46.69}
+{"case_id": "MIS-048", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 49.64}
+{"case_id": "MIS-049", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 47.67}
+{"case_id": "MIS-050", "run_number": 4, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 45.22}
+{"case_id": "ANS-001", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 818.93}
+{"case_id": "ANS-002", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1971.64}
+{"case_id": "ANS-003", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1992.92}
+{"case_id": "ANS-004", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4191.93}
+{"case_id": "ANS-005", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 918.41}
+{"case_id": "ANS-006", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1946.42}
+{"case_id": "ANS-007", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4162.17}
+{"case_id": "ANS-008", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 703.58}
+{"case_id": "ANS-009", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4107.07}
+{"case_id": "ANS-010", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 817.31}
+{"case_id": "ANS-011", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 4097.24}
+{"case_id": "ANS-012", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 807.25}
+{"case_id": "ANS-013", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3992.31}
+{"case_id": "ANS-014", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 719.89}
+{"case_id": "ANS-015", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4092.5}
+{"case_id": "ANS-016", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 817.05}
+{"case_id": "ANS-017", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 1603.0}
+{"case_id": "ANS-018", "run_number": 5, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4095.61}
+{"case_id": "ANS-019", "run_number": 5, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4059.23}
+{"case_id": "ANS-020", "run_number": 5, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 815.63}
+{"case_id": "ANS-021", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4097.65}
+{"case_id": "ANS-022", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 704.92}
+{"case_id": "ANS-023", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4096.54}
+{"case_id": "ANS-024", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mechanical Engineering", "latency_ms": 4197.43}
+{"case_id": "ANS-025", "run_number": 5, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 711.79}
+{"case_id": "ANS-026", "run_number": 5, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 3995.48}
+{"case_id": "ANS-027", "run_number": 5, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 398.18}
+{"case_id": "ANS-028", "run_number": 5, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 4103.32}
+{"case_id": "ANS-029", "run_number": 5, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 4088.98}
+{"case_id": "ANS-030", "run_number": 5, "system": "C", "decision": "answer", "answer": "Sports Scholarship", "latency_ms": 918.88}
+{"case_id": "ANS-031", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 1946.92}
+{"case_id": "ANS-032", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4186.67}
+{"case_id": "ANS-033", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 714.74}
+{"case_id": "ANS-034", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 4097.5}
+{"case_id": "ANS-035", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 713.7}
+{"case_id": "ANS-036", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4101.81}
+{"case_id": "ANS-037", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 702.63}
+{"case_id": "ANS-038", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 4091.38}
+{"case_id": "ANS-039", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 511.65}
+{"case_id": "ANS-040", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 3998.79}
+{"case_id": "ANS-041", "run_number": 5, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 3988.65}
+{"case_id": "ANS-042", "run_number": 5, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 3982.45}
+{"case_id": "ANS-043", "run_number": 5, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 510.86}
+{"case_id": "ANS-044", "run_number": 5, "system": "C", "decision": "answer", "answer": "Software Engineering", "latency_ms": 4098.47}
+{"case_id": "ANS-045", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4195.11}
+{"case_id": "ANS-046", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 816.44}
+{"case_id": "ANS-047", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4266.75}
+{"case_id": "ANS-048", "run_number": 5, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 711.24}
+{"case_id": "ANS-049", "run_number": 5, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 4099.16}
+{"case_id": "ANS-050", "run_number": 5, "system": "C", "decision": "answer", "answer": "Women in STEM Grant", "latency_ms": 816.8}
+{"case_id": "ANS-051", "run_number": 5, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 1936.84}
+{"case_id": "ANS-052", "run_number": 5, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 4097.78}
+{"case_id": "ANS-053", "run_number": 5, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 3979.07}
+{"case_id": "ANS-054", "run_number": 5, "system": "C", "decision": "answer", "answer": "Data Science", "latency_ms": 816.4}
+{"case_id": "ANS-055", "run_number": 5, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 5451.88}
+{"case_id": "ANS-056", "run_number": 5, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 484.77}
+{"case_id": "ANS-057", "run_number": 5, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 681.63}
+{"case_id": "ANS-058", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 2049.25}
+{"case_id": "ANS-059", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 3788.58}
+{"case_id": "ANS-060", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 712.99}
+{"case_id": "ANS-061", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3996.3}
+{"case_id": "ANS-062", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 805.29}
+{"case_id": "ANS-063", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 3995.56}
+{"case_id": "ANS-064", "run_number": 5, "system": "C", "decision": "answer", "answer": "Electrical Engineering", "latency_ms": 815.91}
+{"case_id": "ANS-065", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4302.23}
+{"case_id": "ANS-066", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 816.24}
+{"case_id": "ANS-067", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 4087.93}
+{"case_id": "ANS-068", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 781.42}
+{"case_id": "ANS-069", "run_number": 5, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 4032.92}
+{"case_id": "ANS-070", "run_number": 5, "system": "C", "decision": "answer", "answer": "Need-Based Grant", "latency_ms": 812.18}
+{"case_id": "ANS-071", "run_number": 5, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 4096.5}
+{"case_id": "ANS-072", "run_number": 5, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 762.68}
+{"case_id": "ANS-073", "run_number": 5, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 794.24}
+{"case_id": "ANS-074", "run_number": 5, "system": "C", "decision": "answer", "answer": "Civil Engineering", "latency_ms": 875.11}
+{"case_id": "ANS-075", "run_number": 5, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 639.47}
+{"case_id": "ANS-076", "run_number": 5, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 623.47}
+{"case_id": "ANS-077", "run_number": 5, "system": "C", "decision": "answer", "answer": "Pending", "latency_ms": 704.07}
+{"case_id": "ANS-078", "run_number": 5, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 823.37}
+{"case_id": "ANS-079", "run_number": 5, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 758.83}
+{"case_id": "ANS-080", "run_number": 5, "system": "C", "decision": "answer", "answer": "Community Scholarship", "latency_ms": 689.49}
+{"case_id": "ANS-081", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 752.09}
+{"case_id": "ANS-082", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 659.38}
+{"case_id": "ANS-083", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 737.77}
+{"case_id": "ANS-084", "run_number": 5, "system": "C", "decision": "answer", "answer": "Computer Science", "latency_ms": 830.08}
+{"case_id": "ANS-085", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 659.14}
+{"case_id": "ANS-086", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 748.29}
+{"case_id": "ANS-087", "run_number": 5, "system": "C", "decision": "answer", "answer": "Paid", "latency_ms": 649.61}
+{"case_id": "ANS-088", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 672.76}
+{"case_id": "ANS-089", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 712.56}
+{"case_id": "ANS-090", "run_number": 5, "system": "C", "decision": "answer", "answer": "Merit Scholarship", "latency_ms": 742.35}
+{"case_id": "ANS-091", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 818.36}
+{"case_id": "ANS-092", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 795.75}
+{"case_id": "ANS-093", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 816.78}
+{"case_id": "ANS-094", "run_number": 5, "system": "C", "decision": "answer", "answer": "Mathematics", "latency_ms": 1023.57}
+{"case_id": "ANS-095", "run_number": 5, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 818.77}
+{"case_id": "ANS-096", "run_number": 5, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 715.52}
+{"case_id": "ANS-097", "run_number": 5, "system": "C", "decision": "answer", "answer": "Overdue", "latency_ms": 501.53}
+{"case_id": "ANS-098", "run_number": 5, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 766.01}
+{"case_id": "ANS-099", "run_number": 5, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 826.09}
+{"case_id": "ANS-100", "run_number": 5, "system": "C", "decision": "answer", "answer": "Research Grant", "latency_ms": 677.9}
+{"case_id": "AMB-001", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.29}
+{"case_id": "AMB-002", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 32.2}
+{"case_id": "AMB-003", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 29.51}
+{"case_id": "AMB-004", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.47}
+{"case_id": "AMB-005", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.52}
+{"case_id": "AMB-006", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.79}
+{"case_id": "AMB-007", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.28}
+{"case_id": "AMB-008", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.78}
+{"case_id": "AMB-009", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.38}
+{"case_id": "AMB-010", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.87}
+{"case_id": "AMB-011", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.0}
+{"case_id": "AMB-012", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.33}
+{"case_id": "AMB-013", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.17}
+{"case_id": "AMB-014", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.91}
+{"case_id": "AMB-015", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.0}
+{"case_id": "AMB-016", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.61}
+{"case_id": "AMB-017", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.31}
+{"case_id": "AMB-018", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.1}
+{"case_id": "AMB-019", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.43}
+{"case_id": "AMB-020", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.87}
+{"case_id": "AMB-021", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.98}
+{"case_id": "AMB-022", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.35}
+{"case_id": "AMB-023", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.19}
+{"case_id": "AMB-024", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.64}
+{"case_id": "AMB-025", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.13}
+{"case_id": "AMB-026", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.45}
+{"case_id": "AMB-027", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.5}
+{"case_id": "AMB-028", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.01}
+{"case_id": "AMB-029", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.56}
+{"case_id": "AMB-030", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.53}
+{"case_id": "AMB-031", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.88}
+{"case_id": "AMB-032", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 27.42}
+{"case_id": "AMB-033", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 28.01}
+{"case_id": "AMB-034", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 32.33}
+{"case_id": "AMB-035", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.34}
+{"case_id": "AMB-036", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 26.32}
+{"case_id": "AMB-037", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 23.04}
+{"case_id": "AMB-038", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.76}
+{"case_id": "AMB-039", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.5}
+{"case_id": "AMB-040", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.19}
+{"case_id": "AMB-041", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.38}
+{"case_id": "AMB-042", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.21}
+{"case_id": "AMB-043", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.71}
+{"case_id": "AMB-044", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.55}
+{"case_id": "AMB-045", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.37}
+{"case_id": "AMB-046", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.4}
+{"case_id": "AMB-047", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.33}
+{"case_id": "AMB-048", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.43}
+{"case_id": "AMB-049", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.53}
+{"case_id": "AMB-050", "run_number": 5, "system": "C", "decision": "clarify", "answer": "", "latency_ms": 14.25}
+{"case_id": "MIS-001", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.62}
+{"case_id": "MIS-002", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.88}
+{"case_id": "MIS-003", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.7}
+{"case_id": "MIS-004", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 107.01}
+{"case_id": "MIS-005", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 94.32}
+{"case_id": "MIS-006", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 106.27}
+{"case_id": "MIS-007", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 100.88}
+{"case_id": "MIS-008", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.61}
+{"case_id": "MIS-009", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.16}
+{"case_id": "MIS-010", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 84.51}
+{"case_id": "MIS-011", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 97.19}
+{"case_id": "MIS-012", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.76}
+{"case_id": "MIS-013", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.61}
+{"case_id": "MIS-014", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 83.89}
+{"case_id": "MIS-015", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.67}
+{"case_id": "MIS-016", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 76.15}
+{"case_id": "MIS-017", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 78.74}
+{"case_id": "MIS-018", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.19}
+{"case_id": "MIS-019", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 110.61}
+{"case_id": "MIS-020", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 102.8}
+{"case_id": "MIS-021", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 81.72}
+{"case_id": "MIS-022", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.26}
+{"case_id": "MIS-023", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.01}
+{"case_id": "MIS-024", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.99}
+{"case_id": "MIS-025", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.74}
+{"case_id": "MIS-026", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 101.65}
+{"case_id": "MIS-027", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.71}
+{"case_id": "MIS-028", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.27}
+{"case_id": "MIS-029", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 75.36}
+{"case_id": "MIS-030", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.04}
+{"case_id": "MIS-031", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 71.8}
+{"case_id": "MIS-032", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 81.59}
+{"case_id": "MIS-033", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.81}
+{"case_id": "MIS-034", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 118.1}
+{"case_id": "MIS-035", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 94.41}
+{"case_id": "MIS-036", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.48}
+{"case_id": "MIS-037", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 73.07}
+{"case_id": "MIS-038", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.15}
+{"case_id": "MIS-039", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 72.06}
+{"case_id": "MIS-040", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 104.41}
+{"case_id": "MIS-041", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 102.14}
+{"case_id": "MIS-042", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 77.99}
+{"case_id": "MIS-043", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 80.28}
+{"case_id": "MIS-044", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 90.95}
+{"case_id": "MIS-045", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 106.3}
+{"case_id": "MIS-046", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 92.73}
+{"case_id": "MIS-047", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 82.63}
+{"case_id": "MIS-048", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 79.96}
+{"case_id": "MIS-049", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 101.15}
+{"case_id": "MIS-050", "run_number": 5, "system": "C", "decision": "abstain", "answer": "", "latency_ms": 82.97}

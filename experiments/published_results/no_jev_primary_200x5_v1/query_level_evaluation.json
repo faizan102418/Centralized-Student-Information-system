@@ -1,0 +1,101 @@
+{
+  "analysis_unit": "query; repeated attempts are nested within query",
+  "query_level_aggregation": "majority decision across runs; conservative tie-break abstain > clarify > answer; modal answer among answer decisions",
+  "attempts": {
+    "A": {
+      "attempt_count": 1000,
+      "repeats_per_query": 5
+    },
+    "B": {
+      "attempt_count": 1000,
+      "repeats_per_query": 5
+    },
+    "C": {
+      "attempt_count": 1000,
+      "repeats_per_query": 5
+    }
+  },
+  "systems": {
+    "A": {
+      "query_count": 200,
+      "decision_accuracy": 1.0,
+      "answer_coverage_on_answerable": 1.0,
+      "exact_answer_accuracy_when_answered": 1.0,
+      "correct_answer_rate_on_all_answerable": 1.0,
+      "unsafe_answer_rate_on_non_answerable": 0.0,
+      "clarification_precision": 1.0,
+      "clarification_recall": 1.0,
+      "missing_abstention_precision": 1.0,
+      "missing_abstention_recall": 1.0,
+      "missing_abstention_rate": 1.0,
+      "median_of_query_median_latency_ms": 2148.81,
+      "mean_query_median_latency_ms": 1895.18,
+      "mean_decision_consistency": 0.99
+    },
+    "B": {
+      "query_count": 200,
+      "decision_accuracy": 0.995,
+      "answer_coverage_on_answerable": 0.99,
+      "exact_answer_accuracy_when_answered": 1.0,
+      "correct_answer_rate_on_all_answerable": 0.99,
+      "unsafe_answer_rate_on_non_answerable": 0.0,
+      "clarification_precision": 1.0,
+      "clarification_recall": 1.0,
+      "missing_abstention_precision": 0.9804,
+      "missing_abstention_recall": 1.0,
+      "missing_abstention_rate": 1.0,
+      "median_of_query_median_latency_ms": 1363.84,
+      "mean_query_median_latency_ms": 1381.44,
+      "mean_decision_consistency": 0.994
+    },
+    "C": {
+      "query_count": 200,
+      "decision_accuracy": 0.995,
+      "answer_coverage_on_answerable": 0.99,
+      "exact_answer_accuracy_when_answered": 1.0,
+      "correct_answer_rate_on_all_answerable": 0.99,
+      "unsafe_answer_rate_on_non_answerable": 0.0,
+      "clarification_precision": 1.0,
+      "clarification_recall": 1.0,
+      "missing_abstention_precision": 0.9804,
+      "missing_abstention_recall": 1.0,
+      "missing_abstention_rate": 1.0,
+      "median_of_query_median_latency_ms": 445.62,
+      "mean_query_median_latency_ms": 1184.53,
+      "mean_decision_consistency": 0.996
+    }
+  },
+  "paired_query_bootstrap_decision_accuracy_differences": {
+    "A_minus_B": {
+      "observed_accuracy_difference": 0.005,
+      "bonferroni_adjusted_bootstrap_ci_low": 0.0,
+      "bonferroni_adjusted_bootstrap_ci_high": 0.02,
+      "familywise_confidence_level": 0.9833,
+      "bootstrap_samples": 4000,
+      "query_resamples": 200
+    },
+    "B_minus_C": {
+      "observed_accuracy_difference": 0,
+      "bonferroni_adjusted_bootstrap_ci_low": 0.0,
+      "bonferroni_adjusted_bootstrap_ci_high": 0.0,
+      "familywise_confidence_level": 0.9833,
+      "bootstrap_samples": 4000,
+      "query_resamples": 200
+    },
+    "C_minus_A": {
+      "observed_accuracy_difference": -0.005,
+      "bonferroni_adjusted_bootstrap_ci_low": -0.02,
+      "bonferroni_adjusted_bootstrap_ci_high": 0.0,
+      "familywise_confidence_level": 0.9833,
+      "bootstrap_samples": 4000,
+      "query_resamples": 200
+    }
+  },
+  "multiple_comparison_adjustment": "Bonferroni-adjusted 98.33% intervals for the three planned pairwise contrasts (A-B, B-C, C-A).",
+  "limitations": [
+    "This evaluator does not score evidence faithfulness; use the human-validation protocol.",
+    "Majority aggregation is the primary query-level summary; also report run-level variability and decision consistency.",
+    "Bootstrap resamples queries, retaining paired system outcomes; do not treat repeated attempts as independent sample units.",
+    "Latency summaries are descriptive and use each query's median across its repeats."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "inferential_unit": "query/case_id",
+  "repeated_runs_per_query": {
+    "A": 5,
+    "B": 5,
+    "C": 5
+  },
+  "comparisons": {
+    "A-B": {
+      "decision_correct": {
+        "mean_difference": 0.003,
+        "ci95_low": -0.008,
+        "ci95_high": 0.012,
+        "n_queries": 200,
+        "bootstrap_samples": 4000
+      },
+      "answer_correct": {
+        "mean_difference": -0.0,
+        "ci95_low": -0.008,
+        "ci95_high": 0.008,
+        "n_queries": 100,
+        "bootstrap_samples": 4000
+      },
+      "latency_ms": {
+        "mean_difference": -513.7405,
+        "ci95_low": -649.3461,
+        "ci95_high": -381.8645,
+        "n_queries": 200,
+        "bootstrap_samples": 4000
+      }
+    },
+    "B-C": {
+      "decision_correct": {
+        "mean_difference": 0.002,
+        "ci95_low": 0.0,
+        "ci95_high": 0.005,
+        "n_queries": 200,
+        "bootstrap_samples": 4000
+      },
+      "answer_correct": {
+        "mean_difference": 0.002,
+        "ci95_low": -0.004,
+        "ci95_high": 0.008,
+        "n_queries": 100,
+        "bootstrap_samples": 4000
+      },
+      "latency_ms": {
+        "mean_difference": -196.9064,
+        "ci95_low": -321.3283,
+        "ci95_high": -75.1344,
+        "n_queries": 200,
+        "bootstrap_samples": 4000
+      }
+    },
+    "A-C": {
+      "decision_correct": {
+        "mean_difference": 0.005,
+        "ci95_low": -0.004,
+        "ci95_high": 0.013,
+        "n_queries": 200,
+        "bootstrap_samples": 4000
+      },
+      "answer_correct": {
+        "mean_difference": 0.002,
+        "ci95_low": -0.006,
+        "ci95_high": 0.01,
+        "n_queries": 100,
+        "bootstrap_samples": 4000
+      },
+      "latency_ms": {
+        "mean_difference": -710.6468,
+        "ci95_low": -841.8428,
+        "ci95_high": -576.8704,
+        "n_queries": 200,
+        "bootstrap_samples": 4000
+      }
+    }
+  },
+  "interpretation": [
+    "Differences are right minus left; positive latency means the right-hand system is slower.",
+    "Confidence intervals use a paired, category-stratified bootstrap over queries.",
+    "Repeated runs are averaged within query before resampling; attempts are not treated as independent.",
+    "These intervals do not replace human adjudication of answer semantics or evidence support.",
+    "Do not infer causality beyond the specified system interventions and controlled setup."
+  ]
+}

@@ -1,0 +1,1814 @@
+{
+  "dataset": "data/eval/synthetic_eval.jsonl",
+  "case_count": 200,
+  "dataset_sha256": "c97767690c324870d62ce528aef4ba21c51f938cd9c8873f41dabd720928cc32",
+  "category_counts": {
+    "answerable": 100,
+    "ambiguous": 50,
+    "missing": 50
+  },
+  "valid_count": 200,
+  "invalid_count": 0,
+  "cases": [
+    {
+      "case_id": "ANS-001",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-002",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-003",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-004",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-005",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-006",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-007",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-008",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-009",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-010",
+      "category": "answerable",
+      "student_id": "SYN-001",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-011",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-012",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-013",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-014",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-015",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-016",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-017",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-018",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "scholarship_name",
+      "database_value": "Need-Based Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-019",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "scholarship_name",
+      "database_value": "Need-Based Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-020",
+      "category": "answerable",
+      "student_id": "SYN-002",
+      "field": "scholarship_name",
+      "database_value": "Need-Based Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-021",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "discipline",
+      "database_value": "Mechanical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-022",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "discipline",
+      "database_value": "Mechanical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-023",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "discipline",
+      "database_value": "Mechanical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-024",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "discipline",
+      "database_value": "Mechanical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-025",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "fee_status",
+      "database_value": "Pending",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-026",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "fee_status",
+      "database_value": "Pending",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-027",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "fee_status",
+      "database_value": "Pending",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-028",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "scholarship_name",
+      "database_value": "Sports Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-029",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "scholarship_name",
+      "database_value": "Sports Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-030",
+      "category": "answerable",
+      "student_id": "SYN-003",
+      "field": "scholarship_name",
+      "database_value": "Sports Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-031",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-032",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-033",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-034",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-035",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-036",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-037",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-038",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-039",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-040",
+      "category": "answerable",
+      "student_id": "SYN-004",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-041",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "discipline",
+      "database_value": "Software Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-042",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "discipline",
+      "database_value": "Software Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-043",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "discipline",
+      "database_value": "Software Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-044",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "discipline",
+      "database_value": "Software Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-045",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-046",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-047",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-048",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "scholarship_name",
+      "database_value": "Women in STEM Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-049",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "scholarship_name",
+      "database_value": "Women in STEM Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-050",
+      "category": "answerable",
+      "student_id": "SYN-005",
+      "field": "scholarship_name",
+      "database_value": "Women in STEM Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-051",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "discipline",
+      "database_value": "Data Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-052",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "discipline",
+      "database_value": "Data Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-053",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "discipline",
+      "database_value": "Data Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-054",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "discipline",
+      "database_value": "Data Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-055",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "fee_status",
+      "database_value": "Overdue",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-056",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "fee_status",
+      "database_value": "Overdue",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-057",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "fee_status",
+      "database_value": "Overdue",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-058",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-059",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-060",
+      "category": "answerable",
+      "student_id": "SYN-006",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-061",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-062",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-063",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-064",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "discipline",
+      "database_value": "Electrical Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-065",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-066",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-067",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-068",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "scholarship_name",
+      "database_value": "Need-Based Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-069",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "scholarship_name",
+      "database_value": "Need-Based Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-070",
+      "category": "answerable",
+      "student_id": "SYN-007",
+      "field": "scholarship_name",
+      "database_value": "Need-Based Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-071",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "discipline",
+      "database_value": "Civil Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-072",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "discipline",
+      "database_value": "Civil Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-073",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "discipline",
+      "database_value": "Civil Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-074",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "discipline",
+      "database_value": "Civil Engineering",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-075",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "fee_status",
+      "database_value": "Pending",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-076",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "fee_status",
+      "database_value": "Pending",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-077",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "fee_status",
+      "database_value": "Pending",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-078",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "scholarship_name",
+      "database_value": "Community Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-079",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "scholarship_name",
+      "database_value": "Community Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-080",
+      "category": "answerable",
+      "student_id": "SYN-008",
+      "field": "scholarship_name",
+      "database_value": "Community Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-081",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-082",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-083",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-084",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "discipline",
+      "database_value": "Computer Science",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-085",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-086",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-087",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "fee_status",
+      "database_value": "Paid",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-088",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-089",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-090",
+      "category": "answerable",
+      "student_id": "SYN-009",
+      "field": "scholarship_name",
+      "database_value": "Merit Scholarship",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-091",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "discipline",
+      "database_value": "Mathematics",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-092",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "discipline",
+      "database_value": "Mathematics",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-093",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "discipline",
+      "database_value": "Mathematics",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-094",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "discipline",
+      "database_value": "Mathematics",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-095",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "fee_status",
+      "database_value": "Overdue",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-096",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "fee_status",
+      "database_value": "Overdue",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-097",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "fee_status",
+      "database_value": "Overdue",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-098",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "scholarship_name",
+      "database_value": "Research Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-099",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "scholarship_name",
+      "database_value": "Research Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "ANS-100",
+      "category": "answerable",
+      "student_id": "SYN-010",
+      "field": "scholarship_name",
+      "database_value": "Research Grant",
+      "validation_status": "valid",
+      "validation_detail": "database value matches expected answer"
+    },
+    {
+      "case_id": "AMB-001",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-002",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-003",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-004",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-005",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-006",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-007",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-008",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-009",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-010",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-011",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-012",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-013",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-014",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-015",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-016",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-017",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-018",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-019",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-020",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-021",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-022",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-023",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-024",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-025",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-026",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-027",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-028",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-029",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-030",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-031",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-032",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-033",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-034",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-035",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-036",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-037",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-038",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-039",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-040",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-041",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-042",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-043",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-044",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-045",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-046",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-047",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-048",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-049",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "AMB-050",
+      "category": "ambiguous",
+      "student_id": null,
+      "field": "ambiguous_name",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "all listed candidates exist; clarification is warranted"
+    },
+    {
+      "case_id": "MIS-001",
+      "category": "missing",
+      "student_id": "SYN-021",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-002",
+      "category": "missing",
+      "student_id": "SYN-021",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-003",
+      "category": "missing",
+      "student_id": "SYN-021",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-004",
+      "category": "missing",
+      "student_id": "SYN-022",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-005",
+      "category": "missing",
+      "student_id": "SYN-022",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-006",
+      "category": "missing",
+      "student_id": "SYN-022",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-007",
+      "category": "missing",
+      "student_id": "SYN-023",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-008",
+      "category": "missing",
+      "student_id": "SYN-023",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-009",
+      "category": "missing",
+      "student_id": "SYN-023",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-010",
+      "category": "missing",
+      "student_id": "SYN-024",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-011",
+      "category": "missing",
+      "student_id": "SYN-024",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-012",
+      "category": "missing",
+      "student_id": "SYN-024",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-013",
+      "category": "missing",
+      "student_id": "SYN-025",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-014",
+      "category": "missing",
+      "student_id": "SYN-025",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-015",
+      "category": "missing",
+      "student_id": "SYN-025",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-016",
+      "category": "missing",
+      "student_id": "SYN-026",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-017",
+      "category": "missing",
+      "student_id": "SYN-026",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-018",
+      "category": "missing",
+      "student_id": "SYN-027",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-019",
+      "category": "missing",
+      "student_id": "SYN-027",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-020",
+      "category": "missing",
+      "student_id": "SYN-028",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-021",
+      "category": "missing",
+      "student_id": "SYN-028",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-022",
+      "category": "missing",
+      "student_id": "SYN-029",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-023",
+      "category": "missing",
+      "student_id": "SYN-029",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-024",
+      "category": "missing",
+      "student_id": "SYN-030",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-025",
+      "category": "missing",
+      "student_id": "SYN-030",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "fee-submission row exists and fee_status is SQL NULL"
+    },
+    {
+      "case_id": "MIS-026",
+      "category": "missing",
+      "student_id": "SYN-011",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-027",
+      "category": "missing",
+      "student_id": "SYN-011",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-028",
+      "category": "missing",
+      "student_id": "SYN-011",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-029",
+      "category": "missing",
+      "student_id": "SYN-012",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-030",
+      "category": "missing",
+      "student_id": "SYN-012",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-031",
+      "category": "missing",
+      "student_id": "SYN-012",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-032",
+      "category": "missing",
+      "student_id": "SYN-013",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-033",
+      "category": "missing",
+      "student_id": "SYN-013",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-034",
+      "category": "missing",
+      "student_id": "SYN-013",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-035",
+      "category": "missing",
+      "student_id": "SYN-014",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-036",
+      "category": "missing",
+      "student_id": "SYN-014",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-037",
+      "category": "missing",
+      "student_id": "SYN-014",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-038",
+      "category": "missing",
+      "student_id": "SYN-015",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-039",
+      "category": "missing",
+      "student_id": "SYN-015",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-040",
+      "category": "missing",
+      "student_id": "SYN-015",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-041",
+      "category": "missing",
+      "student_id": "SYN-016",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-042",
+      "category": "missing",
+      "student_id": "SYN-016",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-043",
+      "category": "missing",
+      "student_id": "SYN-017",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-044",
+      "category": "missing",
+      "student_id": "SYN-017",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-045",
+      "category": "missing",
+      "student_id": "SYN-018",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-046",
+      "category": "missing",
+      "student_id": "SYN-018",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-047",
+      "category": "missing",
+      "student_id": "SYN-019",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-048",
+      "category": "missing",
+      "student_id": "SYN-019",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-049",
+      "category": "missing",
+      "student_id": "SYN-020",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    },
+    {
+      "case_id": "MIS-050",
+      "category": "missing",
+      "student_id": "SYN-020",
+      "field": "fee_status",
+      "database_value": null,
+      "validation_status": "valid",
+      "validation_detail": "student exists and no fee-submission row exists"
+    }
+  ]
+}
